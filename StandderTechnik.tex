@@ -1,0 +1,93 @@
+\section{Infrastrukturelle Umfelderfassung}
+\label{sec:TechnikStand}
+Dieses Kapitel stellt zunächst die bestehenden Sensoren zur Umfelderfassung vor und erläutert deren Funktionsprinzipien. Anschließend wird auf die Algorithmen zur Datenfusion, Objekterkennung und Tracking eingegangen. Auf diesen Grundlagen aufbauend wird in den Kapiteln \ref{sec:KFZSensor} und \ref{sec:InfraSensor} aufgezeigt, wie dies im Fahrzeug und auch in der Infrastruktur genutzt wird.
+
+\subsection{Sensoren zur Umfelderfassung}
+\label{sec:Sensoren}
+Die Sensoren zur Umfelderfassung werden in entfernungsgebende und bildgebende Sensoren unterschieden. Zu ersterem gehören der Ultraschall, der Radar und der Lidar. Zu letzterem die Kamera mit dem sichtbaren und dem Infrarotspektrum. Im Folgendem werden die einzelnen Sensorprinzipien erläutert.
+
+\subsubsection{Ultraschall}
+\label{sec:Ultraschall}
+Als Ultraschall werden die Schallfrequenzen ab \unit{20}{kHz} bezeichnet. Sie gehören zu den Frequenzen, die für das menschliche Ohr nicht hörbar sind. Die Messung mit Ultraschall gehört zu den Laufzeitmessungen. Ein Sender emittiert Schallwellen, die schließlich von Objekten reflektiert werden. Mit Hilfe der gemessenen Laufzeit $\Delta t$ bis das Echo wieder am Sender ankommt kann der Abstand $d$ zum gemessenen Objekt bestimmt werden:
+
+\begin{equation}
+d = \dfrac{c \Delta t}{2}.
+\label{eq:Abstand}
+\end{equation}
+
+Hierbei ist $c_S$ die Schallgeschwindigkeit. Da die Strecke zwischen Sender und Objekt zweimal durchlaufen wird, muss diese halbiert werden um den tatsächlichen Abstand zu erhalten.
+
+Die Reichweite des Ultraschallsensors ist abhängig von der ausgesendeten Schallintensität $I_S$, da die Schallintensität zum Einen in Abhängigkeit von der Entfernung $r$ und zum Anderen durch den Reflexionsgrad $\rho$ des gemessenen Objektes abnimmt. Somit ergibt sich, mit der effektiven Reflexionsfläche $\sigma$ und bezogen auf den Normabstand $r_1$, die reflektierte Schallintensität \marginpar{Schallreflexionsgrad $\rho$?}
+
+\begin{equation}
+I_{refl}=\sigma I_s \left(\dfrac{r_1}{2r}\right)^2.
+\label{eq:Irefl}
+\end{equation}
+
+Damit ein Objekt erkannt wird muss das Empfangssignal oberhalb des Rauschens liegen, d.h. \unit{$\leq$10}{dB} sein.
+
+\subsubsection{Radar}
+\label{sec:Radar}
+Radar steht für \textbf{ra}dio \textbf{d}etection \textbf{a}nd \textbf{r}anging und nutzt die elektromagnetischen Wellen im Radiofrequenzbereich. Für den Automobilbereich sind die \unit{24}{GHz} und \unit{77}{GHz} Frequenzbänder reserviert. \marginpar{Quellen!}
+
+Im Gegensatz zum Ultraschall breiten sich hier die Wellen nicht in alle Raumrichtungen gleichmäßig aus sondern werden mit Hilfe einer sogenannten Richtantenne gebündelt. Je nach Richtcharakteristik ergibt sich der Antennengewinn $G$, der Einfluss auf die Reichweite nimmt. Die Empfangsleistung für ein reflektiertes Radarsignal ergibt sich zu
+
+\begin{equation}
+P_R = 10^{-2kr/1000} \cdot \sigma \cdot \lambda^2 \cdot G^2 \cdot V_{mp}^2 \cdot P_{total}/(4\pi)^3 r^4
+\label{eq:Empfangsleistung}
+\end{equation}
+
+mit dem Rückstreuquerschnitt
+
+\begin{equation}
+\sigma_{plate} = 4\pi \dfrac{A^2}{\lambda^2}.
+\label{eq:Rueckstreuquerschnitt}
+\end{equation}
+
+Gleichung \ref{eq:Empfangsleistung} berücksichtigt außerdem sogenannte Signalleistungsschüttler mit dem Faktor $V_{mp}^2$, $0 \leq V_{mp} \leq 2$.
+
+Bei der Abstandsmessung wird neben der Laufzeitbestimmung der Doppler-Effekt genutzt. Der Doppler-Effekt besagt, dass sich die Frequenz bei der Reflexion in Abhängigkeit von der Änderung des Abstandes $\dot{r}$ ändert. Diese Frequenz wird auch Dopplerfrequenz $f_{Doppler}$ genannt und ergibt sich mit der Trägerfrequenz $f_0$ und der Lichtgeschwindigkeit $c$ folgendermaßen:
+
+\begin{equation}
+f_{Doppler} = - 2 \dot{r} f_0/c
+\label{eq:Doppler}
+\end{equation}
+
+Bei einer Annäherung ($\dot{r}<0$) ist diese positiv und beim Entfernen negativ. Stehende Objekte können mit diesem Effekt jedoch nicht gemessen werden.
+
+\subsubsection{Lidar}
+\label{sec:Lidar}
+Das Lidar (light detection and ranging) gehört zu den optischen Messverfahren und nutzt Laserpulse. Der Abstand wird, wie beim Ultraschall, mittels Laufzeitmessung bestimmt. Die empfangene Lichtintensität ist insbesondere von der Größe und vom Reflexionsgrad $\rho$ des gemessenen Objektes abhängig. So bestimmt sie sich für ein großes Objekt mit 
+
+\begin{equation}
+P_r = \dfrac{\rho \cdot A_t \cdot H \cdot T^2 \cdot P_t}{\pi^2 \cdot R^3 \cdot (Q_v/4)(\Phi/2)^2}
+	\label{eq:Pgross}
+\end{equation}
+
+und für ein kleines Objekt mit
+
+\begin{equation}
+P_r = \dfrac{\rho \cdot A_t \cdot H \cdot T^2 \cdot P_t}{\pi^2 \cdot R^4 \cdot (Q_v Q_h/4)(\Phi/2)^2}. 
+\label{eq:Pklein}
+\end{equation}
+
+\subsubsection{Kamera}
+\label{sec:Kamera}
+
+\subsection{Algorithmen zur Datenverarbeitung}
+\label{sec:Algorithmen}
+
+\subsubsection{Datenfusion}
+\label{sec:Fusion}
+
+\subsubsection{Objekterkennung}
+\label{sec:Objekterkennung}
+
+\subsubsection{Tracking}
+\label{sec:Tracking}
+
+\subsection{Sensoreinsatz im Fahrzeug}
+\label{sec:KFZSensor}
+
+\subsection{Sensoreinsatz in der Infrastruktur}
+\label{sec:InfraSensor}

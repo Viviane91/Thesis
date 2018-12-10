@@ -1,4 +1,4 @@
-\section{Infrastrukturelle Umfelderfassung}
+\section{Umfelderfassung}
 \label{sec:TechnikStand}
 Dieses Kapitel stellt zunächst die bestehenden Sensoren zur Umfelderfassung vor und erläutert deren Funktionsprinzipien. Anschließend wird auf die Algorithmen zur Datenfusion, Objekterkennung und Tracking eingegangen. Auf diesen Grundlagen aufbauend wird in den Kapiteln \ref{sec:KFZSensor} und \ref{sec:InfraSensor} aufgezeigt, wie dies im Fahrzeug und auch in der Infrastruktur genutzt wird.
 
@@ -8,7 +8,7 @@ Die Sensoren zur Umfelderfassung werden in entfernungsgebende und bildgebende Se
 
 \subsubsection{Ultraschall}
 \label{sec:Ultraschall}
-Als Ultraschall werden die Schallfrequenzen ab \unit{20}{kHz} bezeichnet. Sie gehören zu den Frequenzen, die für das menschliche Ohr nicht hörbar sind. Die Messung mit Ultraschall gehört zu den Laufzeitmessungen. Ein Sender emittiert Schallwellen, die schließlich von Objekten reflektiert werden. Mit Hilfe der gemessenen Laufzeit $\Delta t$ bis das Echo wieder am Sender ankommt kann der Abstand $d$ zum gemessenen Objekt bestimmt werden:
+Als Ultraschall werden die Schallfrequenzen ab \unit{20}{kHz} bezeichnet. Sie gehören zu den Frequenzen, die für das menschliche Ohr nicht hörbar sind. Die Messung mit Ultraschall gehört zu den Laufzeitmessungen. Ein Sender emittiert Schallwellen, die schließlich von Objekten reflektiert werden. Mit Hilfe der gemessenen Laufzeit $\Delta t$ bis das Echo wieder am Sender ankommt kann der Abstand $d$ zum gemessenen Objekt bestimmt werden \cite{Trankler.2014}:
 
 \begin{equation}
 d = \dfrac{c \Delta t}{2}.
@@ -17,18 +17,21 @@ d = \dfrac{c \Delta t}{2}.
 
 Hierbei ist $c_S$ die Schallgeschwindigkeit. Da die Strecke zwischen Sender und Objekt zweimal durchlaufen wird, muss diese halbiert werden um den tatsächlichen Abstand zu erhalten.
 
-Die Reichweite des Ultraschallsensors ist abhängig von der ausgesendeten Schallintensität $I_S$, da die Schallintensität zum Einen in Abhängigkeit von der Entfernung $r$ und zum Anderen durch den Reflexionsgrad $\rho$ des gemessenen Objektes abnimmt. Somit ergibt sich, mit der effektiven Reflexionsfläche $\sigma$ und bezogen auf den Normabstand $r_1$, die reflektierte Schallintensität \marginpar{Schallreflexionsgrad $\rho$?}
+Die Reichweite des Ultraschallsensors ist abhängig von der ausgesendeten Schallintensität $I_S$, da die Schallintensität in Abhängigkeit von der Entfernung $r$ des gemessenen Objektes abnimmt. Somit ergibt sich, mit der effektiven Reflexionsfläche $\sigma$ und bezogen auf den Normabstand $r_1$, die reflektierte Schallintensität 
 
 \begin{equation}
 I_{refl}=\sigma I_s \left(\dfrac{r_1}{2r}\right)^2.
 \label{eq:Irefl}
 \end{equation}
 
-Damit ein Objekt erkannt wird muss das Empfangssignal oberhalb des Rauschens liegen, d.h. \unit{$\leq$10}{dB} sein.
+Des Weiteren verringert der Reflexionsgrad $\rho_S$ die Schallintensität bei der Reflexion.
+Damit ein Objekt erkannt wird muss die Intensität des Empfangssignals oberhalb des Rauschens liegen, d.h. \unit{$\leq$10}{dB} sein.
+
+Ultraschallsensoren nutzen eine Membran aus einer Piezokeramik zur Schallerzeugung und -empfang\cite{Winner.2015}. Zum Aussenden der Schallwellen wird die Membran aktiv in Schwingung versetzt und nach einer festgelegten Sendedauer wieder zur Ruhe gebracht. Die Zeit bis der reflektierte Schall die Membran wieder zur Schwingung anregt wird zur Abstandsbestimmung genutzt.
 
 \subsubsection{Radar}
 \label{sec:Radar}
-Radar steht für \textbf{ra}dio \textbf{d}etection \textbf{a}nd \textbf{r}anging und nutzt die elektromagnetischen Wellen im Radiofrequenzbereich. Für den Automobilbereich sind die \unit{24}{GHz} und \unit{77}{GHz} Frequenzbänder reserviert. \marginpar{Quellen!}
+Radar steht für \textbf{ra}dio \textbf{d}etection \textbf{a}nd \textbf{r}anging und nutzt die elektromagnetischen Wellen im Radiofrequenzbereich. Für den Automobilbereich sind die \unit{24}{GHz} und \unit{77}{GHz} Frequenzbänder reserviert\cite{Winner.2015}.
 
 Im Gegensatz zum Ultraschall breiten sich hier die Wellen nicht in alle Raumrichtungen gleichmäßig aus sondern werden mit Hilfe einer sogenannten Richtantenne gebündelt. Je nach Richtcharakteristik ergibt sich der Antennengewinn $G$, der Einfluss auf die Reichweite nimmt. Die Empfangsleistung für ein reflektiertes Radarsignal ergibt sich zu
 
@@ -57,14 +60,14 @@ Bei einer Annäherung ($\dot{r}<0$) ist diese positiv und beim Entfernen negativ.
 
 \subsubsection{Lidar}
 \label{sec:Lidar}
-Das Lidar (light detection and ranging) gehört zu den optischen Messverfahren und nutzt Laserpulse. Der Abstand wird, wie beim Ultraschall, mittels Laufzeitmessung bestimmt. Die empfangene Lichtintensität ist insbesondere von der Größe und vom Reflexionsgrad $\rho$ des gemessenen Objektes abhängig. So bestimmt sie sich für ein großes Objekt mit 
+Das Lidar (light detection and ranging) gehört zu den optischen Messverfahren und nutzt Laserpulse. Der Abstand wird, wie beim Ultraschall, mittels Laufzeitmessung bestimmt. Die empfangene Lichtintensität ist insbesondere von der Größe und vom Reflexionsgrad $\rho$ des gemessenen Objektes abhängig. So bestimmt sie sich für ein Objekt, das größer als der Lichtpunkt ist, mit 
 
 \begin{equation}
 P_r = \dfrac{\rho \cdot A_t \cdot H \cdot T^2 \cdot P_t}{\pi^2 \cdot R^3 \cdot (Q_v/4)(\Phi/2)^2}
 	\label{eq:Pgross}
 \end{equation}
 
-und für ein kleines Objekt mit
+und für ein Objekt, das kleiner ist als der Lichtpunkt, mit
 
 \begin{equation}
 P_r = \dfrac{\rho \cdot A_t \cdot H \cdot T^2 \cdot P_t}{\pi^2 \cdot R^4 \cdot (Q_v Q_h/4)(\Phi/2)^2}. 
@@ -73,6 +76,22 @@ P_r = \dfrac{\rho \cdot A_t \cdot H \cdot T^2 \cdot P_t}{\pi^2 \cdot R^4 \cdot (
 
 \subsubsection{Kamera}
 \label{sec:Kamera}
+Die Kamera gehört zu den bildgebenden Sensoren und besitzt dadurch den Vorteil ähnliche Informationen wie das menschliche Auge zu produzieren. Somit können Objekte mit einer hohen Genauigkeit identifiziert werden. Jedoch ist die Entfernungsmessung mit einer Monokamera eher ungenau, da dies nur anhand der Auflösung bestimmt werden kann. Diese bestimmt auch den Sichtbereich und die Reichweite. Letzteres wird durch den Bereich des scharfen Abbildens begrenzt\cite{Hering.2016}. Die untere Grenze $a_v$ der Reichweite liegt vor und die obere Grenze $a_h$ hinter der Objektebene und ergeben sich mit
+
+\begin{align}
+a_v &= \dfrac{a f'^2}{f'^2 - u'k(a+f')}\\
+a_h &= \dfrac{a f'^2}{f'^2 + u'k(a+f')}.
+\label{eq:a_vh}
+\end{align}
+
+Dabei ist $k$ die Blendenzahl, $a$ der Abstand zwischen Objektebene und Eintrittspupille, $f'$ die Brennweite und $u'$ der Durchmesser des Unschärfekreises, der sich folgendermaßen bestimmen lässt:
+
+\begin{equation}
+u' = \dfrac{\text{Formatdiagonale}}{1000}
+\label{eq:u'}
+\end{equation}
+
+Neben dem sichtbaren Spektrum können einige Kameras auch das Infrarotspektrum erkennen. So kann auch bei Nacht bzw. Dunkelheit die Kamera weiterhin eingesetzt werden. Es gibt zwei verschiedene Ansätze hierbei, die unterschiedliche Infrarotbereiche nutzen. Zum Einen ist das das Nahinfrarot (NIR). Hierbei wird ein NIR-Blitz eingesetzt, der Infrarotstrahlen aussendet, die von der Kamera erkannt werden. Zum Anderen ist das das Ferninfrarot (FIR). In diesem Spektrum liegt die Wärmestrahlung von Objekten, die von speziellen Wärmebildkameras erfasst werden kann.
 
 \subsection{Algorithmen zur Datenverarbeitung}
 \label{sec:Algorithmen}

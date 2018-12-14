@@ -11,14 +11,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=880
+NormalPos.right=849
 NormalPos.bottom=648
 Class=LaTeXView
-Document=Software-Tool.tex
+Document=LaTeX.tex
 
 [Frame0_View0,0]
-TopLine=0
-Cursor=206
+TopLine=34
+Cursor=1478
 
 [Frame1]
 Flags=0
@@ -29,14 +29,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=880
+NormalPos.right=849
 NormalPos.bottom=648
-Class=LaTeXView
-Document=Einleitung.tex
+Class=BibTeXView
+Document=Literatur.bib
 
 [Frame1_View0,0]
 TopLine=0
-Cursor=44
+Cursor=0
 
 [Frame2]
 Flags=0
@@ -47,14 +47,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=880
+NormalPos.right=849
 NormalPos.bottom=648
-Class=BibTeXView
-Document=Literatur.bib
+Class=LaTeXView
+Document=Evaluation.tex
 
 [Frame2_View0,0]
-TopLine=887
-Cursor=25019
+TopLine=0
+Cursor=0
 
 [Frame3]
 Flags=0
@@ -65,14 +65,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=880
+NormalPos.right=849
 NormalPos.bottom=648
 Class=LaTeXView
-Document=Header.tex
+Document=StandderTechnik.tex
 
 [Frame3_View0,0]
-TopLine=12
-Cursor=749
+TopLine=269
+Cursor=12590
 
 [Frame4]
 Flags=0
@@ -83,14 +83,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=880
+NormalPos.right=849
 NormalPos.bottom=648
 Class=LaTeXView
-Document=LaTeX.tex
+Document=Anforderungen.tex
 
 [Frame4_View0,0]
-TopLine=37
-Cursor=1188
+TopLine=0
+Cursor=747
 
 [Frame5]
 Flags=0
@@ -101,14 +101,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=880
+NormalPos.right=849
 NormalPos.bottom=648
 Class=LaTeXView
-Document=StandderTechnik.tex
+Document=Zusammenfassung.tex
 
 [Frame5_View0,0]
-TopLine=6
-Cursor=1540
+TopLine=0
+Cursor=0
 
 [Frame6]
 Flags=0
@@ -119,14 +119,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=880
+NormalPos.right=849
 NormalPos.bottom=648
 Class=LaTeXView
-Document=Anforderungen.tex
+Document=Software-Tool.tex
 
 [Frame6_View0,0]
 TopLine=0
-Cursor=0
+Cursor=206
 
 [Frame7]
 Flags=0
@@ -137,14 +137,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=880
+NormalPos.right=849
 NormalPos.bottom=648
 Class=LaTeXView
-Document=Evaluation.tex
+Document=Einleitung.tex
 
 [Frame7_View0,0]
 TopLine=0
-Cursor=0
+Cursor=44
 
 [Frame8]
 Flags=0
@@ -155,16 +155,16 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=880
+NormalPos.right=849
 NormalPos.bottom=648
 Class=LaTeXView
-Document=Zusammenfassung.tex
+Document=Header.tex
 
 [Frame8_View0,0]
-TopLine=0
-Cursor=0
+TopLine=12
+Cursor=749
 
 [SessionInfo]
 FrameCount=9
-ActiveFrame=4
+ActiveFrame=0
 

@@ -15,6 +15,23 @@
 \newblock \url{http://dx.doi.org/10.1007/978-3-662-49355-7}. --
 \newblock ISBN 978--3--662--49354--0
 
+\bibitem[{Kla}]{Dietmayer2005}
+\textsc{{Klaus Dietmayer, Alexander Kirchner und Nico K{\"a}mpchen}}:
+\newblock Fusionsarchitekturen zur Umfeldwahrnehmung f{\"u}r zuk{\"u}nftige
+  Fahrerassistenzsysteme, S. 59--88
+
+\bibitem[{Leo}08]{Walchshausl.2008}
+\textsc{{Leonhard F. Walchsh{\"a}usl}}:
+\newblock \emph{Maschinelle Erkennung von Verkehrsteilnehmern mittels
+  heterogener Sensorik}.
+\newblock M{\"u}nchen, {Technische Universit{\"a}t M{\"u}nchen}, Diss., 2008
+
+\bibitem[{Rud}09]{RudiLindl.2009}
+\textsc{{Rudi Lindl}}:
+\newblock \emph{Tracking von Verkehrsteilnehmern im Kontext von
+  Multisensorsystemen}.
+\newblock M{\"u}nchen, {TU M{\"u}nchen}, Diss., 2009
+
 \bibitem[TR14]{Trankler.2014}
 \textsc{Tr{\"a}nkler}, Hans-Rolf ; \textsc{Reindl}, Leonhard~M.:
 \newblock \emph{Sensortechnik}.

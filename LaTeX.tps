@@ -11,14 +11,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=849
+NormalPos.right=769
 NormalPos.bottom=648
 Class=LaTeXView
 Document=LaTeX.tex
 
 [Frame0_View0,0]
-TopLine=34
-Cursor=1478
+TopLine=36
+Cursor=1400
 
 [Frame1]
 Flags=0
@@ -29,7 +29,7 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=849
+NormalPos.right=769
 NormalPos.bottom=648
 Class=BibTeXView
 Document=Literatur.bib
@@ -47,7 +47,7 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=849
+NormalPos.right=769
 NormalPos.bottom=648
 Class=LaTeXView
 Document=Evaluation.tex
@@ -65,14 +65,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=849
+NormalPos.right=769
 NormalPos.bottom=648
 Class=LaTeXView
 Document=StandderTechnik.tex
 
 [Frame3_View0,0]
-TopLine=269
-Cursor=12590
+TopLine=266
+Cursor=12476
 
 [Frame4]
 Flags=0
@@ -83,7 +83,7 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=849
+NormalPos.right=769
 NormalPos.bottom=648
 Class=LaTeXView
 Document=Anforderungen.tex
@@ -101,7 +101,7 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=849
+NormalPos.right=769
 NormalPos.bottom=648
 Class=LaTeXView
 Document=Zusammenfassung.tex
@@ -119,7 +119,7 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=849
+NormalPos.right=769
 NormalPos.bottom=648
 Class=LaTeXView
 Document=Software-Tool.tex
@@ -137,7 +137,7 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=849
+NormalPos.right=769
 NormalPos.bottom=648
 Class=LaTeXView
 Document=Einleitung.tex
@@ -155,7 +155,7 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
-NormalPos.right=849
+NormalPos.right=769
 NormalPos.bottom=648
 Class=LaTeXView
 Document=Header.tex
@@ -166,5 +166,5 @@ Cursor=749
 
 [SessionInfo]
 FrameCount=9
-ActiveFrame=0
+ActiveFrame=3
 

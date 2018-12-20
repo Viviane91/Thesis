@@ -43,38 +43,40 @@ Zur Schallerzeugung und -empfang wird bei Ultraschallsensoren eine Membran aus e
 
 \subsubsection{Radar}
 \label{sec:Radar}
-radio detection and ranging\\
-elektromagnetische Wellen im Radiofrequenzbereich/Mikrowellen\\
-24GHz und 77GHz für Automobil\\
-Strahlen gebündelt mit Richtantenne\\
-Zwei Messverfahren: Puls-Doppler und Dauerstrich (FMCW)\\
-Puls-Doppler: Rechteckpulse mit Zwischenfrequenz (Mischer), Abstand mit Pulslaufzeit bezogen auf Pulsmitte, betrachtet Doppler-Frequenzen, Annäherung positiv/Entfernen negativ\\
-FMCW: Frequenzrampen, Differenzfrequenz betrachten (je größer $\Delta f$ desto größer $\Delta t$ desto größer d)\\
-Reichweite von Sendeleistung und Richtcharakteristik abhängig\\
-Rückstreuquerschnitt $\sigma$ beeinflusst reflektiertes Signal\\
-je größer $\sigma$ desto besser erkennbar\\
-FoV erweiterbar durch Scan oder Mehrstrahler\\
 
 Die Radarmessung (Radio Detection And Ranging) gehört zu den berührungslosen Messverfahren und wird insbesondere bei anspruchsvollen Umgebungsbedingungen eingesetzt \cite{Trankler.2014}. Bei diesem Verfahren werden elektromagnetische Wellen im Mikrowellenbereich eingesetzt, welche kaum anfällig gegenüber Temperaturschwankungen und Nebel sind. Für den Automobilbereich sind die \unit{24}{GHz} und \unit{77}{GHz} Frequenzen reserviert \cite{Winner.2015}.
 
-Zur Abstandsmessung finden zwei verschiedene Ansätze Verwendung. Das ist zum Einen das Puls-Doppler-Verfahren und zum Anderen das Dauerstrich-Verfahren (FMCW). Ersteres funktioniert ähnlich wie die Laufzeitmessung beim Ultraschall. 
+Zur Abstandsmessung finden zwei verschiedene Ansätze Verwendung, die sich in der Frequenzmodulation unterscheiden. Das ist einmal das Dauerstrichradar (FMCW) und zum anderen die Chirp Frequence Modulation. Die Frequenzverläufe der beiden Modulationsverfahren sind in Abbildung \marginpar{Abbildung einfügen!} dargestellt. Das Dauerstrichradar erzeugt durch die kontinuierliche und rampenförmige Veränderung der Momentanfrequenz eine konstante Phasenverschiebung von $+(2r/c)^2m_{\omega}$. Der Abstand und die Geschwindigkeit wird bei diesem Verfahren mithilfe der Frequenzverschiebung bestimmt:
 
 \begin{align}
-	r &= \dfrac{c}{2} \cdot \dfrac{\Delta t_0 \omega_{obj} - \varphi_{BA}}{m_{\omega} \Delta t_0 - \Delta \omega_{BA}},\\
-	\dot{r} &= \dfrac{c}{2 \omega_0} \cdot \dfrac{m_{\omega} \Delta \varphi_{BA} - \Delta \omega_{BA} \omega_{obj}}{m_{\omega} \Delta t_0 - \Delta \omega_{BA}}
-\end{align}
+	r &= \dfrac{c}{2} \cdot \dfrac{\omega_{obj,1}-\omega_{obj,2}}{m_{\omega,1} - m_{\omega,2}},\\
+	\dot{r} &= \dfrac{c}{2 \omega_0} \cdot \dfrac{m_{\omega,1}\omega_{obj,1}-m_{\omega,2}\omega_{obj,2}}{m_{\omega,1} - m_{\omega,2}}.
+	\end{align}
 
+Bei der Chirp Frequence Modulation wird ein Sägezahnsignal mit einem Hub von $f_{chirp}=30...300\,\text{MHz}$ erzeugt. Die Dopplerfrequenz bestimmt hierbei die Wiederholrate und sollte etwa \unit{80}{kHz} betragen, um Mehrdeutigkeiten zu vermeiden. Der Abstand wird mit dem Puls-Doppler-Verfahren mit der Laufzeit $t_{of}=t_{PC}-t_S$, bezogen auf die Pulsmitte $t_{PC}$, bestimmt:
 
-Radar steht für Radio Detection And Ranging und sendet elektromagnetischen Wellen im Radiofrequenzbereich aus. Für den Automobilbereich sind die \unit{24}{GHz} und \unit{77}{GHz} Frequenzbänder reserviert \cite{Winner.2015}.
+\begin{equation}
+	r = \dfrac{1}{2}c t_{of}
+\label{eq:AbstandRadar}
+\end{equation}
 
-Im Gegensatz zum Ultraschall breiten sich beim Radar die Wellen nicht gleichmäßig in alle Raumrichtungen aus, sondern werden mit Hilfe einer sogenannten Richtantenne gebündelt. Je nach Richtcharakteristik ergibt sich der Antennengewinn $G$, der Einfluss auf die Reichweite nimmt. Die Empfangsleistung für ein reflektiertes Radarsignal ergibt sich zu
+Für die Bestimmung der Geschwindigkeit wird beim Radar der Doppler-Effekt genutzt. Der Doppler-Effekt besagt, dass sich die Frequenz bei der Reflexion in Abhängigkeit von der Änderung des Abstandes $\dot{r}$ ändert. Diese Frequenz wird Dopplerfrequenz $f_{Doppler}$ genannt und ergibt sich mit der Trägerfrequenz $f_0$ und der Lichtgeschwindigkeit $c$ folgendermaßen:
+
+\begin{equation}
+f_{Doppler} = -\dfrac{2 \dot{r}}{c} f_0
+\label{eq:Doppler}
+\end{equation}
+
+Bei einer Annäherung ($\dot{r}<0$) ist diese Frequenz positiv und beim Entfernen negativ.
+
+Die Reichweite des Radars ist abhängig von der Sendeleistung und der Richtcharakteristik der Antenne. Je nach Richtcharakteristik ergibt sich der Antennengewinn $G$, der Einfluss auf die Reichweite nimmt. So ergibt sich die Empfangsleistung für ein reflektiertes Radarsignal zu
 
 \begin{equation}
 P_R = \dfrac{10^{-2kr/1000}  \sigma  \lambda^2  G^2  V_{mp}^2  P_{total}}{(4\pi)^3 r^4}
 \label{eq:Empfangsleistung}
 \end{equation}
 
-mit dem Rückstreuquerschnitt
+mit dem Rückstreuquerschnitt des Objektes
 
 \begin{equation}
 \sigma_{plate} = 4\pi \dfrac{A^2}{\lambda^2}.
@@ -83,14 +85,7 @@ mit dem Rückstreuquerschnitt
 
 Gleichung \ref{eq:Empfangsleistung} berücksichtigt außerdem sogenannte Signalleistungsschüttler mit dem Faktor $V_{mp}^2$, $0 \leq V_{mp} \leq 2$.
 
-Bei der Abstandsmessung wird neben der Laufzeitbestimmung der Doppler-Effekt genutzt. Der Doppler-Effekt besagt, dass sich die Frequenz bei der Reflexion in Abhängigkeit von der Änderung des Abstandes $\dot{r}$ ändert. Diese Frequenz wird auch Dopplerfrequenz $f_{Doppler}$ genannt und ergibt sich mit der Trägerfrequenz $f_0$ und der Lichtgeschwindigkeit $c$ folgendermaßen:
-
-\begin{equation}
-f_{Doppler} = - 2 \dot{r} f_0/c
-\label{eq:Doppler}
-\end{equation}
-
-Bei einer Annäherung ($\dot{r}<0$) ist diese positiv und beim Entfernen negativ. Stehende Objekte können mit diesem Effekt jedoch nicht gemessen werden.
+Für die Winkelbestimmung kommen zwei verschiedene Verfahren zum Einsatz. Das ist zum Einen das mechanisch Scanning, bei dem eine Strahlablenkeinheit oder eine Planarantenne mechanisch geschwenkt wird. Dabei bewegt sich die Radarkeule mit einer Schrittweite von etwa \unit{1}{°}, siehe Abbildung \marginpar{Abbildung einfügen}. Das zweite Verfahren ist das Monopuls-Verfahren. Hierbei erzeugt eine separate Antenne einen Sendestrahl, der von einer Doppelantennen-Anordnung Empfangen wird, siehe Abbildung \marginpar{Abbildung einfügen}. Eine Verbesserung dieses Verfahrens ermöglicht die Verwendung von Mehrstrahlern mit bis zu vier Antennen.
 
 \subsubsection{Lidar}
 \label{sec:Lidar}
@@ -155,52 +150,75 @@ Als erstes wird die Signalaufnahme mittels des Sensors durchgeführt. Dem schließ
 
 \subsubsection{Objekterkennung und Tracking}
 \label{sec:Objekterkennung}
-Segmentierungsverfahren (Lidar und Radar):\\
-Messrohpunkte eines Objektes liegen in enger Nachbarschaft\\
-Verbinden/Gruppieren der Punkte mittels Region-Growing oder Linienextraktion\\
-Einteilen der Segmente in I- und L-Formen\\
-Segmentabmessungen bestimmen Objektklasse
+Für die Objekterkennung und das Tracking gibt es unterschiedliche Verfahren. Bei der Objekterkennung ist die Wahl des Verfahren insbesondere abhängig vom Sensortyp. \marginpar{Beispielbilder für Segmentierungsverfahren und Gradientenverfahren?}
 
-''U''-Form bzw parallele Kanten bei Kamera:\\
-Kantenpaare suchen und um eine horizontale Kante erweitern (Kopf)\\
+Radar und Lidar erzeugen bei der Messung Punktwolken. Um in diesen Punktwolken Objekte zu identifizieren, werden Segmentierungsverfahren eingesetzt. Die Annahme bei diesem Verfahren ist, dass Messrohpunkte eines Objektes in enger Nachbarschaft liegen. So werden diese Punkte mittels Region-Growing oder Linienextraktion gruppiert bzw. verbunden. Nach diesem Schritt werden die Segmente in I- und L-Formen unterschieden. Mit hinzunehmen der Segmentabmessungen kann schließlich die Objektklasse bestimmt werden \cite{Walchshausl.2008}.
 
-Gradientenhistogramme als Bildmerkmale:\\
-Histogramm über Häufigkeit der vorkommenden Farbwerte im Bild\\
-Mit Kantenextraktion bis auf Fußgänger in Video\\
-Merkmalsrekonstruktion durch Achsspiegelung bei teilweise verdeckten Objekten\\
-\cite{Walchshausl.2008}
+Bei der Kamera werden Gradientenverfahren und Matching Verfahren zur Merkmalsextraktion eingesetzt \cite{Winner.2015}. Die wichtigsten Merkmale beim Kamerabild sind Kanten und Ecken. Diese führen zu einer deutlichen Änderung des Bildsignals, welche mathematisch durch Gradienten beschrieben wird. Beim Matching Verfahren wird eine kleine Region um einen Bildpunkt herum mit den entsprechenden Punkten im nächsten Bild verglichen. Um nicht den gesamten Bildraum abzusuchen, wird das Verfahren auf Ecken und Kanten im Bild angewendet.
 
-Bayes-Filter:\\
-allgemeingültiges Verfolgungsverfahren\\
-schätzt aus der Beobachtung neue mögliche Position\\
-Beobachtung im Zustandsraum\\
-gibt Wahrscheinlichkeitsdichte für aktuellen Zustand mit Berücksichtigung aller vorigen Beobachtungen\\
+Für das Tracking werden insbesondere drei verschiedene Verfahren eingesetzt. Das sind der Bayes-Filter, der Kalman-Filter und der Partikelfilter \cite{Winner.2015}. Der Bayes-Filter ist ein allgemeingültiges Verfolgungsverfahren. Es schätzt aus der Beobachtung die neue mögliche Position. Die Beobachtung findet im Zustandsraum statt und gibt eine Wahrscheinlichkeitsdichte für den aktuellen Zustand heraus unter Berücksichtigung aller vorigen Beobachtungen.
 
-Kalman-Filter (Tracking und Fusion):\\
-Zustände aufgrund von redundanten Daten schätzen\\
-schätzt aufgrund von Systemeingangsdaten mögliche neue Position\\
-vergleicht Schätzung mit Messwerten\\
-Differenz wird gewichtet und dient als Korrektur des aktuellen Zustands\\
+Der Kalman-Filter schätzt die Zustände aufgrund von redundanten Daten. Die mögliche neue Position wird mit Systemeingangsdaten geschätzt und mit Messwerten verglichen. Die Differenz aus Schätzung und Messung wird schließlich gewichtet und dient als Korrektur des aktuellen Zustands.
 
-Partikelfilter für Tracking\\
-approximiert Wahrscheinlichkeit durch endliche Summe von Diracstößen mit Gewichten\\
-Die Paare aus Gewicht und Zustand sind Partikel\\
-Gewichte werden im Innovationsschritt aktualisiert\\
-\cite{Winner.2015}
-\cite{RudiLindl.2009}
+Beim Partikelfilter wird die Wahscheinlichkeitsdicht durch die endliche Summe von Dircstößen mit Gewichten approximiert. Die Paare aus Gewicht und Zustand werden als Partikel betrachtet. Nach jedem Innovationsschritt werden schließlich die Gewichte aktualisiert.
 
-
-\subsubsection{Datenfusion}
+\subsubsection{Sensordatenfusion}
 \label{sec:Fusion}
 
-\begin{itemize}
-			\item Datenaufnahme (Komplementär, Konkurrierend, Kooperativ)
-			\item implizit/explizit
-			\item a-/synchron
-		\end{itemize}\cite{Dietmayer2005}
+Die Sensordatenfusion wird genutzt, um die Genauigkeit zu erhöhen bzw. mehr Informationen zu erhalten. Dies ist davon abhängig, welche Sensoren eingesetzt und wie sie eingesetzt werden. Im Allgemeinen wird in komplementär, konkurrierend und kooperativ unterschieden. Was das für den Sensoreinbau bedeutet ist in Abbildung \ref{fig:Fusionsansaetze} dargestellt. Werden Sensoren komplementär genutzt, ergänzen sich deren einzelne Sichtfelder zu einem großen. Sind Sensoren konkurrierend verbaut sind sie entweder redundant, d.h. es wird die gleiche Information generiert, oder konträr, d.h. es werden gegensätzliche Informationen erzeugt. Der letzte Ansatz ist der kooperative Einsatz von unterschiedlichen Sensoren, die zusammen einen höheren Informationsgehalt erzeugen \cite{Dietmayer2005}.
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.6\textwidth,trim={3cm 6.5cm 9cm 4cm},clip]{pics/Fusionsansaetze.pdf}
+	\caption{Ansätze der Datenaufnahme für die Datenfusion}
+	\label{fig:Fusionsansaetze}
+\end{figure}
+
+Für die Sensordatenfusion gibt es zwei wesentliche Ansätze. Entweder werden die Daten implizit oder explizit fusioniert. Beispielhaft ist sind die Ansätze in den Abbildungen \ref{fig:ImpliziteFusion} und \ref{fig:ExpliziteFusion} dargestellt. Bei der impliziten Fusion werden die Sensordaten zeitlich nacheinander eingebracht. Dadurch wird eine zeitlich konsistente Datenverarbeitung nötig. Außerdem muss eine zeitliche Filterung durchgeführt werden, wenn die Messdaten vorliegen. Es wird jedoch schon eine Assoziation auf dem sensorspezifischen Abstraktionslevel durchgeführt, die bei der Fusion abgeglichen wird. Vorteilhaft bei der impliziten Fusion ist, dass keine Synchronisierung der Sensoren durchgeführt werden muss.
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.9\textwidth]{pics/ImpliziteFusion.PNG}
+	\caption{Implizite Sensordatenfusion mit asynchronen Sensoren \cite{Dietmayer2005}}
+	\label{fig:ImpliziteFusion}
+\end{figure}
+
+Bei der expliziten Fusion wird abgewartet, bis alle Messdaten vorliegen und dann erst fusioniert. Somit findet eine zeitliche Filterung in einem festen Zeitraster statt und die Assoziation findet auf einem gemeinsamen Abstraktionslevel statt. Hierbei müssen die Messdaten jedoch synchronisierbar sein.
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.9\textwidth]{pics/ExpliziteFusion.PNG}
+	\caption{Explizite Sensordatenfusion mit synchronen Sensoren \cite{Dietmayer2005}}
+	\label{fig:ExpliziteFusion}
+\end{figure}
+
+Die Datenfusion mit synchronen Sensoren führt zu einer sicheren und zuverlässigen Assoziation. Da jedoch der Sensor mit der längsten Akquisitionszeit den zeitlichen Versatz zwischen Messung und Assoziation bestimmt, ist der Algorithmus streng deterministisch und es kommt zu einem hohen Verzug zwischen Realwelt und Modell. Die Arbeit mit synchronisierten Sensoren bietet jedoch, neben der sicheren Assoziation, eine einfache Erweiterbarkeit um weitere Sensoren.
+
+Werden asynchrone Sensoren bei der Datenfusion verwendet, müssen die Daten sequentiell eingebracht werden. Somit ist der Algorithmus nicht deterministisch. Durch dieses Vorgehen kann es jedoch zu Quantisierungsfehlern kommen. Insbesondere, wenn die Daten des Sensors mit der kürzesten Latenz kurz nach denen vom Sensor mit der längsten Latenz eingebracht werden. Dann können diese Informationen nicht mehr in die Assoziation mitberücksichtigt werden. Je ähnlicher die Latenzzeiten der einzelnen Sensoren ist, desto geringer wird schließlich auch der Fehler der Schätzung. 
 
 \subsection{Sensoreinsatz im Fahrzeug}
 \label{sec:KFZSensor}
+
+\begin{table}
+	\centering
+		\begin{tabularx}{\textwidth}{p{2cm}p{2.5cm}Xc}
+		\textbf{Quelle} & \textbf{Sensorsetup} & \textbf{Beschreibung} &  \textbf{Jahr}\\ \toprule
+		\cite{RudiLindl.2009} & Radar\newline Lidar\newline Kamera & Sensorfusion für Fahrerassistenzsysteme mit hohen Ansprüchen  & 2009\\ \midrule
+\cite{Perrone.2010} & Stereokamera & Modell zur Datenanalyse von Stereo Kameras  & 2010 \\ \midrule
+\cite{Ahtiainen.2010} & 2 x Radar & Erkennen eines Menschen mit Radar  & 2010\\ \midrule
+\cite{Bartsch.2012} & Radar & Erkennen eines Menschen mit Radar & 2012\\ \midrule
+\cite{Krzikalla2013} & Lidar\newline GPS & Selbstlokalisierung mit Hilfe von GPS, Laserscanner und digitaler Karte &  2013\\ \midrule
+\cite{Yalcin.2013} & Lidar & Positionierung des LIDAR, Fahrbahnbegrenzung erkennen, Objekterkennung  & 2013\\ \midrule
+\cite{Apatean.2013} & IR\newline VIS Video & Fusioniert Infrarotkameradaten mit Daten des sichtbaren Spektrums einer Kamera  & 2013\\ \midrule
+\cite{Schindler.} & Kamera\newline Lidar\newline GPS & Erzeugen einer Karte mit Hilfe von aktuellen Messdaten, Selbstlokalisierung des Fahrzeugs  & 2013\\ \midrule
+\cite{Lundgren.} & GPS\newline Gyroscope\newline Kamera\newline Radar & KFZ ausgestattet mit GPS, Gyroscope, Geschwindigkeitsmesser, Kamera, Radar zur Selbstlokalisierung  & 2014\\ \midrule
+\cite{Negied.2015} & IR & Literaturauflistung bzgl Erkennung von Menschen mit Infrarotsensor & 2015\\ \midrule
+\cite{Wang.2015}   & FIR & stellt einen Filter zur Objekterkennung mit Infrarot vor &  2015\\ \midrule
+\cite{Vivacqua.2017} & GPS\newline Gyroscope\newline Kamera & KFZ ausgestattet mit GPS, Gyroscope, Kamera und Laptop zur Selbstlokalisierung & 2017\\ \bottomrule
+		\end{tabularx}
+	\caption{Einsatz von Sensoren im Fahrzeug}
+	\label{tab:LitFahrzeug}
+\end{table}
 
 Ultraschall
 \begin{itemize}
@@ -248,3 +266,25 @@ Kamera
 	\item Lidar
 	\item Unfallforschung
 \end{itemize}
+
+\begin{table}
+	\centering
+		\begin{tabularx}{\textwidth}{p{2cm}p{2.5cm}Xc}
+		\textbf{Quelle} & \textbf{Sensorsetup} & \textbf{Beschreibung} &  \textbf{Jahr}\\ \toprule
+			\cite{J.Ehrlichetal..2009} & Kamera\newline Lidar \newline IR & CCTV, Laserscanner, IR zur Verkehrs- und Umweltbeobachtung (Bestimmung der Witterung, Tageszeit) &  2009\\ \midrule
+\cite{Meissner.} & Lidar & Einsatz und Modellierung von Laserscannern an Kreuzungen &  2012\\ \midrule
+\cite{Goldhammer2012} & Lidar\newline Kamera & Beschreibt den Versuchsaufbau an einer Kreuzung zur Beobachtung des Verkehrs &  2012\\ \midrule
+\cite{Hospedales.2012} & Kamera & Vergleicht Algorithmen zur Verhaltenserkennung von Verkehrsobjekten in Kameradaten &  2012\\ \midrule
+\cite{Goldhammer.18.09.2013} & Lidar\newline Kamera & Einsatz von Sensoren an einer Kreuzung (Anbauorte) &  2013\\ \midrule
+\cite{EliasStrigel2013} & Lidar\newline Kamera & Einsatz von Kameras und Laserscanner an einer Kreuzung zur Beobachtung des Verkehrs  & 2013\\ \midrule
+\cite{Strigel.} & Lidar\newline Kamera & Beschreibt den Versuchsaufbau an einer Kreuzung zur Beobachtung des Verkehrs & 2014\\ \midrule
+\cite{Jodoin.} & Kamera & Stellt einen Algorithmus zum Objekttracking für die Bildverarbeitung vor, der an unterschiedlichen Kreuzungen getestet wurde &  2014\\ \midrule
+\cite{DatondjiSokemiReneEmmanuel.2016} & Kamera & Listet und diskutiert Ansätze zur Verkehrsbeobachtung an Kreuzungen &  2016\\ \midrule
+\cite{KnakeLanghorst.2016} & Kamera\newline IR\newline Radar & Stellt die Forschungsplatform AIM zur Untersuchung des Verkehrs vor &  2016\\ \midrule
+\cite{Shirazi.2017} & GPS\newline Radar\newline Lidar\newline Kamera & Vergleicht verschiedene Ansätze der Verkehrsbeobachtung und Analyse & 2016\\ \midrule
+\cite{Dotzauer2017} & Kamera\newline IR\newline Radar & Untersuchung von Konflikten zwischen Fahrradfahrern und motorisierten Fahrzeugen &  2017\\\midrule
+\cite{Garcia2018} & Radar & Stellt \unit{76-81}{GHz} Radar zur Verkehrsüberwachung vor &  2018\\ \bottomrule
+		\end{tabularx}
+	\caption{Einsatz von Sensoren in der Infrastruktur}
+	\label{tab:LitInfrastruktur}
+\end{table}

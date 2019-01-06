@@ -1,22 +1,22 @@
 \section{Umfelderfassung}
 \label{sec:TechnikStand}
-Dieses Kapitel stellt zunächst die bestehenden Sensoren zur Umfelderfassung vor und erläutert deren Funktionsprinzipien. Anschließend wird auf die Sensordatenverarbeitung eingangen. Dazu gehören die Datenfusion, die Objekterkennung und das Tracking. Auf diesen Grundlagen aufbauend wird in den Kapiteln \ref{sec:KFZSensor} und \ref{sec:InfraSensor} aufgezeigt, wie dies im Fahrzeug und auch in der Infrastruktur genutzt wird.
+Dieses Kapitel stellt zunächst die bestehenden Sensoren zur Umfelderfassung vor und erläutert deren Funktionsprinzipien. Anschließend wird auf die Sensordatenverarbeitung eingangen. Dazu gehören die Datenfusion, die Objekterkennung und das Tracking. Auf diesen Grundlagen aufbauend wird in den Abschnitten \ref{sec:KFZSensor} und \ref{sec:InfraSensor} aufgezeigt, wie dies im Fahrzeug und auch in der Infrastruktur genutzt wird.
 
 \subsection{Sensoren zur Umfelderfassung}
 \label{sec:Sensoren}
-Die Sensoren zur Umfelderfassung werden in entfernungsgebende und bildgebende Sensoren unterschieden. Zu ersterem gehören der Ultraschall, der Radar und der Lidar. Zu letzterem die Kamera mit dem sichtbaren und dem Infrarotspektrum. Im Folgendem werden die einzelnen Sensorprinzipien erläutert.
+Die Sensoren zur Umfelderfassung werden in entfernungsgebende und bildgebende Sensoren unterschieden. Zu ersterem gehören der Ultraschall, der Radar und der Lidar. Zu letzterem die Kamera mit dem sichtbaren und dem Infrarotspektrum. Im Folgenden werden die einzelnen Sensorprinzipien erläutert.
 
 \subsubsection{Ultraschall}
 \label{sec:Ultraschall}
 
-Als Ultraschall werden die Schallfrequenzen ab \unit{20}{kHz} bezeichnet. Sie gehören zu den Frequenzen, die für das menschliche Ohr nicht hörbar sind. Die Messung mit Ultraschall gehört zu den Laufzeitmessungen. Ein Sender emittiert Schallwellen, die schließlich von Objekten reflektiert werden. Mit Hilfe der gemessenen Laufzeit $\Delta t$ bis das Echo wieder am Sender ankommt kann der Abstand $d$ zum gemessenen Objekt bestimmt werden \cite{Trankler.2014}:
+Als Ultraschall werden die Schallfrequenzen ab \unit{20}{kHz} bezeichnet. Sie gehören zu den Frequenzen, die für das menschliche Ohr nicht hörbar sind. Die Messung mit Ultraschall gehört zu den Laufzeitmessungen. Ein Sender emittiert Schallwellen, die schließlich von Objekten reflektiert werden. Mit Hilfe der gemessenen Laufzeit $\Delta t$, bis das Echo wieder am Sender ankommt, kann der Abstand $d$ zum gemessenen Objekt mit Hilfe der Schallgeschwindigkeit $c_S$ bestimmt werden \cite{Trankler.2014}:
 
 \begin{equation}
 d = \dfrac{c_S \Delta t}{2}.
 \label{eq:AbstandU}
 \end{equation}
 
-Mit der Schallgeschwindigkeit $c_S$. Da die Strecke zwischen Sender und Objekt zweimal durchlaufen wird, muss diese halbiert werden um den tatsächlichen Abstand zu erhalten. Neben der reinen Abstandsmessung kann mit Hilfe von zwei Sendern, deren Erfassungsbereiche überlappen, auch eine Positionsbestimmung durchgeführt werden. Hierzu wird das Trilaterationsverfahren genutzt. Für ein rundes Objekt ist dies in Abbildung \ref{fig:Trilateration} dargestellt.\marginpar{Abbildung überarbeiten!} Der Abstand $D$ berechnet sich mittels des Satzes von Pythagoras:
+Da die Strecke zwischen Sender und Objekt zweimal durchlaufen wird, muss diese halbiert werden um den tatsächlichen Abstand zu erhalten. Neben der reinen Abstandsmessung kann mit Hilfe von zwei Sendern, deren Erfassungsbereiche überlappen, auch eine Positionsbestimmung durchgeführt werden. Hierzu wird das Trilaterationsverfahren genutzt. Für ein rundes Objekt ist dies in Abbildung \ref{fig:Trilateration} dargestellt.\marginpar{Abbildung überarbeiten!} Der Abstand $D$ berechnet sich mittels des Satzes von Pythagoras:
 
 \begin{equation}
 D = \sqrt{DE1^2 - \dfrac{\left(d^2 + DE1^2-DE2^2\right)^2}{4d^2}}
@@ -30,23 +30,23 @@ D = \sqrt{DE1^2 - \dfrac{\left(d^2 + DE1^2-DE2^2\right)^2}{4d^2}}
 \label{fig:Trilateration}%
 \end{figure}
 
-Die Reichweite des Ultraschallsensors ist abhängig von der ausgesendeten Schallintensität $I_S$, da die Schallintensität in Abhängigkeit von der Entfernung $r$ des gemessenen Objektes abnimmt. Somit ergibt sich, mit der effektiven Reflexionsfläche $\sigma$ und bezogen auf den Normabstand $r_1$, die reflektierte Schallintensität 
+Die Reichweite des Ultraschallsensors ist abhängig von der ausgesendeten Schallintensität $I_S$, die in Abhängigkeit von der Entfernung $r$ des gemessenen Objektes abnimmt. Somit ergibt sich mit der effektiven Reflexionsfläche $\sigma$ und bezogen auf den Normabstand $r_1$ die reflektierte Schallintensität 
 
 \begin{equation}
 I_{refl}=\sigma I_s \left(\dfrac{r_1}{2r}\right)^2.
 \label{eq:Irefl}
 \end{equation}
 
-Des Weiteren verringert der Reflexionsgrad $\rho_S$ und die Impedanz der Atmosphäre die Schallintensität bei der Reflexion. Als untere Grenze zur Objektmessung muss die Schallintensität des Empfangssignals oberhalb des Rauschens liegen, d.h. \unit{$\geq$10}{dB} sein.
+Des Weiteren verringern der Reflexionsgrad $\rho_S$ und die Impedanz der Atmosphäre die Schallintensität bei der Reflexion. Als untere Grenze zur Objektmessung muss die Schallintensität des Empfangssignals oberhalb des Rauschens liegen, d.h. \unit{$\geq$10}{dB} sein.
 
 Zur Schallerzeugung und -empfang wird bei Ultraschallsensoren eine Membran aus einer Piezokeramik eingesetzt \cite{Winner.2015}. Zum Aussenden der Schallwellen wird die Membran aktiv in Schwingung versetzt und nach einer festgelegten Sendedauer wieder zur Ruhe gebracht. Die Zeit bis der reflektierte Schall die Membran wieder zur Schwingung anregt wird mit Gleichung \ref{eq:AbstandU} zur Abstandsbestimmung genutzt.
 
 \subsubsection{Radar}
 \label{sec:Radar}
 
-Die Radarmessung (Radio Detection And Ranging) gehört zu den berührungslosen Messverfahren und wird insbesondere bei anspruchsvollen Umgebungsbedingungen eingesetzt \cite{Trankler.2014}. Bei diesem Verfahren werden elektromagnetische Wellen im Mikrowellenbereich eingesetzt, welche kaum anfällig gegenüber Temperaturschwankungen und Nebel sind. Für den Automobilbereich sind die \unit{24}{GHz} und \unit{77}{GHz} Frequenzen reserviert \cite{Winner.2015}.
+Die Radarmessung (Radio Detection And Ranging) gehört zu den berührungslosen Messverfahren und wird insbesondere bei anspruchsvollen Umgebungsbedingungen eingesetzt \cite{Trankler.2014}. Bei diesem Verfahren werden elektromagnetische Wellen im Mikrowellenbereich eingesetzt, welche kaum anfällig gegenüber Temperaturschwankungen und Nebel sind. Für den Automobilbereich sind die Frequenzen \unit{24}{GHz} und \unit{77}{GHz} reserviert \cite{Winner.2015}.
 
-Zur Abstandsmessung finden zwei verschiedene Ansätze Verwendung, die sich in der Frequenzmodulation unterscheiden. Das ist einmal das Dauerstrichradar (FMCW) und zum anderen die Chirp Frequence Modulation. Die Frequenzverläufe der beiden Modulationsverfahren sind in Abbildung \marginpar{Abbildung einfügen!} dargestellt. Das Dauerstrichradar erzeugt durch die kontinuierliche und rampenförmige Veränderung der Momentanfrequenz eine konstante Phasenverschiebung von $+(2r/c)^2m_{\omega}$. Der Abstand und die Geschwindigkeit wird bei diesem Verfahren mithilfe der Frequenzverschiebung bestimmt:
+Zur Abstandsmessung finden zwei verschiedene Ansätze Verwendung, die sich in der Frequenzmodulation unterscheiden. Das ist einmal das Dauerstrichradar (FMCW -- Frequency Modulated Continous Wave) und zum anderen die Chirp Frequence Modulation. Die Frequenzverläufe der beiden Modulationsverfahren sind in Abbildung \marginpar{Abbildung einfügen!} dargestellt. Das Dauerstrichradar erzeugt durch die kontinuierliche und rampenförmige Veränderung der Momentanfrequenz eine konstante Phasenverschiebung von $+(2r/c)^2m_{\omega}$. Der Abstand und die Geschwindigkeit wird bei diesem Verfahren mithilfe der Frequenzverschiebung bestimmt:
 
 \begin{align}
 	r &= \dfrac{c}{2} \cdot \dfrac{\omega_{obj,1}-\omega_{obj,2}}{m_{\omega,1} - m_{\omega,2}},\\
@@ -85,12 +85,12 @@ mit dem Rückstreuquerschnitt des Objektes
 
 Gleichung \ref{eq:Empfangsleistung} berücksichtigt außerdem sogenannte Signalleistungsschüttler mit dem Faktor $V_{mp}^2$, $0 \leq V_{mp} \leq 2$.
 
-Für die Winkelbestimmung kommen zwei verschiedene Verfahren zum Einsatz. Das ist zum Einen das mechanisch Scanning, bei dem eine Strahlablenkeinheit oder eine Planarantenne mechanisch geschwenkt wird. Dabei bewegt sich die Radarkeule mit einer Schrittweite von etwa \unit{1}{°}, siehe Abbildung \marginpar{Abbildung einfügen}. Das zweite Verfahren ist das Monopuls-Verfahren. Hierbei erzeugt eine separate Antenne einen Sendestrahl, der von einer Doppelantennen-Anordnung Empfangen wird, siehe Abbildung \marginpar{Abbildung einfügen}. Eine Verbesserung dieses Verfahrens ermöglicht die Verwendung von Mehrstrahlern mit bis zu vier Antennen.
+Für die Winkelbestimmung kommen zwei verschiedene Verfahren zum Einsatz. Das ist zum Einen das mechanische Scanning, bei dem eine Strahlablenkeinheit oder eine Planarantenne mechanisch geschwenkt wird. Dabei bewegt sich die Radarkeule mit einer Schrittweite von etwa \unit{1}{°}, siehe Abbildung \marginpar{Abbildung einfügen}. Das zweite Verfahren ist das Monopuls-Verfahren. Hierbei erzeugt eine separate Antenne einen Sendestrahl, der von einer Doppelantennen-Anordnung Empfangen wird, siehe Abbildung \marginpar{Abbildung einfügen}. Eine Verbesserung dieses Verfahrens ermöglicht die Verwendung von Mehrstrahlern mit bis zu vier Antennen.
 
 \subsubsection{Lidar}
 \label{sec:Lidar}
 
-Light Detection and Ranging, kurz Lidar, gehört zu den optischen Messverfahren und nutzt UV-, IR-Strahlen oder Strahlen aus dem sichtbaren Spektrum \cite{Winner.2015}. Für die Messung großer Entfernungen wird die Pulslaufzeitmessung genutzt bei dem kurze Lichtblitze hoher Leistung, meist Laser-Pulse, gesendet und die Laufzeit gemessen wird \cite{Trankler.2014}. Der Abstand wird ähnlich wie beim Ultraschall bestimmt:
+Light Detection and Ranging, kurz Lidar, gehört zu den optischen Messverfahren und nutzt UV-, IR-Strahlen oder Strahlen aus dem sichtbaren Spektrum \cite{Winner.2015}. Für die Abstandsmessung wird die Pulslaufzeitmessung genutzt bei dem kurze Lichtblitze hoher Leistung, meist Laser-Pulse, gesendet und die Laufzeit gemessen wird \cite{Trankler.2014}. Der Abstand wird ähnlich wie beim Ultraschall bestimmt:
 
 \begin{equation}
 d = \dfrac{c_L \Delta t}{2}
@@ -104,7 +104,7 @@ P_r = \dfrac{\rho_L \cdot A_t \cdot H \cdot T^2 \cdot P_t}{\pi^2 \cdot R^3 \cdot
 	\label{eq:Pgross}
 \end{equation}
 
-Für ein Objekt, das -- durch die Entfernung -- kleiner ist als der Lichtpunkt ändert sich Gleichung \ref{eq:Pgross} zu:
+Für ein Objekt, das -- aufgrund der Entfernung -- kleiner ist als der Lichtpunkt, ändert sich Gleichung \ref{eq:Pgross} zu:
 
 \begin{equation}
 P_r = \dfrac{\rho_L \cdot A_t \cdot H \cdot T^2 \cdot P_t}{\pi^2 \cdot R^4 \cdot (Q_v Q_h/4)(\Phi/2)^2}. 
@@ -113,11 +113,11 @@ P_r = \dfrac{\rho_L \cdot A_t \cdot H \cdot T^2 \cdot P_t}{\pi^2 \cdot R^4 \cdot
 
 Hierbei ist $\Phi$ der Winkel der Objektreflexion, $H$ die Objektbreite, $A_t$ die Empfangslinsenfläche, $T$ die Transmission der Atmosphäre, $Q_v$ und $Q_h$ die vertikale bzw. horizontale Strahldivergenz und $P_t$ die Laserleistung.
 
-Das Sichtfeld kann von dem eindimensionalen Fall mit einem Strahl in nur eine Richtung auch horizontal und vertikal beliebig erweitert werden. Dafür gibt es zwei verschiedene Ansätze. Ein Ansatz ist der Einsatz eines schwenkbaren Spiegels, der den/die Laserstrahl/en ablenkt. Hierdurch ist ein horizontaler Öffnungswinkel von bis zu \unit{360}{°} und ein vertikaler Öffnungswinkel von bis zu \unit{120}{°} möglich. Der zweite Ansatz nutzt ein Array aus Laserdioden, die mittels Multiplexverfahren angesteuert werden. Der horizontale Öffnungswinkel bei dieser Variante beträgt bis zu \unit{110}{°} und der vertikale Öffnungswinkel ist von der Strahlbreite abhängig und beträgt in etwa \unit{2}{°} bis \unit{5}{°}.
+Das Sichtfeld kann von dem eindimensionalen Fall mit einem Strahl in nur eine Richtung auch horizontal und vertikal beliebig erweitert werden. Dafür gibt es zwei verschiedene Ansätze. Ein Ansatz ist der Einsatz eines schwenkbaren Spiegels, der den Laserstrahl umlenkt. Hierdurch ist ein horizontaler Öffnungswinkel von bis zu \unit{360}{°} und ein vertikaler Öffnungswinkel von bis zu \unit{120}{°} möglich. Der zweite Ansatz nutzt ein Array aus Laserdioden, die mittels Multiplexverfahren angesteuert werden. Der horizontale Öffnungswinkel bei dieser Variante beträgt bis zu \unit{110}{°} und der vertikale Öffnungswinkel ist von der Strahlbreite abhängig und beträgt in etwa \unit{2}{°} bis \unit{5}{°}.
 
 \subsubsection{Kamera}
 \label{sec:Kamera}
-Die Kamera gehört zu den bildgebenden Sensoren und besitzt dadurch den Vorteil ähnliche Informationen wie das menschliche Auge zu produzieren. Somit können Objekte mit einer hohen Genauigkeit identifiziert werden. Jedoch ist die Entfernungsmessung mit einer Monokamera eher ungenau, da dies nur anhand der Auflösung geschätzt werden kann. Diese bestimmt auch den Sichtbereich und die Reichweite. Letzteres wird durch den Bereich des scharfen Abbildens begrenzt \cite{Hering.2016}. Die untere Grenze $a_v$ der Reichweite liegt vor und die obere Grenze $a_h$ hinter der Objektebene und ergeben sich mit
+Die Kamera gehört zu den bildgebenden Sensoren und besitzt dadurch den Vorteil, ähnliche Informationen wie das menschliche Auge zu produzieren. Somit können Objekte mit einer hohen Genauigkeit identifiziert werden. Jedoch ist die Entfernungsmessung mit einer Monokamera eher ungenau, da dies nur anhand der Auflösung geschätzt werden kann. Diese bestimmt auch den Sichtbereich und die Reichweite. Letzteres wird durch den Bereich des scharfen Abbildens begrenzt \cite{Hering.2016}. Die untere Grenze $a_v$ der Reichweite liegt vor und die obere Grenze $a_h$ hinter der Objektebene. Sie ergeben sich mit
 
 \begin{align}
 a_v &= \dfrac{a f'^2}{f'^2 - u'k(a+f')}\\
@@ -150,22 +150,22 @@ Als erstes wird die Signalaufnahme mittels des Sensors durchgeführt. Dem schließ
 
 \subsubsection{Objekterkennung und Tracking}
 \label{sec:Objekterkennung}
-Für die Objekterkennung und das Tracking gibt es unterschiedliche Verfahren. Bei der Objekterkennung ist die Wahl des Verfahren insbesondere abhängig vom Sensortyp. \marginpar{Beispielbilder für Segmentierungsverfahren und Gradientenverfahren?}
+Für die Objekterkennung und das Tracking gibt es unterschiedliche Verfahren. Bei der Objekterkennung ist die Wahl des Verfahrens insbesondere abhängig vom Sensortyp. \marginpar{Beispielbilder für Segmentierungsverfahren und Gradientenverfahren?}
 
-Radar und Lidar erzeugen bei der Messung Punktwolken. Um in diesen Punktwolken Objekte zu identifizieren, werden Segmentierungsverfahren eingesetzt. Die Annahme bei diesem Verfahren ist, dass Messrohpunkte eines Objektes in enger Nachbarschaft liegen. So werden diese Punkte mittels Region-Growing oder Linienextraktion gruppiert bzw. verbunden. Nach diesem Schritt werden die Segmente in I- und L-Formen unterschieden. Mit hinzunehmen der Segmentabmessungen kann schließlich die Objektklasse bestimmt werden \cite{Walchshausl.2008}.
+Radar und Lidar erzeugen bei der Messung Punktwolken. Um in diesen Punktwolken Objekte zu identifizieren, werden Segmentierungsverfahren eingesetzt. Die Annahme bei diesem Verfahren ist, dass Messrohpunkte eines Objektes in enger Nachbarschaft liegen. So werden diese Punkte mittels Region-Growing oder Linienextraktion gruppiert bzw. verbunden. Nach diesem Schritt werden die Segmente in I- und L-Formen unterschieden. Unter Verwendung der Segmentabmessungen kann schließlich die Objektklasse bestimmt werden \cite{Walchshausl.2008}.
 
 Bei der Kamera werden Gradientenverfahren und Matching Verfahren zur Merkmalsextraktion eingesetzt \cite{Winner.2015}. Die wichtigsten Merkmale beim Kamerabild sind Kanten und Ecken. Diese führen zu einer deutlichen Änderung des Bildsignals, welche mathematisch durch Gradienten beschrieben wird. Beim Matching Verfahren wird eine kleine Region um einen Bildpunkt herum mit den entsprechenden Punkten im nächsten Bild verglichen. Um nicht den gesamten Bildraum abzusuchen, wird das Verfahren auf Ecken und Kanten im Bild angewendet.
 
-Für das Tracking werden insbesondere drei verschiedene Verfahren eingesetzt. Das sind der Bayes-Filter, der Kalman-Filter und der Partikelfilter \cite{Winner.2015}. Der Bayes-Filter ist ein allgemeingültiges Verfolgungsverfahren. Es schätzt aus der Beobachtung die neue mögliche Position. Die Beobachtung findet im Zustandsraum statt und gibt eine Wahrscheinlichkeitsdichte für den aktuellen Zustand heraus unter Berücksichtigung aller vorigen Beobachtungen.
+Für das Tracking werden insbesondere drei verschiedene Verfahren eingesetzt. Das sind der Bayes-Filter, der Kalman-Filter und der Partikelfilter \cite{Winner.2015}. Der Bayes-Filter ist ein allgemeingültiges Verfolgungsverfahren. Es schätzt aus der Beobachtung die neue mögliche Position. Die Beobachtung findet im Zustandsraum statt und gibt eine Wahrscheinlichkeitsdichte für den aktuellen Zustand heraus unter Berücksichtigung aller vorigen Beobachtungen. \marginpar{Gleichungen?}
 
 Der Kalman-Filter schätzt die Zustände aufgrund von redundanten Daten. Die mögliche neue Position wird mit Systemeingangsdaten geschätzt und mit Messwerten verglichen. Die Differenz aus Schätzung und Messung wird schließlich gewichtet und dient als Korrektur des aktuellen Zustands.
 
-Beim Partikelfilter wird die Wahscheinlichkeitsdicht durch die endliche Summe von Dircstößen mit Gewichten approximiert. Die Paare aus Gewicht und Zustand werden als Partikel betrachtet. Nach jedem Innovationsschritt werden schließlich die Gewichte aktualisiert.
+Beim Partikelfilter wird die Wahscheinlichkeitsdicht durch die endliche Summe von Diracstößen mit Gewichten approximiert. Die Paare aus Gewicht und Zustand werden als Partikel betrachtet. Nach jedem Innovationsschritt werden schließlich die Gewichte aktualisiert.
 
 \subsubsection{Sensordatenfusion}
 \label{sec:Fusion}
 
-Die Sensordatenfusion wird genutzt, um die Genauigkeit zu erhöhen bzw. mehr Informationen zu erhalten. Dies ist davon abhängig, welche Sensoren eingesetzt und wie sie eingesetzt werden. Im Allgemeinen wird in komplementär, konkurrierend und kooperativ unterschieden. Was das für den Sensoreinbau bedeutet ist in Abbildung \ref{fig:Fusionsansaetze} dargestellt. Werden Sensoren komplementär genutzt, ergänzen sich deren einzelne Sichtfelder zu einem großen. Sind Sensoren konkurrierend verbaut sind sie entweder redundant, d.h. es wird die gleiche Information generiert, oder konträr, d.h. es werden gegensätzliche Informationen erzeugt. Der letzte Ansatz ist der kooperative Einsatz von unterschiedlichen Sensoren, die zusammen einen höheren Informationsgehalt erzeugen \cite{Dietmayer2005}.
+Die Sensordatenfusion wird genutzt, um die Genauigkeit zu erhöhen bzw. mehr Informationen zu erhalten. Dies ist davon abhängig, welche Sensoren und wie sie eingesetzt werden. Im Allgemeinen werden die Ansätze in komplementär, konkurrierend und kooperativ unterschieden. Die Bedeutung für den Sensoreinbau bedeutet ist in Abbildung \ref{fig:Fusionsansaetze} dargestellt. Werden Sensoren komplementär genutzt, ergänzen sich deren einzelne Sichtfelder zu einem großen. Sind Sensoren konkurrierend verbaut, sind sie entweder redundant, d.h. es wird die gleiche Information generiert, oder konträr, d.h. es werden gegensätzliche Informationen erzeugt. Der letzte Ansatz ist der kooperative Einsatz von unterschiedlichen Sensoren, die zusammen einen höheren Informationsgehalt erzeugen \cite{Dietmayer2005}.
 
 \begin{figure}[h]
 	\centering
@@ -174,7 +174,7 @@ Die Sensordatenfusion wird genutzt, um die Genauigkeit zu erhöhen bzw. mehr Info
 	\label{fig:Fusionsansaetze}
 \end{figure}
 
-Für die Sensordatenfusion gibt es zwei wesentliche Ansätze. Entweder werden die Daten implizit oder explizit fusioniert. Beispielhaft ist sind die Ansätze in den Abbildungen \ref{fig:ImpliziteFusion} und \ref{fig:ExpliziteFusion} dargestellt. Bei der impliziten Fusion werden die Sensordaten zeitlich nacheinander eingebracht. Dadurch wird eine zeitlich konsistente Datenverarbeitung nötig. Außerdem muss eine zeitliche Filterung durchgeführt werden, wenn die Messdaten vorliegen. Es wird jedoch schon eine Assoziation auf dem sensorspezifischen Abstraktionslevel durchgeführt, die bei der Fusion abgeglichen wird. Vorteilhaft bei der impliziten Fusion ist, dass keine Synchronisierung der Sensoren durchgeführt werden muss.
+Für die Sensordatenfusion gibt es zwei wesentliche Ansätze, siehe Abbildungen \ref{fig:ImpliziteFusion} und \ref{fig:ExpliziteFusion}. Entweder werden die Daten implizit oder explizit fusioniert. Bei der impliziten Fusion werden die Sensordaten zeitlich nacheinander eingebracht. Dadurch wird eine zeitlich konsistente Datenverarbeitung nötig. Außerdem muss eine zeitliche Filterung durchgeführt werden, wenn die Messdaten vorliegen. Es wird jedoch schon eine Assoziation auf dem sensorspezifischen Abstraktionslevel durchgeführt, die bei der Fusion abgeglichen wird. Vorteilhaft bei der impliziten Fusion ist, dass keine Synchronisierung der Sensoren durchgeführt werden muss.
 
 \begin{figure}[h]
 	\centering
@@ -194,12 +194,64 @@ Bei der expliziten Fusion wird abgewartet, bis alle Messdaten vorliegen und dann
 
 Die Datenfusion mit synchronen Sensoren führt zu einer sicheren und zuverlässigen Assoziation. Da jedoch der Sensor mit der längsten Akquisitionszeit den zeitlichen Versatz zwischen Messung und Assoziation bestimmt, ist der Algorithmus streng deterministisch und es kommt zu einem hohen Verzug zwischen Realwelt und Modell. Die Arbeit mit synchronisierten Sensoren bietet jedoch, neben der sicheren Assoziation, eine einfache Erweiterbarkeit um weitere Sensoren.
 
-Werden asynchrone Sensoren bei der Datenfusion verwendet, müssen die Daten sequentiell eingebracht werden. Somit ist der Algorithmus nicht deterministisch. Durch dieses Vorgehen kann es jedoch zu Quantisierungsfehlern kommen. Insbesondere, wenn die Daten des Sensors mit der kürzesten Latenz kurz nach denen vom Sensor mit der längsten Latenz eingebracht werden. Dann können diese Informationen nicht mehr in die Assoziation mitberücksichtigt werden. Je ähnlicher die Latenzzeiten der einzelnen Sensoren ist, desto geringer wird schließlich auch der Fehler der Schätzung. 
+Werden asynchrone Sensoren bei der Datenfusion verwendet, müssen die Daten sequentiell eingebracht werden. Somit ist der Algorithmus nicht deterministisch. Durch dieses Vorgehen kann es jedoch zu Quantisierungsfehlern kommen. Insbesondere, wenn die Daten des Sensors mit der kürzesten Latenz kurz nach denen vom Sensor mit der längsten Latenz eingebracht werden. Dann können diese Informationen nicht mehr in die Assoziation mitberücksichtigt werden. Je ähnlicher die Latenzzeiten der einzelnen Sensoren sind, desto geringer wird schließlich auch der Fehler der Schätzung. 
 
 \subsection{Sensoreinsatz im Fahrzeug}
 \label{sec:KFZSensor}
 
-\begin{table}
+Im Fahrzeug werden die Sensoren zur Umfelderfassung so verbaut, dass ein möglichst großes Sichtfeld erzeugt wird. Eine Möglichkeit ist schematisch in Abbildung \ref{fig:Fahrzeugsensoren} dargestellt. Zu erkennen ist, dass das Long Range Radar und das Lidar in Fahrtrichtung genutzt wird. So kann eine vorausschauende Fahrweise realisiert werden. Short Range Radar, Kamera und Ultraschall dienen eher der Beobachtung des unmittelbaren Umfeldes.
+
+\begin{figure}[hb]
+	\centering
+	\includegraphics[width=\textwidth,trim={0.5cm 1cm 7.5cm 3cm},clip]{pics/Fahrzeugsensoren.pdf}
+	\caption{Beispielhafte Darstellung der Umfelderfassungssensoren am Fahrzeug}
+	\label{fig:Fahrzeugsensoren}
+\end{figure}
+
+Der Einsatz dieser Sensoren wird für die schrittweise Automatisierung des Fahrzeugs genutzt. Nach der Bundesanstalt für Straßenwesen wird in fünf Automatisierungsgrade unterschieden.\marginpar{Quelle einfügen} Diese sind in Tabelle \ref{tab:Automatisierungsgrade} aufgeführt und erläutert. Serienfahrzeuge bewegen sich mittlerweile im Automatisierungsgrad ''Teilautomatisiert''. 
+
+\begin{table}[h]
+	\centering
+	\begin{tabularx}{\textwidth}{lX}
+	\textbf{Nomenklatur} & \textbf{Fahraufgabe nach Automatisierungsgrad}\\ \toprule
+	Driver Only & Fahrer führt dauerhaft Längs- und Querführung aus\vspace{8pt} \\ 
+	Assistiert &  Fahrer führt dauerhaft entweder die Quer- oder die Längsführung aus. Die jeweils andere
+	Fahraufgabe wird in gewissen Grenzen vom System ausgeführt
+	\begin{itemize}\setlength{\itemsep}{0pt}
+		\item Fahrer muss System überwachen
+		\item Fahrer muss jederzeit für die vollständige Übernahme bereit sein
+	\end{itemize}\\
+	Teilautomatisiert & Das System übernimmt Quer- und Längsführung (für einen gewissen Zeitraum oder/und in spezifischen Situationen)
+	\begin{itemize}\setlength{\itemsep}{0pt}
+		\item Fahrer muss System überwachen
+		\item Fahrer muss jederzeit für die vollständige Übernahme bereit sein
+	\end{itemize}\\
+	Hochautomatisiert & Das System übernimmt Quer- und Längsführung für einen gewissen Zeitraum in spezifischen Situationen
+	\begin{itemize}\setlength{\itemsep}{0pt}
+		\item Fahrer muss System nicht überwachen
+		\item Fahrer wird rechtzeitig zur Übernahme aufgefordert
+		\item Systemgrenzen werden alle erkannt
+	\end{itemize}\\
+	Vollautomatisiert & Das System übernimmt Quer- und Längsführung vollständig in einem definierten Anwendungsfall
+	\begin{itemize}\setlength{\itemsep}{0pt}
+		\item Fahrer muss System nicht überwachen
+		\item Fahrer wird rechtzeitig vor verlassen des Anwendurngsfalles zur Übernahme aufgefordert
+		\item Erfolgt keine Übernahme, wird das System in einen risikoarmen Zustand geführt
+		\item Systemgrenzen werden alle erkannt
+	\end{itemize}\\\bottomrule
+\end{tabularx}
+\caption{Fahrzeugautomatisierungsgrade nach der Bundesanstalt für Straßenwesen}
+\label{tab:Automatisierungsgrade}
+\end{table}
+
+Die Automatisierung des Fahrzeugs wird mit Hilfe der sogenannten Fahrerassistenzsystemen durchgeführt \cite{Winner.2015}. Sie dienen vor allem der Sicherheit und erhöhen außerdem den Fahrkomfort. So kann beim Adaptive Cruise Control (ACC), das ein Long Range Radar oder ein Lidar nutzt, eine Wunschgeschwindigkeit eingestellt werden. Diese wird bei Annäherung an andere Fahrzeuge reduziert, um Auffahrunfälle zu vermeiden. Eine Erweiterung hierzu stellt der Stauassistent ACC Stop \& Go dar. Dieser nutzt insbesondere das Short Range Radar. Für Einparkassistenten werden Ultraschallsensoren oder Kameras genutzt. Hierbei werden entweder nur Tonsignale emittiert, eine grafische Darstellung im Boardcomputer gezeigt oder das Fahrzeug führt das Einparken vollautomatisch durch. Des Weiteren finden Spurhalte- und Spurwechselassistenten und Toter Winkel Assistenten Gebrauch, um Unfälle mit seitlich von Hinten herannahenden oder kreuzenden Verkehrsteilnehmern zu minimieren. Diese Assistenten nutzen Radar, Lidar oder Kamera und auch Kombinationen aus zwei dieser Sensoren.
+
+In den vergangenen zehn Jahren wurde an verschiedenen Aspekten der Fahrzeugautomatisierung gearbeitet. Eine Auswahl an Arbeiten ist in Tabelle \ref{tab:LitFahrzeug} aufgeführt. Ein wichtiger Aspekt ist die Objekterkennung, bei der insbesondere die Erkennung von Menschen in den Vordergrund gerückt ist. Dies stellt mittels Radar aufgrund ihres geringen Reflexionsquerschnitts und der schlechten Winkelauflösung des Radars eine Herausforderung dar. Mögliche Ansätze wurden bei \cite{Ahtiainen.2010} und \cite{Bartsch.2012} erarbeitet. Auch die Objekterkennung mit Hilfe von Infrarotkameras findet immer mehr Einsatz \cite{Negied.2015}, \cite{Wang.2015}, da hiermit auch nachts die Kamera genutzt werden kann. Für die Verbesserung der Datenqualität wird auch an der Sensordatenfusion gearbeitet \cite{RudiLindl.2009}, \cite{Apatean.2013}.
+
+Für das hochautomatisierte Fahrzeug gibt es verschiedene Ansätze. Hierbei spielt die Selbstlokalisierung eine wichtige Rolle, da das Fahrzeug jederzeit wissen muss, wo es sich befindet. Um dies zu realisieren werden neben den Umfelderfassungssensoren auch GPS, Beschleunigungs- und Geschwindigkeitssensoren und digitale Karten genutzt. So kann eine möglichst genaue Schätzung der Position durchgeführt werden. Einige Ansätze sind in \cite{Krzikalla2013}, \cite{Schindler.}, \cite{Lundgren.} und \cite{Vivacqua.2017} zu finden.
+
+
+\begin{table}[h]
 	\centering
 		\begin{tabularx}{\textwidth}{p{2cm}p{2.5cm}Xc}
 		\textbf{Quelle} & \textbf{Sensorsetup} & \textbf{Beschreibung} &  \textbf{Jahr}\\ \toprule
@@ -220,52 +272,18 @@ Werden asynchrone Sensoren bei der Datenfusion verwendet, müssen die Daten seque
 	\label{tab:LitFahrzeug}
 \end{table}
 
-Ultraschall
-\begin{itemize}
-	\item Einpark-Assistent
-	\item Front/Heck
-\end{itemize}
-
-Radar
-\begin{itemize}
-	\item ACC, ACC S\&G
-	\item Spurwechselassistent
-	\item Toter Winkel Assistent
-	\item Front/Heck
-\end{itemize}
-
-Lidar
-\begin{itemize}
-	\item ACC
-	\item Front/360°
-\end{itemize}
-
-Kamera
-\begin{itemize}
-	\item Fahrbahnerkennung
-	\item Objekterkennung
-	\item Verkehrsschilderkennung
-	\item Spurhalteassistent
-	\item Einparkassistent
-	\item Front/Heck
-	\item sichtbar/IR Spektrum
-	\item Fusion mit Radar/Lidar
-\end{itemize}
-
-\begin{itemize}
-	\item Fahrerassistenzsysteme
-	\item autonomes Fahren
-\end{itemize}
-
 \subsection{Sensoreinsatz in der Infrastruktur}
 \label{sec:InfraSensor}
 
-\begin{itemize}
-	\item Kamera
-	\item Radar
-	\item Lidar
-	\item Unfallforschung
-\end{itemize}
+zur Unfallforschung\\
+Verständnis von Fahrzeug-Fahrrad-Interaktion\\
+unterstützend zum autonomen Fahren\\
+C2X Kommunikation\\
+
+Der Einsatz von Umfelderfassungssensoren in der Infrastruktur dient der Verkehrsbeobachtung. Insbesondere werden die aufgenommenen Daten zur Unfallforschung genutzt. So kann untersucht werden, welche Verhaltensmuster vermehrt zu Unfällen führen und weshalb es an gewissen Knotenpunkten häufig zu Unfällen kommt.\marginpar{Quelle?} Hierbei ist insbesondere die Interaktion zwischen KFZ bzw. LKW und Fahrrad interessant \cite{Dotzauer2017}. Außerdem wird der Einfluss der Witterung und der Tageszeit auf das Unfallgeschehen untersucht \cite{J.Ehrlichetal..2009}.
+
+Der Tabelle \ref{tab:LitInfrastruktur} ist zu entnehmen, dass die Kamera bei der Verkehrsbeobachtung am häufigsten verwendet wird. Dies ist in der Tatsache begründet, dass sie eine ähnliche Darstellung wie das menschliche Auge erzeugt, siehe Abschnitt \ref{sec:Kamera}. Für die Bestimmung der Positionen wird sie meist mit Lidar oder Radar kombiniert.
+
 
 \begin{table}
 	\centering

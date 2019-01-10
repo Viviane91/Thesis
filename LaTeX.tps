@@ -10,15 +10,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=26
-NormalPos.right=769
-NormalPos.bottom=648
+NormalPos.top=32
+NormalPos.right=756
+NormalPos.bottom=483
 Class=LaTeXView
-Document=LaTeX.tex
+Document=StandderTechnik.tex
 
 [Frame0_View0,0]
-TopLine=36
-Cursor=1400
+TopLine=718
+Cursor=29434
 
 [Frame1]
 Flags=0
@@ -28,15 +28,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=26
-NormalPos.right=769
-NormalPos.bottom=648
-Class=BibTeXView
-Document=Literatur.bib
+NormalPos.top=32
+NormalPos.right=756
+NormalPos.bottom=483
+Class=LaTeXView
+Document=Header.tex
 
 [Frame1_View0,0]
-TopLine=0
-Cursor=0
+TopLine=116
+Cursor=2941
 
 [Frame2]
 Flags=0
@@ -46,15 +46,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=26
-NormalPos.right=769
-NormalPos.bottom=648
+NormalPos.top=32
+NormalPos.right=756
+NormalPos.bottom=483
 Class=LaTeXView
-Document=Evaluation.tex
+Document=LaTeX.tex
 
 [Frame2_View0,0]
-TopLine=0
-Cursor=0
+TopLine=40
+Cursor=1400
 
 [Frame3]
 Flags=0
@@ -64,15 +64,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=26
-NormalPos.right=769
-NormalPos.bottom=648
-Class=LaTeXView
-Document=StandderTechnik.tex
+NormalPos.top=32
+NormalPos.right=756
+NormalPos.bottom=483
+Class=BibTeXView
+Document=Literatur.bib
 
 [Frame3_View0,0]
-TopLine=266
-Cursor=12476
+TopLine=0
+Cursor=0
 
 [Frame4]
 Flags=0
@@ -82,15 +82,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=26
-NormalPos.right=769
-NormalPos.bottom=648
+NormalPos.top=32
+NormalPos.right=756
+NormalPos.bottom=483
 Class=LaTeXView
-Document=Anforderungen.tex
+Document=Evaluation.tex
 
 [Frame4_View0,0]
 TopLine=0
-Cursor=747
+Cursor=0
 
 [Frame5]
 Flags=0
@@ -100,15 +100,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=26
-NormalPos.right=769
-NormalPos.bottom=648
+NormalPos.top=32
+NormalPos.right=756
+NormalPos.bottom=483
 Class=LaTeXView
-Document=Zusammenfassung.tex
+Document=Anforderungen.tex
 
 [Frame5_View0,0]
 TopLine=0
-Cursor=0
+Cursor=747
 
 [Frame6]
 Flags=0
@@ -118,15 +118,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=26
-NormalPos.right=769
-NormalPos.bottom=648
+NormalPos.top=32
+NormalPos.right=756
+NormalPos.bottom=483
 Class=LaTeXView
-Document=Software-Tool.tex
+Document=Zusammenfassung.tex
 
 [Frame6_View0,0]
 TopLine=0
-Cursor=206
+Cursor=0
 
 [Frame7]
 Flags=0
@@ -136,15 +136,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=26
-NormalPos.right=769
-NormalPos.bottom=648
+NormalPos.top=32
+NormalPos.right=756
+NormalPos.bottom=483
 Class=LaTeXView
-Document=Einleitung.tex
+Document=Software-Tool.tex
 
 [Frame7_View0,0]
 TopLine=0
-Cursor=44
+Cursor=206
 
 [Frame8]
 Flags=0
@@ -154,17 +154,17 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=26
-NormalPos.right=769
-NormalPos.bottom=648
+NormalPos.top=32
+NormalPos.right=756
+NormalPos.bottom=483
 Class=LaTeXView
-Document=Header.tex
+Document=Einleitung.tex
 
 [Frame8_View0,0]
-TopLine=12
-Cursor=749
+TopLine=0
+Cursor=44
 
 [SessionInfo]
 FrameCount=9
-ActiveFrame=3
+ActiveFrame=0
 

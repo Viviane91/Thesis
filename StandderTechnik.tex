@@ -46,7 +46,17 @@ Zur Schallerzeugung und -empfang wird bei Ultraschallsensoren eine Membran aus e
 
 Die Radarmessung (Radio Detection And Ranging) gehört zu den berührungslosen Messverfahren und wird insbesondere bei anspruchsvollen Umgebungsbedingungen eingesetzt \cite{Trankler.2014}. Bei diesem Verfahren werden elektromagnetische Wellen im Mikrowellenbereich eingesetzt, welche kaum anfällig gegenüber Temperaturschwankungen und Nebel sind. Für den Automobilbereich sind die Frequenzen \unit{24}{GHz} und \unit{77}{GHz} reserviert \cite{Winner.2015}.
 
-Zur Abstandsmessung finden zwei verschiedene Ansätze Verwendung, die sich in der Frequenzmodulation unterscheiden. Das ist einmal das Dauerstrichradar (FMCW -- Frequency Modulated Continous Wave) und zum anderen die Chirp Frequence Modulation. Die Frequenzverläufe der beiden Modulationsverfahren sind in Abbildung \marginpar{Abbildung einfügen!} dargestellt. Das Dauerstrichradar erzeugt durch die kontinuierliche und rampenförmige Veränderung der Momentanfrequenz eine konstante Phasenverschiebung von $+(2r/c)^2m_{\omega}$. Der Abstand und die Geschwindigkeit wird bei diesem Verfahren mithilfe der Frequenzverschiebung bestimmt:
+Zur Abstandsmessung finden zwei verschiedene Ansätze Verwendung, die sich in der Frequenzmodulation unterscheiden. Das ist einmal das Dauerstrichradar (FMCW -- Frequency Modulated Continous Wave) und zum anderen die Chirp Frequence Modulation. Die Frequenzverläufe der beiden Modulationsverfahren sind in Abbildung \ref{fig:RadarFrequenzverlauf} dargestellt.
+
+\begin{figure}[h]%
+\centering
+\subfigure[\label{fig:RadarFMCW}]{\includegraphics[width=0.48\textwidth]{pics/RadarFMCW.PNG}}
+    \subfigure[\label{fig:RadarChirp}]{\includegraphics[width=0.48\textwidth]{pics/RadarChirp.PNG}}
+\caption{Beispielhafter Frequenzverlauf von FMCW (a) und Chirp Frequence Modulation (b) \cite{Winner.2015}}%
+\label{fig:RadarFrequenzverlauf}
+\end{figure}
+
+Das Dauerstrichradar erzeugt durch die kontinuierliche und rampenförmige Veränderung der Momentanfrequenz eine konstante Phasenverschiebung von $+(2r/c)^2m_{\omega}$. Der Abstand und die Geschwindigkeit wird bei diesem Verfahren mithilfe der Frequenzverschiebung bestimmt:
 
 \begin{align}
 	r &= \dfrac{c}{2} \cdot \dfrac{\omega_{obj,1}-\omega_{obj,2}}{m_{\omega,1} - m_{\omega,2}},\\
@@ -85,7 +95,16 @@ mit dem Rückstreuquerschnitt des Objektes
 
 Gleichung \ref{eq:Empfangsleistung} berücksichtigt außerdem sogenannte Signalleistungsschüttler mit dem Faktor $V_{mp}^2$, $0 \leq V_{mp} \leq 2$.
 
-Für die Winkelbestimmung kommen zwei verschiedene Verfahren zum Einsatz. Das ist zum Einen das mechanische Scanning, bei dem eine Strahlablenkeinheit oder eine Planarantenne mechanisch geschwenkt wird. Dabei bewegt sich die Radarkeule mit einer Schrittweite von etwa \unit{1}{°}, siehe Abbildung \marginpar{Abbildung einfügen}. Das zweite Verfahren ist das Monopuls-Verfahren. Hierbei erzeugt eine separate Antenne einen Sendestrahl, der von einer Doppelantennen-Anordnung Empfangen wird, siehe Abbildung \marginpar{Abbildung einfügen}. Eine Verbesserung dieses Verfahrens ermöglicht die Verwendung von Mehrstrahlern mit bis zu vier Antennen.
+Für die Winkelbestimmung kommen zwei verschiedene Verfahren zum Einsatz. Das ist zum Einen das mechanische Scanning, bei dem eine Strahlablenkeinheit oder eine Planarantenne mechanisch geschwenkt wird. Dabei bewegt sich die Radarkeule mit einer Schrittweite von etwa \unit{1}{°}, siehe Abbildung \ref{fig:RadarScan}.
+
+Das zweite Verfahren ist das Monopuls-Verfahren. Hierbei erzeugt eine separate Antenne einen Sendestrahl, der von einer Doppelantennen-Anordnung Empfangen wird, siehe Abbildung \ref{fig:RadarMonopuls}. Eine Verbesserung dieses Verfahrens ermöglicht die Verwendung von Mehrstrahlern mit bis zu vier Antennen.
+
+\begin{figure}[h]%
+\centering
+\subfigure[\label{fig:RadarScan}]{\includegraphics[width=0.4\textwidth]{pics/RadarScan.PNG}}
+    \subfigure[\label{fig:RadarMonopuls}]{\includegraphics[width=0.4\textwidth]{pics/RadarMonopuls.PNG}}
+\caption{Vergleich zwischen Scanning (a) und Monopuls (b) \cite{Winner.2015}}%
+\end{figure}
 
 \subsubsection{Lidar}
 \label{sec:Lidar}
@@ -150,17 +169,66 @@ Als erstes wird die Signalaufnahme mittels des Sensors durchgeführt. Dem schließ
 
 \subsubsection{Objekterkennung und Tracking}
 \label{sec:Objekterkennung}
-Für die Objekterkennung und das Tracking gibt es unterschiedliche Verfahren. Bei der Objekterkennung ist die Wahl des Verfahrens insbesondere abhängig vom Sensortyp. \marginpar{Beispielbilder für Segmentierungsverfahren und Gradientenverfahren?}
+Für die Objekterkennung und das Tracking gibt es unterschiedliche Verfahren. Bei der Objekterkennung ist die Wahl des Verfahrens insbesondere abhängig vom Sensortyp. So werden z.B. für Radar und Lidar eher Segmentierungsverfahren eingesetzt und für Kamera Gradientenverfahren.
 
-Radar und Lidar erzeugen bei der Messung Punktwolken. Um in diesen Punktwolken Objekte zu identifizieren, werden Segmentierungsverfahren eingesetzt. Die Annahme bei diesem Verfahren ist, dass Messrohpunkte eines Objektes in enger Nachbarschaft liegen. So werden diese Punkte mittels Region-Growing oder Linienextraktion gruppiert bzw. verbunden. Nach diesem Schritt werden die Segmente in I- und L-Formen unterschieden. Unter Verwendung der Segmentabmessungen kann schließlich die Objektklasse bestimmt werden \cite{Walchshausl.2008}.
+Radar und Lidar erzeugen bei der Messung Punktwolken. Um in diesen Punktwolken Objekte zu identifizieren, werden Segmentierungsverfahren eingesetzt. Die Annahme bei diesem Verfahren ist, dass Messrohpunkte eines Objektes in enger Nachbarschaft liegen. So werden diese Punkte mittels Region-Growing oder Linienextraktion gruppiert bzw. verbunden, siehe Abbildung \ref{fig:RegionGrowingLinie}. Nach diesem Schritt werden die Segmente in I- und L-Formen unterschieden. Unter Verwendung der Segmentabmessungen kann schließlich die Objektklasse bestimmt werden \cite{Walchshausl.2008}.
 
-Bei der Kamera werden Gradientenverfahren und Matching Verfahren zur Merkmalsextraktion eingesetzt \cite{Winner.2015}. Die wichtigsten Merkmale beim Kamerabild sind Kanten und Ecken. Diese führen zu einer deutlichen Änderung des Bildsignals, welche mathematisch durch Gradienten beschrieben wird. Beim Matching Verfahren wird eine kleine Region um einen Bildpunkt herum mit den entsprechenden Punkten im nächsten Bild verglichen. Um nicht den gesamten Bildraum abzusuchen, wird das Verfahren auf Ecken und Kanten im Bild angewendet.
+\begin{figure}[h]%
+\centering
+\includegraphics[width=0.6\textwidth]{pics/RegionGrowingVSLinie.PNG}%
+\caption{Beispiel für den Vergleich von Region-Growing (grün) und Linienextraktion (blau). Die roten Punkte sind die Laserscannerrohdaten \cite{Walchshausl.2008}}%
+\label{fig:RegionGrowingLinie}%
+\end{figure}
 
-Für das Tracking werden insbesondere drei verschiedene Verfahren eingesetzt. Das sind der Bayes-Filter, der Kalman-Filter und der Partikelfilter \cite{Winner.2015}. Der Bayes-Filter ist ein allgemeingültiges Verfolgungsverfahren. Es schätzt aus der Beobachtung die neue mögliche Position. Die Beobachtung findet im Zustandsraum statt und gibt eine Wahrscheinlichkeitsdichte für den aktuellen Zustand heraus unter Berücksichtigung aller vorigen Beobachtungen. \marginpar{Gleichungen?}
+Bei der Kamera werden Gradientenverfahren und Matching Verfahren zur Merkmalsextraktion eingesetzt \cite{Winner.2015}. Die wichtigsten Merkmale beim Kamerabild sind Kanten und Ecken. Diese führen zu einer deutlichen Änderung des Bildsignals, welche mathematisch durch Gradienten beschrieben wird. Diese können in Histogramme der Gradientenrichtung überführt werden, siehe Abbildung \ref{fig:Bildgradienten}. 
 
-Der Kalman-Filter schätzt die Zustände aufgrund von redundanten Daten. Die mögliche neue Position wird mit Systemeingangsdaten geschätzt und mit Messwerten verglichen. Die Differenz aus Schätzung und Messung wird schließlich gewichtet und dient als Korrektur des aktuellen Zustands.
+\begin{figure}[h]%
+\centering
+\includegraphics[width=0.6\textwidth]{pics/Gradientenverfahren.PNG}%
+\caption{Beispielhafte Darstellung der Bildgradienten (links) und der Histogramme der Gradientenrichtung (rechts) \cite{Winner.2015}}%
+\label{fig:Bildgradienten}%
+\end{figure}
 
-Beim Partikelfilter wird die Wahscheinlichkeitsdicht durch die endliche Summe von Diracstößen mit Gewichten approximiert. Die Paare aus Gewicht und Zustand werden als Partikel betrachtet. Nach jedem Innovationsschritt werden schließlich die Gewichte aktualisiert.
+Beim Matching Verfahren wird eine kleine Region um einen Bildpunkt herum mit den entsprechenden Punkten im nächsten Bild verglichen. Um nicht den gesamten Bildraum abzusuchen, wird das Verfahren auf Ecken und Kanten im Bild angewendet.
+
+Für das Tracking werden insbesondere drei verschiedene Verfahren eingesetzt. Das sind der Bayes-Filter, der Kalman-Filter und der Partikelfilter \cite{Winner.2015}. Die Aufgabe dieser Verfolgungsverfahren ist, aus den Beobachtungen $Y_k$ die zu schätzenden Größen $X_k$ zu bestimmen. Dies geschieht zu diskreten Zeitschritten $k=1,\, 2,...$. Die Systemgleichung 
+
+\begin{equation}
+X_k = f_k\left(X_{k-1},s_k\right)
+\label{eq:ZustandXk}
+\end{equation}
+
+beschreibt die Dynamik des Zustandes $X_k$. Hierbei wird das stochastische Systemrauschen $S$ mit Hilfe von $s_k$ realisiert. Die erzeugten Beobachtungen $Y_k$ werden mittels der Beobachtungsgleichung
+
+\begin{equation}
+Y_k = g_k\left(X_k,v_k\right)
+\label{eq:BeobachtungYk}
+\end{equation}
+
+beschrieben. $v_k$ ist dabei die Realisierung des stochastischen Beobachtungsrauschens $V$. Mit Hilfe dieser Gleichungen wird die Wahrscheinlichkeitsdichte $p\left(X_k|Y_0...Y_k\right)$ für den aktuellen Zustand geschätzt.
+
+Der Bayes-Filter ist ein allgemeingültiges Verfolgungsverfahren. Es schätzt aus der Beobachtung die neue mögliche Position. Die Beobachtung findet im Zustandsraum statt und gibt eine Wahrscheinlichkeitsdichte für den aktuellen Zustand heraus unter Berücksichtigung aller vorigen Beobachtungen. Die rekursive Gleichung für die Wahrscheinlichkeitsdichte des Bayes-Filters folgendermaßen:
+
+\begin{equation}
+p\left(X_k|Y_0,...,Y_{k-1}\right)= c \cdot p\left(Y_k|X_k\right)\cdot \int p\left(X_k|X_{k-1}\right)p\left(X_{k-1}|Y_0,...,Y_{k-1}\right) dX_{k-1}
+\label{eq:Bayes}
+\end{equation}
+
+Der Kalman-Filter schätzt die Zustände aufgrund von redundanten Daten. Somit wird zu jedem Zeitpunkt $k$ die Normalverteilung mit Hilfe ihres Mittelwertes $\hat{X_k}$ und der Kovarianzmatrix $P_k$ bestimmt. Die  Schätzung aus dem vorigen Schritt $\hat{X}_{k-1}$, $P_{k-1}$ wird für die nächste Position auf den aktuellen Zeitschritt projiziert:
+
+\begin{align}
+\hat{X}^{-}_{k}&=F\hat{X}_{k-1}\\
+\hat{P}^{-}_{k}&=F\hat{P}_{k-1}F^T+P_S
+\end{align}
+
+Dabei ist $F$ die Dynamikmatrix und $P_S$ die Kovarianzmatrix des Systemrauschens. Danach wird schließlich die neueste Beobachtung $Y_k$ mit der Beobachtungsmatrix $G$ und der Kovarianzmatrix des Beobachtungsrauschens $P_V$ berücksichtigt.
+
+\begin{align}
+\hat{X}_{k}&=\hat{X}^{-}_{k} + \hat{P}^{-}_{k}G^T\left(P_V + G\hat{P}^{-}_{k}G^T\right)^{-1} \left(Y_k - GF\hat{X}_{k-1}\right)\\
+\hat{P}_{k}&=\hat{P}^{-}_{k}-\hat{P}^{-}_{k}G^T \left(P_V + G\hat{P}^{-}_{k}G^T\right)^{-1}G\hat{P}^{-}_{k}
+\end{align}
+
+Beim Partikelfilter wird die Wahscheinlichkeitsdichte durch die endliche Summe von Diracstößen mit Gewichten $w^{i}_{k}p\left(X_k|Y_0,...,Y_k\right)\approx \sum w^{i}_{k}\delta\left(X_k - X^{i}_{k}\right)$ approximiert. Die Paare aus Gewicht $W^{i}_{k}$ und Zustand $X^{i}_{k}$ werden als Partikel betrachtet. Nach jedem Innovationsschritt werden schließlich die Gewichte aktualisiert.
 
 \subsubsection{Sensordatenfusion}
 \label{sec:Fusion}
@@ -208,37 +276,18 @@ Im Fahrzeug werden die Sensoren zur Umfelderfassung so verbaut, dass ein möglich
 	\label{fig:Fahrzeugsensoren}
 \end{figure}
 
-Der Einsatz dieser Sensoren wird für die schrittweise Automatisierung des Fahrzeugs genutzt. Nach der Bundesanstalt für Straßenwesen wird in fünf Automatisierungsgrade unterschieden.\marginpar{Quelle einfügen} Diese sind in Tabelle \ref{tab:Automatisierungsgrade} aufgeführt und erläutert. Serienfahrzeuge bewegen sich mittlerweile im Automatisierungsgrad ''Teilautomatisiert''. 
+Der Einsatz dieser Sensoren wird für die schrittweise Automatisierung des Fahrzeugs genutzt. Nach der Bundesanstalt für Straßenwesen wird in fünf Automatisierungsgrade unterschieden \cite{TomM.Gasseret.al..2012}. Diese sind in Tabelle \ref{tab:Automatisierungsgrade} aufgeführt und erläutert. Serienfahrzeuge bewegen sich mittlerweile im Automatisierungsgrad ''Teilautomatisiert''. 
 
 \begin{table}[h]
 	\centering
-	\begin{tabularx}{\textwidth}{lX}
-	\textbf{Nomenklatur} & \textbf{Fahraufgabe nach Automatisierungsgrad}\\ \toprule
-	Driver Only & Fahrer führt dauerhaft Längs- und Querführung aus\vspace{8pt} \\ 
-	Assistiert &  Fahrer führt dauerhaft entweder die Quer- oder die Längsführung aus. Die jeweils andere
-	Fahraufgabe wird in gewissen Grenzen vom System ausgeführt
-	\begin{itemize}\setlength{\itemsep}{0pt}
-		\item Fahrer muss System überwachen
-		\item Fahrer muss jederzeit für die vollständige Übernahme bereit sein
-	\end{itemize}\\
-	Teilautomatisiert & Das System übernimmt Quer- und Längsführung (für einen gewissen Zeitraum oder/und in spezifischen Situationen)
-	\begin{itemize}\setlength{\itemsep}{0pt}
-		\item Fahrer muss System überwachen
-		\item Fahrer muss jederzeit für die vollständige Übernahme bereit sein
-	\end{itemize}\\
-	Hochautomatisiert & Das System übernimmt Quer- und Längsführung für einen gewissen Zeitraum in spezifischen Situationen
-	\begin{itemize}\setlength{\itemsep}{0pt}
-		\item Fahrer muss System nicht überwachen
-		\item Fahrer wird rechtzeitig zur Übernahme aufgefordert
-		\item Systemgrenzen werden alle erkannt
-	\end{itemize}\\
-	Vollautomatisiert & Das System übernimmt Quer- und Längsführung vollständig in einem definierten Anwendungsfall
-	\begin{itemize}\setlength{\itemsep}{0pt}
-		\item Fahrer muss System nicht überwachen
-		\item Fahrer wird rechtzeitig vor verlassen des Anwendurngsfalles zur Übernahme aufgefordert
-		\item Erfolgt keine Übernahme, wird das System in einen risikoarmen Zustand geführt
-		\item Systemgrenzen werden alle erkannt
-	\end{itemize}\\\bottomrule
+	\begin{tabularx}{\textwidth}{clX}
+	\textbf{Level} & \textbf{Nomenklatur} & \textbf{Fahraufgabe nach Automatisierungsgrad}\\ \toprule
+	0 & Driver Only & Fahrer führt dauerhaft Längs- und Querführung aus\vspace{8pt} \\ 
+	1 & Assistiert &  Fahrer führt dauerhaft entweder die Quer- oder die Längsführung aus. Die jeweils andere
+	Fahraufgabe wird in gewissen Grenzen vom System ausgeführt. Der Fahrer muss das System überwachen und jederzeit für die vollständige Übernahme bereit sein\vspace{8pt}\\
+	2 & Teilautomatisiert & Das System übernimmt Quer- und Längsführung (für einen gewissen Zeitraum oder/und in spezifischen Situationen). Der Fahrer muss das System überwachen und jederzeit für die vollständige Übernahme bereit sein\vspace{8pt}\\
+	3 & Hochautomatisiert & Das System übernimmt Quer- und Längsführung für einen gewissen Zeitraum in spezifischen Situationen. Der Fahrer muss das System nicht überwachen und wird rechtzeitig zur Übernahme aufgefordert. Systemgrenzen werden alle erkannt\vspace{8pt}\\
+	4 & Vollautomatisiert & Das System übernimmt Quer- und Längsführung vollständig in einem definierten Anwendungsfall. Der Fahrer muss das System nicht überwachen. Er wird rechtzeitig vor verlassen des Anwendungsfalles zur Übernahme aufgefordert. Erfolgt keine Übernahme, wird das System in einen risikoarmen Zustand geführt. Systemgrenzen werden alle erkannt\\\bottomrule
 \end{tabularx}
 \caption{Fahrzeugautomatisierungsgrade nach der Bundesanstalt für Straßenwesen}
 \label{tab:Automatisierungsgrade}
@@ -246,9 +295,9 @@ Der Einsatz dieser Sensoren wird für die schrittweise Automatisierung des Fahrze
 
 Die Automatisierung des Fahrzeugs wird mit Hilfe der sogenannten Fahrerassistenzsystemen durchgeführt \cite{Winner.2015}. Sie dienen vor allem der Sicherheit und erhöhen außerdem den Fahrkomfort. So kann beim Adaptive Cruise Control (ACC), das ein Long Range Radar oder ein Lidar nutzt, eine Wunschgeschwindigkeit eingestellt werden. Diese wird bei Annäherung an andere Fahrzeuge reduziert, um Auffahrunfälle zu vermeiden. Eine Erweiterung hierzu stellt der Stauassistent ACC Stop \& Go dar. Dieser nutzt insbesondere das Short Range Radar. Für Einparkassistenten werden Ultraschallsensoren oder Kameras genutzt. Hierbei werden entweder nur Tonsignale emittiert, eine grafische Darstellung im Boardcomputer gezeigt oder das Fahrzeug führt das Einparken vollautomatisch durch. Des Weiteren finden Spurhalte- und Spurwechselassistenten und Toter Winkel Assistenten Gebrauch, um Unfälle mit seitlich von Hinten herannahenden oder kreuzenden Verkehrsteilnehmern zu minimieren. Diese Assistenten nutzen Radar, Lidar oder Kamera und auch Kombinationen aus zwei dieser Sensoren.
 
-In den vergangenen zehn Jahren wurde an verschiedenen Aspekten der Fahrzeugautomatisierung gearbeitet. Eine Auswahl an Arbeiten ist in Tabelle \ref{tab:LitFahrzeug} aufgeführt. Ein wichtiger Aspekt ist die Objekterkennung, bei der insbesondere die Erkennung von Menschen in den Vordergrund gerückt ist. Dies stellt mittels Radar aufgrund ihres geringen Reflexionsquerschnitts und der schlechten Winkelauflösung des Radars eine Herausforderung dar. Mögliche Ansätze wurden bei \cite{Ahtiainen.2010} und \cite{Bartsch.2012} erarbeitet. Auch die Objekterkennung mit Hilfe von Infrarotkameras findet immer mehr Einsatz \cite{Negied.2015}, \cite{Wang.2015}, da hiermit auch nachts die Kamera genutzt werden kann. Für die Verbesserung der Datenqualität wird auch an der Sensordatenfusion gearbeitet \cite{RudiLindl.2009}, \cite{Apatean.2013}.
+In den vergangenen zehn Jahren wurde an verschiedenen Aspekten der Fahrzeugautomatisierung gearbeitet. Eine Auswahl an Arbeiten ist in Tabelle \ref{tab:LitFahrzeug} aufgeführt. Ein wichtiger Aspekt ist die Objekterkennung, bei der insbesondere die Erkennung von Menschen in den Vordergrund gerückt ist, um diese besser zu schützen. Dies stellt jedoch eine Herausforderung dar, da sie sehr viele verschiedene Positionen und Erscheinungsbilder annehmen können. Des Weiteren ist ihr Verhalten nicht vorausschaubar. Die Schwierigkeit beim Einsatz von Radar hierfür liegt in dem geringen Reflexionsquerschnitts und der schlechten Winkelauflösung des Radars. Mögliche Ansätze trotzdem Menschen mittels Radar zu detektieren wurden unter anderem in \cite{Ahtiainen.2010} und \cite{Bartsch.2012} erarbeitet. Auch die Objekterkennung mit Hilfe von Infrarotkameras findet immer mehr Einsatz \cite{Negied.2015}, \cite{Wang.2015}, da hiermit auch nachts Kameras genutzt werden können. Hierbei gibt es zwei Ansätze: Das Nahinfrarot und das Ferninfrarot. Für die Verbesserung der Datenqualität wird auch an der Sensordatenfusion gearbeitet \cite{RudiLindl.2009}, \cite{Apatean.2013}.
 
-Für das hochautomatisierte Fahrzeug gibt es verschiedene Ansätze. Hierbei spielt die Selbstlokalisierung eine wichtige Rolle, da das Fahrzeug jederzeit wissen muss, wo es sich befindet. Um dies zu realisieren werden neben den Umfelderfassungssensoren auch GPS, Beschleunigungs- und Geschwindigkeitssensoren und digitale Karten genutzt. So kann eine möglichst genaue Schätzung der Position durchgeführt werden. Einige Ansätze sind in \cite{Krzikalla2013}, \cite{Schindler.}, \cite{Lundgren.} und \cite{Vivacqua.2017} zu finden.
+Für das hochautomatisierte Fahrzeug gibt es verschiedene Ansätze. Hierbei spielt die Selbstlokalisierung eine wichtige Rolle, damit das Fahrzeug jederzeit weiß, wo es sich befindet. Um dies zu realisieren werden neben den Umfelderfassungssensoren auch GPS, Beschleunigungs- und Geschwindigkeitssensoren und digitale Karten genutzt. So kann eine möglichst genaue Schätzung der Position durchgeführt werden. Einige Ansätze sind in \cite{Krzikalla2013}, \cite{Schindler.}, \cite{Lundgren.} und \cite{Vivacqua.2017} zu finden.
 
 
 \begin{table}[h]
@@ -275,15 +324,23 @@ Für das hochautomatisierte Fahrzeug gibt es verschiedene Ansätze. Hierbei spielt
 \subsection{Sensoreinsatz in der Infrastruktur}
 \label{sec:InfraSensor}
 
-zur Unfallforschung\\
-Verständnis von Fahrzeug-Fahrrad-Interaktion\\
-unterstützend zum autonomen Fahren\\
-C2X Kommunikation\\
+Der Einsatz von Umfelderfassungssensoren in der Infrastruktur dient der Verkehrsbeobachtung. Insbesondere werden die aufgenommenen Daten zur Analyse der Verhaltensweisen von Verkehrsteilnehmern und zur Unfallforschung genutzt. So kann untersucht werden, welche Verhaltensmuster vermehrt zu Unfällen führen. Hierbei ist die Interaktion zwischen KFZ bzw. LKW und Fahrrad interessant \cite{Dotzauer2017} und auch mit Fußgängern. Außerdem wird der Einfluss der Witterung und der Tageszeit auf das Unfallgeschehen untersucht \cite{J.Ehrlichetal..2009}.
 
-Der Einsatz von Umfelderfassungssensoren in der Infrastruktur dient der Verkehrsbeobachtung. Insbesondere werden die aufgenommenen Daten zur Unfallforschung genutzt. So kann untersucht werden, welche Verhaltensmuster vermehrt zu Unfällen führen und weshalb es an gewissen Knotenpunkten häufig zu Unfällen kommt.\marginpar{Quelle?} Hierbei ist insbesondere die Interaktion zwischen KFZ bzw. LKW und Fahrrad interessant \cite{Dotzauer2017}. Außerdem wird der Einfluss der Witterung und der Tageszeit auf das Unfallgeschehen untersucht \cite{J.Ehrlichetal..2009}.
+Der Tabelle \ref{tab:LitInfrastruktur} ist zu entnehmen, dass die Kamera bei der Verkehrsbeobachtung am häufigsten verwendet wird. Dies ist in der Tatsache begründet, dass sie eine ähnliche Darstellung wie das menschliche Auge erzeugt, siehe Abschnitt \ref{sec:Kamera}. Für die Bestimmung der Positionen wird sie meist mit Lidar oder Radar kombiniert. Beispiele für mögliche Versuchsaufbauten sind in den Abbildungen \ref{fig:AIM} und \ref{fig:Ko-PER} dargestellt.
 
-Der Tabelle \ref{tab:LitInfrastruktur} ist zu entnehmen, dass die Kamera bei der Verkehrsbeobachtung am häufigsten verwendet wird. Dies ist in der Tatsache begründet, dass sie eine ähnliche Darstellung wie das menschliche Auge erzeugt, siehe Abschnitt \ref{sec:Kamera}. Für die Bestimmung der Positionen wird sie meist mit Lidar oder Radar kombiniert.
+\begin{figure}%
+\centering
+\includegraphics[width=0.7\textwidth]{pics/TestsiteAIM.PNG}%
+\caption{Die Forschungskreuzung des Testfeldes AIM in Braunschweig. Blau: Sichtbereich zweier Monokameras kombiniert mit einem \unit{24}{GHz} Radar und einem IR-Blitz. Grün: Sichtbereich eines Stereokamerasystems mit einem IR-Blitz \cite{KnakeLanghorst.2016} \label{fig:AIM}}
+\end{figure}
 
+\begin{figure}%
+\centering
+\includegraphics[width=0.6\textwidth]{pics/KooPERTestsite.PNG}%
+\caption{Sensoraufbau der Ko-PER Kreuzungen in Aschaffenburg. Gelb: Sichtbereich der Laserscanner. Grün: Sichtbereich der Kameras \cite{Goldhammer2012} \label{fig:Ko-PER}}
+\end{figure}
+
+Neben der Verhaltensanalyse der Verkehrsteilnehmer soll die Infrastruktur außerdem zur Informationsweitergabe dienen. Dieser Ansatz wird Car2X-Kommunikation genannt. Hierbei senden zum Einen die Fahrzeuge der Infrastruktur ihre aufgenommenen Daten und zum Anderen sendet die Infrastruktur die eigenen und empfangenen Daten an die Fahrzeuge zurück. So können Fahrzeuge z.B. vor kreuzenden Verkehrsteilnehmern frühzeitig gewarnt werden.
 
 \begin{table}
 	\centering

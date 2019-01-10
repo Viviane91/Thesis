@@ -1,7 +1,17 @@
 \babel@toc {ngerman}{}
-\contentsline {figure}{\numberline {1}{\ignorespaces Veranschaulichung des Trilaterationsprinzips f\"ur ein rundes Objekt\relax }}{3}{figure.caption.11}
-\contentsline {figure}{\numberline {2}{\ignorespaces Schematischer Ablauf der Datenverarbeitung \cite {Winner.2015}\relax }}{8}{figure.caption.12}
-\contentsline {figure}{\numberline {3}{\ignorespaces Ans\"atze der Datenaufnahme f\"ur die Datenfusion\relax }}{10}{figure.caption.13}
-\contentsline {figure}{\numberline {4}{\ignorespaces Implizite Sensordatenfusion mit asynchronen Sensoren \cite {Dietmayer2005}\relax }}{11}{figure.caption.14}
-\contentsline {figure}{\numberline {5}{\ignorespaces Explizite Sensordatenfusion mit synchronen Sensoren \cite {Dietmayer2005}\relax }}{11}{figure.caption.15}
-\contentsline {figure}{\numberline {6}{\ignorespaces Beispielhafte Darstellung der Umfelderfassungssensoren am Fahrzeug\relax }}{12}{figure.caption.16}
+\contentsline {figure}{\numberline {1}{\ignorespaces Veranschaulichung des Trilaterationsprinzips f\"ur ein rundes Objekt}}{3}{figure.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces Beispielhafter Frequenzverlauf von FMCW (a) und Chirp Frequence Modulation (b) \cite {Winner.2015}}}{4}{figure.2}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{4}{figure.2}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{4}{figure.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces Vergleich zwischen Scanning (a) und Monopuls (b) \cite {Winner.2015}}}{6}{figure.3}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{6}{figure.3}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{6}{figure.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces Schematischer Ablauf der Datenverarbeitung \cite {Winner.2015}}}{9}{figure.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces Beispiel f\"ur den Vergleich von Region-Growing (gr\"un) und Linienextraktion (blau). Die roten Punkte sind die Laserscannerrohdaten \cite {Walchshausl.2008}}}{10}{figure.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces Beispielhafte Darstellung der Bildgradienten (links) und der Histogramme der Gradientenrichtung (rechts) \cite {Winner.2015}}}{10}{figure.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces Ans\"atze der Datenaufnahme f\"ur die Datenfusion}}{13}{figure.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces Implizite Sensordatenfusion mit asynchronen Sensoren \cite {Dietmayer2005}}}{13}{figure.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Explizite Sensordatenfusion mit synchronen Sensoren \cite {Dietmayer2005}}}{14}{figure.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Beispielhafte Darstellung der Umfelderfassungssensoren am Fahrzeug}}{15}{figure.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Die Forschungskreuzung des Testfeldes AIM in Braunschweig. Blau: Sichtbereich zweier Monokameras kombiniert mit einem \unit {24}{GHz} Radar und einem IR-Blitz. Gr\"un: Sichtbereich eines Stereokamerasystems mit einem IR-Blitz \cite {KnakeLanghorst.2016} }}{18}{figure.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces Sensoraufbau der Ko-PER Kreuzungen in Aschaffenburg. Gelb: Sichtbereich der Laserscanner. Gr\"un: Sichtbereich der Kameras \cite {Goldhammer2012} }}{19}{figure.12}

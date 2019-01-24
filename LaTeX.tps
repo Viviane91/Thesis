@@ -10,15 +10,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=32
-NormalPos.right=756
-NormalPos.bottom=483
+NormalPos.top=26
+NormalPos.right=1249
+NormalPos.bottom=368
 Class=LaTeXView
 Document=StandderTechnik.tex
 
 [Frame0_View0,0]
-TopLine=718
-Cursor=29434
+TopLine=504
+Cursor=33231
 
 [Frame1]
 Flags=0
@@ -28,15 +28,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=32
-NormalPos.right=756
-NormalPos.bottom=483
+NormalPos.top=26
+NormalPos.right=1249
+NormalPos.bottom=368
 Class=LaTeXView
-Document=Header.tex
+Document=LaTeX.tex
 
 [Frame1_View0,0]
-TopLine=116
-Cursor=2941
+TopLine=0
+Cursor=214
 
 [Frame2]
 Flags=0
@@ -46,15 +46,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=32
-NormalPos.right=756
-NormalPos.bottom=483
+NormalPos.top=26
+NormalPos.right=1249
+NormalPos.bottom=368
 Class=LaTeXView
-Document=LaTeX.tex
+Document=Header.tex
 
 [Frame2_View0,0]
-TopLine=40
-Cursor=1400
+TopLine=6
+Cursor=3063
 
 [Frame3]
 Flags=0
@@ -64,15 +64,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=32
-NormalPos.right=756
-NormalPos.bottom=483
+NormalPos.top=26
+NormalPos.right=1249
+NormalPos.bottom=368
 Class=BibTeXView
 Document=Literatur.bib
 
 [Frame3_View0,0]
-TopLine=0
-Cursor=0
+TopLine=1000
+Cursor=28983
 
 [Frame4]
 Flags=0
@@ -82,9 +82,9 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=32
-NormalPos.right=756
-NormalPos.bottom=483
+NormalPos.top=26
+NormalPos.right=1249
+NormalPos.bottom=368
 Class=LaTeXView
 Document=Evaluation.tex
 
@@ -100,9 +100,9 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=32
-NormalPos.right=756
-NormalPos.bottom=483
+NormalPos.top=26
+NormalPos.right=1249
+NormalPos.bottom=368
 Class=LaTeXView
 Document=Anforderungen.tex
 
@@ -118,9 +118,9 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=32
-NormalPos.right=756
-NormalPos.bottom=483
+NormalPos.top=26
+NormalPos.right=1249
+NormalPos.bottom=368
 Class=LaTeXView
 Document=Zusammenfassung.tex
 
@@ -136,9 +136,9 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=32
-NormalPos.right=756
-NormalPos.bottom=483
+NormalPos.top=26
+NormalPos.right=1249
+NormalPos.bottom=368
 Class=LaTeXView
 Document=Software-Tool.tex
 
@@ -154,9 +154,9 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=32
-NormalPos.right=756
-NormalPos.bottom=483
+NormalPos.top=26
+NormalPos.right=1249
+NormalPos.bottom=368
 Class=LaTeXView
 Document=Einleitung.tex
 

@@ -26,6 +26,26 @@
 \newblock DOI 10.3182/20100906--3--IT--2019.00076. --
 \newblock ISSN 14746670
 
+\bibitem[BBD{\etalchar{+}}13]{Broggi.2013}
+\textsc{Broggi}, Alberto ; \textsc{Buzzoni}, Michele ; \textsc{Debattisti},
+  Stefano ; \textsc{Grisleri}, Paolo ; \textsc{Laghi}, Maria~C. ;
+  \textsc{Medici}, Paolo  ; \textsc{Versari}, Pietro:
+\newblock Extensive Tests of Autonomous Driving Technologies.
+\newblock {In: }\emph{IEEE Transactions on Intelligent Transportation Systems}
+  14 (2013), Nr. 3, S. 1403--1415.
+\newblock \url{http://dx.doi.org/10.1109/TITS.2013.2262331}. --
+\newblock DOI 10.1109/TITS.2013.2262331. --
+\newblock ISSN 1524--9050
+
+\bibitem[BDH{\etalchar{+}}18]{Bengler.2018}
+\textsc{Bengler}, Klaus ; \textsc{Dr{\"u}ke}, Julia ; \textsc{Hoffmann}, Silja
+  ; \textsc{Manstetten}, Dietrich  ; \textsc{Neukum}, Alexandra:
+\newblock \emph{UR:BAN Human Factors in Traffic}.
+\newblock Wiesbaden : {Springer Fachmedien Wiesbaden}, 2018.
+\newblock \url{http://dx.doi.org/10.1007/978-3-658-15418-9}.
+\newblock \url{http://dx.doi.org/10.1007/978-3-658-15418-9}. --
+\newblock ISBN 978--3--658--15417--2
+
 \bibitem[BFR12]{Bartsch.2012}
 \textsc{Bartsch}, A. ; \textsc{Fitzek}, F.  ; \textsc{Rasshofer}, R.~H.:
 \newblock Pedestrian recognition using automotive radar sensors.
@@ -43,15 +63,6 @@
 \newblock DOI 10.1109/TITS.2016.2530146. --
 \newblock ISSN 1524--9050
 
-\bibitem[{Dot}]{Dotzauer2017}
-\textsc{{Dotzauer M., Knake-Langhorst S., K{\"o}ster F.}}:
-\newblock Understanding Interactions Between Bicyclists and Motorists in
-  Intersections.
-\newblock \url{http://dx.doi.org/10.1007/978-3-658-15418-9{\textunderscore
-  }17}.
-\newblock {In: }\emph{URBAN Human Factors in Traffic}. --
-\newblock DOI 10.1007/978--3--658--15418--9{\textunderscore }17
-
 \bibitem[{Dr }18]{Krzikalla2013}
 \textsc{{Dr Roland Krzikalla}}:
 \newblock \emph{Vehicle Self-Localization using Laserscanners}.
@@ -62,6 +73,13 @@
 \newblock \emph{Laser- and Video based Detection of Road Users at
   Intersections}.
 \newblock 2013-09-18
+
+\bibitem[ERM]{Ernst.}
+\textsc{Ernst}, Susanne ; \textsc{Rieken}, Jens  ; \textsc{Maurer}, Markus:
+\newblock Behaviour recognition of traffic participants by using manoeuvre
+  primitives for automated vehicles in urban traffic.
+\newblock {In: }\emph{2016 IEEE 19th International Conference on Intelligent
+  Transportation Systems (ITSC)}, S. 976--983
 
 \bibitem[HGX12]{Hospedales.2012}
 \textsc{Hospedales}, Timothy ; \textsc{Gong}, Shaogang  ; \textsc{Xiang}, Tao:
@@ -117,6 +135,12 @@
 \newblock \url{http://dx.doi.org/10.1016/j.trpro.2016.05.235}. --
 \newblock DOI 10.1016/j.trpro.2016.05.235. --
 \newblock ISSN 23521465
+
+\bibitem[{Kon}]{Kanistras2013}
+\textsc{{Konstantinos Kanistras, Goncalo Martins, Matthew J. Rutherford, Kimon
+  P. Valavanis}}:
+\newblock A Survey of Unmanned Aerial Vehicles (UAVs) for Traffic Monitoring.
+\newblock  2013
 
 \bibitem[{Leo}08]{Walchshausl.2008}
 \textsc{{Leonhard F. Walchsh{\"a}usl}}:
@@ -174,6 +198,14 @@
 \newblock DOI 10.3182/20100906--3--IT--2019.00043. --
 \newblock ISSN 14746670
 
+\bibitem[RBS{\etalchar{+}}]{Reschka.}
+\textsc{Reschka}, Andreas ; \textsc{Bohmer}, Jurgen~R. ; \textsc{Saust}, Falko
+  ; \textsc{Lichte}, Bernd  ; \textsc{Maurer}, Markus:
+\newblock Safe, dynamic and comfortable longitudinal control for an autonomous
+  vehicle.
+\newblock {In: }\emph{2012 IEEE Intelligent Vehicles Symposium (IV)}, S.
+  346--351
+
 \bibitem[{Rud}09]{RudiLindl.2009}
 \textsc{{Rudi Lindl}}:
 \newblock \emph{Tracking von Verkehrsteilnehmern im Kontext von
@@ -203,10 +235,9 @@
 \newblock {In: }\emph{2014 IEEE 17th International Conference on Intelligent
   Transportation Systems (ITSC)}, S. 1900--1901
 
-\bibitem[{Tom}12]{TomM.Gasseret.al..2012}
+\bibitem[{Tom}]{TomM.Gasseret.al..}
 \textsc{{Tom M. Gasser et. al.}}:
-\newblock \emph{Rechtsfolgen zunehmender Fahr- zeugautomatisierung}.
-\newblock 2012
+\newblock \emph{Rechtsfolgen zunehmender Fahrzeugautomatisierung}
 
 \bibitem[TR14]{Trankler.2014}
 \textsc{Tr{\"a}nkler}, Hans-Rolf ; \textsc{Reindl}, Leonhard~M.:

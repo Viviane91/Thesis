@@ -1,27 +1,48 @@
 \babel@toc {ngerman}{}
-\contentsline {section}{\nonumberline Abbildungsverzeichnis}{IX}{section*.5}
-\contentsline {section}{\nonumberline Tabellenverzeichnis}{X}{section*.6}
-\contentsline {section}{\nonumberline Abk\"urzungsverzeichnis}{XI}{section*.7}
-\contentsline {section}{\nonumberline Symbolverzeichnis}{XII}{section*.8}
+\contentsline {section}{\nonumberline Abbildungsverzeichnis}{X}{section*.6}
+\contentsline {section}{\nonumberline Tabellenverzeichnis}{XII}{section*.7}
+\contentsline {section}{\nonumberline Abk\"urzungsverzeichnis}{XIII}{section*.8}
+\contentsline {section}{\nonumberline Symbolverzeichnis}{XV}{section*.9}
 \contentsline {section}{\numberline {1}Einleitung}{1}{section.1}
-\contentsline {section}{\numberline {2}Umfelderfassung}{2}{section.2}
-\contentsline {subsection}{\numberline {2.1}Sensoren zur Umfelderfassung}{2}{subsection.2.1}
-\contentsline {subsubsection}{\numberline {2.1.1}Ultraschall}{2}{subsubsection.2.1.1}
-\contentsline {subsubsection}{\numberline {2.1.2}Radar}{4}{subsubsection.2.1.2}
-\contentsline {subsubsection}{\numberline {2.1.3}Lidar}{6}{subsubsection.2.1.3}
-\contentsline {subsubsection}{\numberline {2.1.4}Kamera}{8}{subsubsection.2.1.4}
-\contentsline {subsection}{\numberline {2.2}Datenverarbeitung}{9}{subsection.2.2}
-\contentsline {subsubsection}{\numberline {2.2.1}Objekterkennung}{9}{subsubsection.2.2.1}
-\contentsline {subsubsection}{\numberline {2.2.2}Tracking}{11}{subsubsection.2.2.2}
-\contentsline {subsubsection}{\numberline {2.2.3}Sensordatenfusion}{12}{subsubsection.2.2.3}
-\contentsline {subsection}{\numberline {2.3}Sensoreinsatz}{14}{subsection.2.3}
-\contentsline {subsubsection}{\numberline {2.3.1}Im Fahrzeug}{14}{subsubsection.2.3.1}
-\contentsline {subsubsection}{\numberline {2.3.2}In der Infrastruktur}{17}{subsubsection.2.3.2}
-\contentsline {section}{\numberline {3}Anforderungen an ein Software-Tool zur Sensorbewertung}{22}{section.3}
-\contentsline {section}{\numberline {4}Software-Tool zur Sensorbewertung}{23}{section.4}
-\contentsline {subsection}{\numberline {4.1}Programmstruktur/Architektur}{23}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Implementierung}{23}{subsection.4.2}
-\contentsline {section}{\numberline {5}Evaluation}{24}{section.5}
-\contentsline {section}{\numberline {6}Zusammenfassung und Ausblick}{25}{section.6}
-\contentsline {section}{\nonumberline Literatur}{26}{section*.9}
-\contentsline {section}{\nonumberline Anhang}{31}{section*.10}
+\contentsline {section}{\numberline {2}Grundlagen}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Begriffserkl\"arung "`Umfeld"'}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Sensorik zur Umfelderfassung}{2}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Ultraschall}{2}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Radar}{4}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Lidar}{7}{subsubsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.4}Kamera}{8}{subsubsection.2.2.4}
+\contentsline {subsection}{\numberline {2.3}Datenverarbeitung}{10}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Objekterkennung}{11}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Tracking}{12}{subsubsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.3}Sensordatenfusion}{13}{subsubsection.2.3.3}
+\contentsline {section}{\numberline {3}Anwendungen zur Umfelderfassung}{16}{section.3}
+\contentsline {subsection}{\numberline {3.1}Im Fahrzeug}{16}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Teilautomatisierung}{16}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Vollautomatisierung}{18}{subsubsection.3.1.2}
+\contentsline {subsection}{\numberline {3.2}In der Infrastruktur}{21}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Mobile Sensorkonfigurationen}{21}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Station\"are Sensorkonfigurationen}{22}{subsubsection.3.2.2}
+\contentsline {section}{\numberline {4}Anforderungen an das Simulations-Tool}{25}{section.4}
+\contentsline {subsection}{\numberline {4.1}Komponenten des Simulations-Tools}{25}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Sensoren}{26}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}Objekte}{26}{subsubsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.3}Umgebung}{27}{subsubsection.4.1.3}
+\contentsline {subsubsection}{\numberline {4.1.4}Auswertung}{27}{subsubsection.4.1.4}
+\contentsline {subsection}{\numberline {4.2}Anforderungsliste}{28}{subsection.4.2}
+\contentsline {section}{\numberline {5}Simulations-Tool}{30}{section.5}
+\contentsline {subsection}{\numberline {5.1}Benutzeroberfl\"ache}{30}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Programmablauf}{32}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Implementierung}{34}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {5.3.1}Umgebung}{34}{subsubsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.2}Objekte}{36}{subsubsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.3}Sensoren}{38}{subsubsection.5.3.3}
+\contentsline {subsubsection}{\numberline {5.3.4}Auswertung}{40}{subsubsection.5.3.4}
+\contentsline {section}{\numberline {6}Studie zur Anwendung des Tools}{44}{section.6}
+\contentsline {subsection}{\numberline {6.1}Einfluss des Objektabstandes}{44}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Umwelteinfl\"usse}{46}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Vergleich von zwei Sensorkonfigurationen}{48}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Forschungskreuzung}{53}{subsection.6.4}
+\contentsline {subsection}{\numberline {6.5}Evaluation}{58}{subsection.6.5}
+\contentsline {section}{\numberline {7}Zusammenfassung und Ausblick}{59}{section.7}
+\contentsline {section}{\nonumberline Literatur}{60}{section*.10}
+\contentsline {section}{\nonumberline Anhang}{65}{section*.11}

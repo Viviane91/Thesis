@@ -1,8 +1,222 @@
-\section{Software-Tool zur Sensorbewertung}
-\label{sec:Software-Tool}
+\section{Simulations-Tool}
+\label{chap:Software-Tool}
+%Im folgenden Kapitel werden zunächst die Anforderungen an ein Werkzeug zur Systemkonzeptbewertung von infrastrukturellen Umfelderfassungslösungen erläutert. Dieses Werkzeug soll als Software umgesetzt werden, welche anschließend vorgestellt wird. Ziel ist es, mit Hilfe dieses Tools infrastrukturelle Umfelderfassungslösungen in Hinblick auf das automatisierte Fahren zu bewerten. Somit bestünde unter anderem die Möglichkeit, Stadtverwaltungen potenzielle Umfelderfassungslösungen für beispielsweise Verkehrsknotenpunkte aufzuzeigen, mit denen das automatisierte Fahren gefördert werden könnte.
 
-\subsection{Programmstruktur/Architektur}
-\label{sec:Programmstruktur}
+Nachdem in Kapitel\,\ref{chap:Anforderungen} die Anforderungen spezifiziert worden sind, wird im folgenden Kapitel die Umsetzung dieser Anforderungen in Matlab vorgestellt. Zunächst werden hierfür die Benutzeroberfläche und der Programmablauf erläutert. Anschließend wird genauer auf die Implementierung der Funktionen eingegangen.
 
+\subsection{Benutzeroberfläche}
+\label{sec:GUI}
+%Links: Darstellung der Szene\\
+%Rechts oben: Definieren der Szenenparameter\\
+%Rechts mittig: Eingabe der sensorspezifischen Einflüsse auf die Objekterkennung\\
+%Rechts unten: Ausgabe der Auswertung\\
+
+Abbildung\,\ref{fig:GUI} zeigt die grafische Benutzeroberfläche des Programms. In der linken Hälfte des Fensters wird die Szene visualisiert. Die Parameter hierfür definiert der Benutzer mit dem Panel "`Szene erstellen"' rechts oben im Fenster (vgl. Abbildung\,\ref{fig:Szene}). Ein Dropdown-Menu ermöglicht die Auswahl der Straßenführung (U1). Darunter wird die Anzahl der zu platzierenden Objekte in einem Eingabefeld angegeben. Die Auswahl der Tageszeit wird durch die Radiobuttons Tag und Nacht, die darunter platziert sind, realisiert (U4). Die Standardeinstellung ist "`Tag"'. Auf der rechten Seite des Panels "`Szene erstellen"' besteht die Möglichkeit, die Witterung zu verändern (U3). Hierfür kann der Benutzer zunächst zwischen "`Trocken"', "`Nebel"' und "`Regen"' wählen. Bei Nebel muss der Benutzer noch eine Sichtweite im nebenstehenden Eingabefeld eintragen. Der Standardwert ist \unit[100]{m}. Wenn Regen ausgewählt ist, benötigt das Programm eine Regenrate, die im Eingabefeld neben "`Regen"' angegeben wird. Als Voreinstellung wird eine Regenrate von \unitfrac[2.5]{mm}{h} angenommen. 
+
+\begin{figure}[hbtp]%
+\centering
+\subfigure[][Gesamtansicht der Benutzeroberfläche\label{fig:GUI}]{\includegraphics[width=\textwidth]{pics/Tool-GUI.png}}\quad%
+\subfigure[][Panel: Szene erstellen\label{fig:Szene}]{\includegraphics[width=0.55\textwidth,trim={20cm 15.8cm 9cm 1.5cm},clip]{pics/Tool-GUI2.png}}\quad%
+\subfigure[][Panel: Verarbeitungslatenzen\label{fig:Latenzen}]{\includegraphics[width=0.35\textwidth,trim={20cm 14cm 14.6cm 5.5cm},clip]{pics/Tool-GUI2.png}}\\%
+\subfigure[][Tabelle mit Wahrscheinlichkeiten für die Einflüsse der Objekterkennung\label{fig:TabWahr}]{\includegraphics[width=\textwidth,trim={20cm 9.5cm 1cm 7.9cm},clip]{pics/Tool-GUI2.png}}
+\caption{Grafische Benutzeroberfläche des Software-Tools}%%
+\end{figure}
+
+Rechts neben dem Panel "`Szene erstellen"' sind fünf Buttons: "`Szene erstellen"', "`Reset"', "`Auswertung"', "`Speichern"', "`Laden"'. Mit ersterem wird in der linken Bildhälfte schließlich die Szene gezeichnet (A15). Mit dem "`Reset"'-Button wird das Programm wieder auf die Standardeinstellungen zurückgestellt. Nachdem die Szene erstellt worden ist, kann mit dem Button "`Auswertung"' die Szene ausgewertet werden. Daraufhin wird die Objekterkennung durchgeführt und unten rechts die Tabelle gefüllt (A6, A8, A13). Mit dem Button "`Speichern"' werden alle Variablen gespeichert (A17). Diese können mit dem Button "`Laden"' zu einem späteren Zeitpunkt wieder aufgerufen werden (A18).
+
+Unter dem Panel "`Szene erstellen"' sind Eingabefelder für die Angabe von Werten für die Verarbeitungslatenzen der Objekte und der Infrastruktur (A12), siehe Abbildung\,\ref{fig:Latenzen}. Für die Infrastruktur ist standardmäßig \unit[350]{ms} und für die Objektlatenz \unit[100]{ms} eingetragen. In der Tabelle darunter sind die sensorspezifischen Wahrscheinlichkeiten der Objekterkennung aufgelistet, siehe Abbildung\,\ref{fig:TabWahr}. Die Einträge der Tabelle kann der Benutzer anpassen (S5, S6, A2). 
+
+\subsection{Programmablauf}
+Der Programmablauf ist in Abbildung\,\ref{fig:Programmablauf} als Flussdiagramm dargestellt. Mit Programmstart wird die Benutzeroberfläche geöffnet. Jetzt kann der Benutzer die Szene mit Hilfe des Panels "`Szene erstellen"' definieren. Nach Betätigen des Buttons "`Szene erstellen"' wird die Straßenführung in der linken Fensterhälfte gezeichnet (A15).
+
+\begin{figure}[hbtp]%
+\centering
+\includegraphics[width=0.85\columnwidth,trim={1cm 8cm 4cm 1.5cm},clip]{pics/Programmablauf.pdf}%
+\caption{Flussdiagramm des Programmablaufs}%
+\label{fig:Programmablauf}%
+\end{figure}
+%\newpage
+
+Wenn Infrastrukturelemente in der ausgewählten Straßenführung vorhanden sind (U2), wird der Benutzer zunächst aufgefordert, diese mit Sensorik auszustatten. Hierfür wird nacheinander für jedes Element zunächst die Sensoranzahl abgefragt und der Benutzer wird aufgefordert, einen Sensor auswählen (S.1, S.2) und dessen Position (S3) und Ausrichtung (S4) am aktuellen Infrastrukturelement anzugeben. Wenn keine Infrastrukturelemente in der ausgewählten Straßenführung existieren, können keine Infrastruktursensoren platziert werden.
+
+Anschließend wird der Benutzer aufgefordert, die Objekte zu platzieren (O1). Dies geschieht per Mausklick innerhalb der Straßenführung. Danach kann der Benutzer den Objekttyp auswählen (O2), der schließlich in der Szene gezeichnet wird. Hiernach wird der Benutzer im Falle eines Fahrzeugs gefragt, mit wie vielen Sensoren das Objekt ausgestattet werden soll. Analog zu Infrastrukturausstattung wird der Benutzer nun aufgefordert, einen Sensor auszuwählen (S1, S2) und dessen Position (S3) und Ausrichtung (S4) am Objekt anzugeben. 
+
+Nachdem die Szene komplett erzeugt worden ist, kann diese ausgewertet werden. Hierfür muss der Benutzer den Button "`Auswertung"' betätigen. Dann wird die Objekterkennung durchgeführt und die Wahrscheinlichkeit (A5), die Genauigkeit und die Latenz ermittelt. Diese Werte werden schließlich in der Tabelle unten rechts im Fenster ausgegeben (A6, A8, A13). Des Weiteren werden alle erkannten Objekte in der Szene mit einem Kreuz versehen.
 \subsection{Implementierung}
 \label{sec:Implementierung}
+
+\subsubsection{Umgebung}
+Der Ablauf der Umgebungserzeugung ist als Flussdiagramm in Abbildung\,\ref{fig:Umgebung} dargestellt. Wie schon in Abschnitt\,\ref{sec:GUI} beschrieben, kann der Benutzer per Dropdown-Menu eine Straßenführung auswählen (U1). Im Rahmen dieser Arbeit sind drei Straßenführungen implementiert worden. Dies sind eine einfache Kreuzung ohne Infrastrukturelemente, eine Kreuzung mit Mittelstreifen und vier Infrastrukturelemente und die Möglichkeit, eine Karte der Braunschweiger Forschungskreuzung zu laden. In letzterer werden acht Infrastrukturelemente gezeichnet. Abbildung\,\ref{fig:Kreuzungen} zeigt die Visualisierung dieser drei Möglichkeiten im Tool. Alle drei Optionen zeigen einen Ausschnitt von \unit[50]{m} von der Kreuzungsmitte in jede Richtung. Bei den ersten beiden Varianten wird von einer Spurbreite von \unit[3]{m} ausgegangen. 
+
+\begin{figure}[hbtp]%
+\centering
+\includegraphics[width=0.8\columnwidth,trim={2.5cm 13.3cm 4.8cm 2.7cm},clip]{pics/Umgebung.pdf}%
+\caption{Flussdiagramm der Umgebungserzeugung\label{fig:Umgebung}}%
+\end{figure}
+
+\begin{figure}[hbtp]%
+\centering
+\subfigure[][Kreuzung]{\includegraphics[width=0.32\textwidth]{pics/Kreuzung.PNG}}\,
+\subfigure[][Kreuzung mit Infrastrukturelementen]{\includegraphics[width=0.32\textwidth]{pics/InfraKreuzung.PNG}}\,%
+\subfigure[][Forschungskreuzung]{\includegraphics[width=0.32\textwidth]{pics/FoKr.PNG}}%
+\caption{Auswählbare Straßenführungen\label{fig:Kreuzungen}}
+\end{figure}
+
+Je nachdem, welche Straßenführung gewählt wird, nimmt das Programm einen anderen Pfad. Bei der einfachen Kreuzung können nach dem Zeichnen die Objekte platziert werden. Nach dem zeichnen der Kreuzung mit Infrastruktur können die Infrastrukturelemente mit Sensorik ausgestattet werden. Danach oder wenn dies nicht gewünscht ist, können die Objekte platziert werden. Bei der Forschungskreuzung werden zunächst die TIF- und TFW-Dateien geladen. Mit Hilfe der Daten aus dem World file (TFW) und den Bildpunkten werden die Koordinaten umgerechnet. Anschließend können ebenfalls erst die Sensoren platziert werden oder direkt zur Objektplatzierung weiter gegangen werden.
+
+Neben der Straßenführung können die Umwelteinflüsse Tageszeit und Witterung bestimmt werden (U7, U8). Bei der Tageszeit wird die Variable "`Tag"', bei der Auswahl "`Tag"', auf "`true"' oder, bei der Auswahl "`Nacht"', auf "`false"' gesetzt. Die Auswahl der Witterung geschieht analog zur Tageszeit. Für die Witterung wird die Variable "`Trocken"' oder "`Nebel"' oder "`Regen"' auf "`true"' und alle anderen auf "`false"' gesetzt. Dies kann vor oder nach der visuellen Erzeugung der Szene ausgewählt werden. Wie diese Einflüsse die Objekterkennung der Sensorik beeinflusst, kann in der Tabelle definiert werden. 
+
+\subsubsection{Objekte}
+Die einzelnen Schritte der Objektplatzierung sind in Abbildung\,\ref{fig:Objekte} dargestellt. Solange die Objektanzahl (ObjAnzahl) nicht erreicht worden ist, werden die Schritte ausgeführt. Zunächst wird die Objektposition per Mausklick in der Karte bestimmt (O1). Danach wird der Benutzer aufgefordert einen Objekttypen zu wählen (O2). Bei den ersten beiden Straßenführungen wird im Falle eines Fahrzeugs die Fahrtrichtung der Fahrspur erkannt und der horizontale Ausrichtungswinkel entsprechend gesetzt (O3). Bei Fußgängern und der Forschungskreuzung muss dieser vom Benutzer angegeben werden, da die Extraktion der einzelnen Fahrspuren aus der Bilddatei zu rechenintensiv für die Anwendung ist.
+
+\begin{figure}[hbtp]%
+\centering
+\includegraphics[width=0.7\columnwidth,trim={4cm 5.5cm 5cm 3cm},clip]{pics/Objekte.pdf}%
+\caption{Flussdiagramm der Objekterzeugung}%
+\label{fig:Objekte}%
+\end{figure}
+
+Entsprechend des Objekttyps werden danach Breite $B$, Länge $L$ und Höhe $H$ des Objektes auf die Werte aus Tabelle\,\ref{tab:Grundmasse} gesetzt. Mit der Position, dem Ausrichtungswinkel und den Größenangaben werden schließlich die Objektecken mit einer homogenen Koordinatentransformation berechnet \cite{F.WahlE.JoernsJ.SchwartzeD.Kubus.}:
+\begin{equation}
+\begin{bmatrix}
+x\\y\\z\\1
+\end{bmatrix}
+= 
+\begin{bmatrix}
+	\cos(\alpha) &-\sin(\alpha) &0& x_0\\
+  \sin(\alpha) & \cos(\alpha) &0 &y_0\\   
+  0 &0& 1& z_0\\
+	0 &0 &0 &1
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+\pm \frac{L}{2} \\ \pm\frac{B}{2}\\ H\\1
+\end{bmatrix}
+\label{eq:Objekt}
+\end{equation}
+
+\begin{tabularx}{\textwidth}{lccc}
+\caption{Grundmaße von Verkehrsteilnehmern in [\unit{m}] \cite{Wolf.2005}}
+\label{tab:Grundmasse}\\\toprule
+& \textbf{PKW} & \textbf{LKW} & \textbf{Fußgänger}\\\midrule
+Breite & 1.75 & 2.55 & 0.55\\
+Länge & 4.7 & 14 & 0.3\\
+Höhe & 1.7 & 4 & 2\\\bottomrule
+\end{tabularx}
+
+Unter Verwendung dieser Eckpunkte wird daraufhin das Objekt als Polygon gezeichnet. Wenn es sich nicht um einen Fußgänger handelt, wird der Benutzer aufgefordert, eine Sensoranzahl anzugeben. Ist die Anzahl $>0$, wird das Objekt mit Sensorik ausgestattet. Im Falle eines Fußgängers oder einer Sensoranzahl $=0$ wird dieser Schritt übersprungen.
+
+
+\subsubsection{Sensoren}
+Der Ablauf für die Erzeugung der Sensoren ist in Abbildung\,\ref{fig:Sensor} dargestellt. Als Erstes wird eine Liste mit Sensoren und deren Spezifikationen geladen (siehe Tabelle\,\ref{tab:SensorSpec} im Anhang). Diese Liste wurde aus Datenblättern und anderen Quellen zusammengestellt. Aufgrund der Unterschiede in der Angabe der Spezifikationen sind fehlende Werte durch die typabhängige Bestimmung eines Mittelwertes aus den gegebenen Werten anderer Datenblätter nachgetragen worden.
+
+\begin{figure}[hbtp]%
+\centering
+\includegraphics[width=\columnwidth,trim={1cm 13.75cm 8.7cm 1.8cm},clip]{pics/Sensor.pdf}%
+\caption{Flussdiagramm der Sensorerzeugung}%
+\label{fig:Sensor}%
+\end{figure}
+
+Die Sensorliste wird daraufhin dem Benutzer in einem Dialogfenster zur Sensorauswahl angezeigt (S1, S2), siehe Abbildung\,\ref{fig:Sliste}. Nachdem ein Sensor ausgewählt worden ist, wird der Benutzer aufgefordert, die Sensorposition und -ausrichtung zu bestimmen (S3, S4), siehe Abbildung\,\ref{fig:ausricht}. Bei der Objektausstattung wird dies innerhalb der Objektkoordinaten durchgeführt. 
+
+\begin{figure}[hbtp]%
+\centering
+\subfigure[][Sensorliste\label{fig:Sliste}]{\includegraphics[width=0.3\textwidth]{pics/Sensorliste.png}}\qquad%
+\subfigure[][Sensorausrichtung\label{fig:ausricht}]{\includegraphics[width=0.25\textwidth]{pics/Sensorausrichtung.png}}%
+\caption{Dialogfenster der Sensorausstattung}%
+\label{fig:SenAusstattung}%
+\end{figure}
+
+Mit Hilfe der Sensorposition, Ausrichtung $\alpha$ und $\beta$, Reichweite $R_{min}$ und $R_{max}$, dem Öffnungswinkel $\phi$ und der Winkelauflösung $\Delta \phi$ wird, ebenfalls mit einer homogenen Koordinatentransformation, das Sichtfeld berechnet \cite{F.WahlE.JoernsJ.SchwartzeD.Kubus.}:
+\begin{equation}
+\begin{bmatrix}
+x\\y\\z\\1
+\end{bmatrix}
+= 
+\begin{bmatrix}
+	\cos(\alpha) &-\sin(\alpha) &0& x_0\\
+  \sin(\alpha) & \cos(\alpha) &0 &y_0\\   
+  0 &0& 1& z_0\\
+	0 &0 &0 &1
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+ R\sin(\frac{\pi}{2}-\phi)\\ R \cos(\frac{\pi}{2}-\phi)\\ 0\\1
+\end{bmatrix}
+\label{eq:Sensor}
+\end{equation}
+
+Für den Fall wie in Abbildung\,\ref{fig:Blindspot}, dass der Sensor von oben auf die Szene blickt, wird dessen Sichtfeld für die 2D-Projektion verkleinert. Zunächst wird die minimale Reichweite $R_{min}$ vergrößert, um den blinden Bereich unterhalb des Sensors zu berücksichtigen: 
+\begin{equation}
+R_{min} = \left|\frac{z_0}{cos\beta}\right|
+\label{eq:Rmin}
+\end{equation}
+
+\begin{figure}[hbtp]%
+\centering
+\includegraphics[width=0.65\columnwidth,trim={3cm 5cm 5cm 4cm},clip]{pics/Blindspot.pdf}%
+\caption{Berücksichtigung des blinden Sensorbereichs}%
+\label{fig:Blindspot}%
+\end{figure}
+
+Um zusätzlich zu berücksichtigen, dass das Sichtfeld auf den Boden trifft, wird anschließend die maximale Reichweite $R_{max}$ um die $R_{min}$ verkürzt:
+\begin{equation}
+R_{max} = R_{max} - R_{min}
+\label{eq:Rmax}
+\end{equation}
+
+Nachdem das Sichtfeld erzeugt worden ist, wird es gezeichnet.
+
+\subsubsection{Auswertung}
+Der Ablauf der Auswertung ist in Abbildung\,\ref{fig:Auswertung} dargestellt. Als erstes wird für jeden Sensor überprüft, welche Objekte im Sichtfeld liegen (A1). Hierbei wird in jedem Kreisabschnitt mit dem Winkelschritt $d\phi$ überprüft, ob sich Objektpunkte innerhalb des Polygons befinden, siehe Abbildung\,\ref{fig:ObjErkennung}. Danach wird der Objektabstand zum Sensor bestimmt (A4). Nur die Objekte mit dem geringsten Abstand zum Sensor innerhalb des Abschnittes können als erkannt gesetzt werden. So wird berücksichtigt, dass die vorderen Objekte die Sicht auf weiter hinten liegende Objekte behindern. 
+
+\begin{figure}[hbtp]%
+\centering
+\includegraphics[width=0.8\columnwidth,trim={2.2cm 10.7cm 6.3cm 1.5cm},clip]{pics/Auswertung.pdf}%
+\caption{Flussdiagramm der Auswertung}%
+\label{fig:Auswertung}%
+\end{figure}
+
+\begin{figure}[hbtp]%
+\centering
+\includegraphics[page=4,width=0.5\textwidth,trim={2cm 7.9cm 10cm 2.5cm},clip]{pics/LidarFoV.pdf}
+\caption{Schematische Darstellung der Objekterkennung}%
+\label{fig:ObjErkennung}
+\end{figure}
+
+Nachdem bestimmt worden ist, welche Objekte der Sensor erfasst, wird die Gesamtwahrscheinlichkeit $p_{Gesamt}$ der Erkennung bestimmt (A3). Hierfür werden in Abhängigkeit vom Sensortyp die Werte aus der Tabelle und der Objektabstand genutzt. Diese Tabelle ist in Abbildung\,\ref{fig:WahrschTab} dargestellt. Für die Werte in der Tabelle wurden die Erkenntnissen aus Kapitel \ref{chap:Einsatz} herangezogen und zum Teil Annahmen, aufgrund fehlender Daten, getroffen.
+
+\begin{figure}[hbtp]%
+\centering
+\includegraphics[width=0.9\textwidth,trim={20.5cm 9.95cm 1.5cm 9.5cm},clip]{pics/FoKr-10Obj-bewertet.png}
+\caption{Eingabematrix der Wahrscheinlichkeiten der Objekterkennungseinflüsse}%
+\label{fig:WahrschTab}
+\end{figure}
+
+Zunächst wird die Erkennungswahrscheinlichkeit des Objekterkennungsalgorithmus $p_{Algorithmus}$ aus der Tabelle entnommen (A2). Danach wird die Wahrscheinlichkeit $p_{Witterung}$ bei entsprechender Witterung entnommen (S5). Je nach Auswahl der Witterung wird zusätzlich die Sichtweite bei Nebel oder die Regenrate berücksichtigt. Ist Nebel ausgewählt worden, wird bei Lidar und Kamera die maximale Reichweite $R_{max}$ verkürzt und auf die Sichtweite bei Nebel gesetzt. Bei Regen wird bei diesen Sensortypen die Wahrscheinlichkeit $p_{Regen}$ noch zusätzlich mit der Regenrate $R$ verändert \cite{Goodin.2019}:
+\begin{equation}
+	p_{Witterung} = p_{Regen} \cdot a R^{c}
+	\label{eq:Regen}
+\end{equation}
+
+Für die empirischen Koeffizienten $a$ und $c$ werden die Werte $a=0.01$ und $c=0.6$ aus \cite{Goodin.2019} genutzt. Die American Meteorological Society unterscheidet zwischen vier Regenstärken: leichter Regen mit $R=$\unitfrac[$\leq$2.5]{mm}{h}, mittlerer Regen mit $R=$\unitfrac[2.5-10]{mm}{h}, starker Regen mit $R=$\unitfrac[10-50]{mm}{h} und schwerer Regen mit $R=$\unitfrac[$\geq$50]{mm}{h} \cite{AmericanMeteorologicalSociety.25.04.2012}.
+
+Anschließend wird entweder die Wahrscheinlichkeit für die Erkennung bei Tag oder bei Nacht $p_{Tag}$ ausgewählt (S6). Nachfolgend wird die Wahrscheinlichkeit $p_{Abstand}$ aufgrund der Objektentfernung bestimmt (A4). Dazu wird eine lineare Funktion in Abhängigkeit von der minimalen und maximalen Reichweite bzw. Sichtweite angenommen und mit dem Objektabstand ausgewertet.
+
+%Hierfür wird die Reichweite geviertelt und überprüft in welchem Quadranten sich das Objekt befindet. Im ersten Quadranten beträgt die Wahrscheinlichkeit \unit{100}{\%}, im zweiten sind es \unit{75}{\%}, im dritten sind es noch \unit{50}{\%} und im letzten Quadranten beträgt die Wahrscheinlichkeit nur noch \unit{25}{\%}.
+
+Im Anschluss werden diese Einflüsse zu der Gesamtwahrscheinlichkeit $p_{Gesamt}$ multipliziert:
+\begin{equation}
+p_{Gesamt} = p_{Algorithmus}\cdot p_{Witterung}\cdot p_{Tag}\cdot p_{Abstand}
+\label{eq:pGesamt}
+\end{equation}
+
+Nachdem die Objekterkennung für alle Sensoren durchgeführt worden ist, werden die Wahrscheinlichkeit, die Genauigkeit und die Latenz, mit der ein Objekt erkannt wird, bestimmt (A8). Dafür wird zunächst der jeweilige Wert vom Sensor übertragen. Wenn ein Wert eines anderen Sensors der Infrastruktur oder Objektes vorliegt, wird bei der Latenz der kleinere von beiden Werten genutzt. Von diesem Sensor wird außerdem die Genauigkeit übertragen. Bei der Wahrscheinlichkeit wird der jeweils größere Wert genommen.
+
+Zuletzt werden diese Werte in einer Ausgabematrix auf der Benutzeroberfläche ausgegeben. Diese ist in Abbildung\,\ref{fig:AuswertungTab} dargestellt.
+\begin{figure}[hbtp]%
+\centering
+\includegraphics[width=0.9\textwidth,trim={20.5cm 1.1cm 1.5cm 14.2cm},clip]{pics/FoKr-10Obj-bewertet.png}
+\caption{Ausgabematrix der Auswertung}%
+\label{fig:AuswertungTab}
+\end{figure}

@@ -1,20 +1,43 @@
 \babel@toc {ngerman}{}
 \contentsline {figure}{\numberline {1}{\ignorespaces Veranschaulichung des Trilaterationsprinzips f\"ur ein rundes Objekt}}{3}{figure.1}
-\contentsline {figure}{\numberline {2}{\ignorespaces Beispielhafter Frequenzverlauf von FMCW (a) und Chirp Frequence Modulation (b) \cite {Winner.2015}}}{4}{figure.2}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{4}{figure.2}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{4}{figure.2}
-\contentsline {figure}{\numberline {3}{\ignorespaces Schematische Darstellung des Scanning Verfahrens (a) und des Monopuls Verfahrens (b) \cite {Winner.2015}}}{6}{figure.3}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{6}{figure.3}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{6}{figure.3}
-\contentsline {figure}{\numberline {4}{\ignorespaces Schematischer Ablauf der Datenverarbeitung \cite {Winner.2015}}}{9}{figure.4}
-\contentsline {figure}{\numberline {5}{\ignorespaces Beispiel f\"ur den Vergleich von Region-Growing (gr\"un) und Linienextraktion (blau). Die roten Punkte sind die Laserscannerrohdaten \cite {Walchshausl.2008}}}{10}{figure.5}
-\contentsline {figure}{\numberline {6}{\ignorespaces Beispielhafte Darstellung der Bildgradienten (links) und der Histogramme der Gradientenrichtung (rechts) \cite {Winner.2015}}}{10}{figure.6}
-\contentsline {figure}{\numberline {7}{\ignorespaces Ans\"atze der Datenaufnahme f\"ur die Datenfusion}}{13}{figure.7}
-\contentsline {figure}{\numberline {8}{\ignorespaces Implizite Sensordatenfusion mit asynchronen Sensoren \cite {Dietmayer2005}}}{13}{figure.8}
-\contentsline {figure}{\numberline {9}{\ignorespaces Explizite Sensordatenfusion mit synchronen Sensoren \cite {Dietmayer2005}}}{14}{figure.9}
-\contentsline {figure}{\numberline {10}{\ignorespaces Grafische Darstellung der einzelnen Automatisierungsgrade}}{15}{figure.10}
-\contentsline {figure}{\numberline {11}{\ignorespaces Beispielhafte Darstellung der Umfelderfassungssensoren am Fahrzeug}}{16}{figure.11}
-\contentsline {figure}{\numberline {12}{\ignorespaces Die Forschungskreuzung des Testfeldes AIM in Braunschweig. Blau: Sichtbereich zweier Monokameras kombiniert mit einem \unit {24}{GHz} Radar und einem IR-Blitz. Gr\"un: Sichtbereich eines Stereokamerasystems mit einem IR-Blitz \cite {Bengler.2018} }}{18}{figure.12}
-\contentsline {figure}{\numberline {13}{\ignorespaces Sensoraufbau der Ko-PER Kreuzungen in Aschaffenburg. Gelb: Sichtbereich der Laserscanner. Gr\"un: Sichtbereich der Kameras \cite {Goldhammer2012} }}{19}{figure.13}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{19}{figure.13}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{19}{figure.13}
+\contentsline {figure}{\numberline {2}{\ignorespaces Beispielhafter Frequenzverlauf der Signalerzeugung vom Radar \cite {Winner.2015}}}{5}{figure.2}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces }}{5}{figure.2}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces }}{5}{figure.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces Ans\"atze zur Winkelbestimmung beim Radar \cite {Winner.2015}}}{6}{figure.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces Ans\"atze zur Winkelbestimmung beim Lidar \cite {Winner.2015}}}{8}{figure.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces Rektifiziertes Stereokamerasystem}}{9}{figure.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces Schematischer Ablauf der Datenverarbeitung \cite {Winner.2015}}}{10}{figure.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces Vergleich von zwei Bilderkennungsalgorithmen}}{11}{figure.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces Vergleich zwischen Kanten- und Eckendetektor.}}{12}{figure.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Ans\"atze der Datenaufnahme f\"ur die Datenfusion \cite {Dietmayer2005}}}{14}{figure.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Explizite Sensordatenfusion mit synchronen Sensoren \cite {Dietmayer2005}}}{14}{figure.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Zwei verschiedene Fahrzeugkonfigurationen}}{17}{figure.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces Transportabler Sensoraufbau}}{22}{figure.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces Sensoraufbau der \acs {Ko-PER} Kreuzung in Aschaffenburg \cite {Goldhammer2012} }}{23}{figure.13}
+\contentsline {figure}{\numberline {14}{\ignorespaces Sensorkonfiguration der Forschungskreuzung in Braunschweig \cite {Bengler.2018}}}{23}{figure.14}
+\contentsline {figure}{\numberline {15}{\ignorespaces Komponenten des Simulations-Tools}}{25}{figure.15}
+\contentsline {figure}{\numberline {16}{\ignorespaces Grafische Benutzeroberfl\"ache des Software-Tools}}{31}{figure.16}
+\contentsline {figure}{\numberline {17}{\ignorespaces Flussdiagramm des Programmablaufs}}{33}{figure.17}
+\contentsline {figure}{\numberline {18}{\ignorespaces Flussdiagramm der Umgebungserzeugung}}{35}{figure.18}
+\contentsline {figure}{\numberline {19}{\ignorespaces Ausw\"ahlbare Stra\IeC {\ss }enf\"uhrungen}}{35}{figure.19}
+\contentsline {figure}{\numberline {20}{\ignorespaces Flussdiagramm der Objekterzeugung}}{37}{figure.20}
+\contentsline {figure}{\numberline {21}{\ignorespaces Flussdiagramm der Sensorerzeugung}}{38}{figure.21}
+\contentsline {figure}{\numberline {22}{\ignorespaces Dialogfenster der Sensorausstattung}}{39}{figure.22}
+\contentsline {figure}{\numberline {23}{\ignorespaces Ber\"ucksichtigung des blinden Sensorbereichs}}{40}{figure.23}
+\contentsline {figure}{\numberline {24}{\ignorespaces Flussdiagramm der Auswertung}}{41}{figure.24}
+\contentsline {figure}{\numberline {25}{\ignorespaces Schematische Darstellung der Objekterkennung}}{42}{figure.25}
+\contentsline {figure}{\numberline {26}{\ignorespaces Eingabematrix der Wahrscheinlichkeiten der Objekterkennungseinfl\"usse}}{42}{figure.26}
+\contentsline {figure}{\numberline {27}{\ignorespaces Ausgabematrix der Auswertung}}{43}{figure.27}
+\contentsline {figure}{\numberline {28}{\ignorespaces Ausgangssituation f\"ur die Darstellung des Einfluss des Objektabstandes}}{45}{figure.28}
+\contentsline {figure}{\numberline {29}{\ignorespaces Zeitverlauf der Erkennungswahrscheinlichkeit und des Objektabstandes}}{45}{figure.29}
+\contentsline {figure}{\numberline {30}{\ignorespaces Infrastruktur erfasst mit einer Kamera ein Objekt }}{46}{figure.30}
+\contentsline {figure}{\numberline {31}{\ignorespaces Einfluss von Regen auf die Erkennungswahrscheinlichkeiten}}{47}{figure.31}
+\contentsline {figure}{\numberline {32}{\ignorespaces Einfluss von Nebel auf die Erkennungswahrscheinlichkeiten}}{48}{figure.32}
+\contentsline {figure}{\numberline {33}{\ignorespaces Szene zum Vergleich der Sensorkonfiguration vom \acs {FASCarE} und \acs {TIAMO}}}{50}{figure.33}
+\contentsline {figure}{\numberline {34}{\ignorespaces Erkennungswahrscheinlichkeiten von \acs {FASCarE} und \acs {TIAMO} bei Tag}}{52}{figure.34}
+\contentsline {figure}{\numberline {35}{\ignorespaces Drei Szenen auf der Forschungskreuzung}}{54}{figure.35}
+\contentsline {figure}{\numberline {36}{\ignorespaces Objekttrajektorien und -aufenthaltszeiten auf der Forschungskreuzung}}{55}{figure.36}
+\contentsline {figure}{\numberline {37}{\ignorespaces Erkennungswahrscheinlichkeiten der Forschungskreuzung}}{56}{figure.37}
+\contentsline {figure}{\numberline {38}{\ignorespaces Vergleich der Erkennungswahrscheinlichkeiten der Forschungskreuzung}}{57}{figure.38}
+\contentsline {figure}{\numberline {39}{\ignorespaces Erkennungswahrscheinlichkeiten von \acs {FASCarE} und \acs {TIAMO} bei Nacht}}{65}{figure.39}
+\contentsline {figure}{\numberline {40}{\ignorespaces Erkennungswahrscheinlichkeiten der Forschungskreuzung bei Nebel}}{66}{figure.40}

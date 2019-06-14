@@ -1,2 +1,195 @@
-\section{Evaluation}
-\label{Evalutation}
+\section{Studie zur Anwendung des Tools}
+\label{chap:Anwendung}
+Für die Bewertung des Simulations-Tools werden in diesem Kapitel vier verschiedene Szenen ausgewertet. Die ersten beiden Beispielen thematisieren die Einflüsse auf die Objekterkennung. Die letzten zwei Szenen umfassen reale Anwendungsbeispiele. Für die Auswertung von mehreren Zeitschritten wurde ein Mechanismus implementiert, der die Szenendaten automatisch lädt und auswertet. Eine Evaluation der Ergebnisse schließt das Kapitel ab.
+
+%\subsection{Verifikation}
+%\label{sec:Verifikation}
+\subsection{Einfluss des Objektabstandes}
+\label{sec:Abstand}
+Diese Szene überprüft den Einfluss des Objektabstandes auf die Objekterkennung, siehe Abbildung\,\ref{fig:Probe}. Sie besteht aus einer Kreuzung und zwei Fahrzeugen, die sich mit jeweils \unitfrac[50]{km}{h} aufeinander zu bewegen. Objekt\,1 (in der unteren Bildhälfte) ist mit einem einzelnen Sensor vom Typ Radar ausgestattet, dessen Spezifikationen der Tabelle\,\ref{tab:ProbeKonfig} zu entnehmen sind.
+
+\begin{figure}[!hbtp]%
+\centering
+\includegraphics[width=0.77\textwidth,trim={0.2cm 0.1cm 19.9cm 2.0cm},clip]{pics/Probeszene.PNG}
+\caption{Ausgangssituation für die Darstellung des Einfluss des Objektabstandes\label{fig:Probe}}
+\end{figure}
+
+\begin{tabularx}{\textwidth}{lccccc}%
+\caption{Sensorkonfiguration von Objekt\,1}
+\label{tab:ProbeKonfig}\\\toprule
+\textbf{Anz}&\textbf{Typ}	&$\boldsymbol{\phi_H$/$\phi_V}$ \textbf{[°]}	& $\boldsymbol{R_{min}$/$R_{max}}$ \textbf{[m]}&\textbf{Tol [$\pm$m]	}& $\boldsymbol{T_{Mess}}$ \textbf{[ms]}	\\ \midrule
+1&Radar&	66/23.1&	0.82/70&	0.36&	60	\\\bottomrule
+\end{tabularx}
+
+Abbildung\,\ref{fig:ProbeWahr} zeigt den zeitlichen Verlauf der Erkennungswahrscheinlichkeit und des Objektabstandes. Die Szene wurde alle \unit[160]{ms} ausgewertet, was der Summe aus der Messlatenz $T_{Mess}$ des Sensors und der angegebenen Verarbeitungslatenz des Fahrzeugs von \unit[100]{ms} entspricht. Zu den ersten beiden Zeitpunkten befindet sich das Objekt\,2 noch außerhalb der Sensorreichweite und wird somit nicht erkannt. Mit abnehmender Entfernung nimmt die Wahrscheinlichkeit, dass es erkannt wird, linear zu. Dies entspricht dem implementierten Ansatz zur Forderung einer Abhängigkeit der Erkennungswahrscheinlichkeit vom Objektabstand.
+
+\begin{figure}[hbtp]%
+\centering
+\includegraphics[width=\columnwidth,trim={0.9cm 0.1cm 0.5cm 0.5cm},clip]{pics/fig_Probe_Wahrscheinlichkeit_Entfernung.png}%
+\caption{Zeitverlauf der Erkennungswahrscheinlichkeit und des Objektabstandes\label{fig:ProbeWahr}}%%
+\end{figure}
+
+\newpage
+Aufgrund der angegebenen Wahrscheinlichkeit des Objekterkennungsalgorithmus von $p_{Algorithmus}=$\unit[95]{\%} und der Tatsache, dass das Objekt\,2 an Objekt\,1 vorbei fährt, wird eine Erkennungswahrscheinlichkeit von $p_{Gesamt}=$\unit[100]{\%} nicht erreicht. Nach \unit[2.5]{s} hat Objekt\,2 schließlich das Sensorsichtfeld wieder verlassen und wird nicht mehr erfasst. 
+
+
+%\newpage
+
+\subsection{Umwelteinflüsse}
+\label{sec:Umwelteinfluss}
+Abbildung\,\ref{fig:Einfluss} zeigt ein Objekt im Sensorsichtfeld einer Kamera, die an einem Infrastrukturelement montiert ist. Die Sensorspezifikationen sind in Tabelle\,\ref{tab:EinflussKonfig} aufgeführt.  Mit dieser Szene sollen die Umwelteinflüsse auf die Objekterkennung untersucht werden. Aufgrund ihrer hohen Empfindlichkeit auf Umwelteinflüsse wurde für dieses Beispiel eine Kamera, die nur das sichtbare Spektrum erfasst, ausgewählt.
+
+\begin{figure}[!hbtp]%
+\centering
+\includegraphics[width=0.77\textwidth,trim={0.2cm 0.1cm 19.9cm 1.7cm},clip]{pics/Einfluss.PNG}
+\caption{Infrastruktur erfasst mit einer Kamera ein Objekt \label{fig:Einfluss}}
+\end{figure}
+ %\newpage
+\begin{tabularx}{\textwidth}{lp{1.7cm}cccc}%
+\caption{Sensorkonfiguration der Infrastruktur}
+\label{tab:EinflussKonfig}\\\toprule
+\textbf{Anz}&\textbf{Typ}	&$\boldsymbol{\phi_H$/$\phi_V}$ \textbf{[°]}	& $\boldsymbol{R_{min}$/$R_{max}}$ \textbf{[m]}&\textbf{Tol [$\pm$m]	}& $\boldsymbol{T_{Mess}}$ \textbf{[ms]}	\\ \midrule
+1&Kamera (sichtbar)	&97/74	&1/77.5	&0.25	&50	\\\bottomrule
+\end{tabularx}
+
+Der Abstand zwischen Objekt und Kamera beträgt \unit[28.6]{m}. Er bleibt konstant, da nur ein Zeitpunkt betrachtet wird, um den Einfluss der durch die Abstandsänderung auszuschließen. Für die Bewertung des Regeneinflusses wurde die Szene mit verschiedenen Regenraten ausgewertet. Die Überprüfung des Einflusses von Nebel wurde durchgeführt, indem die Szene mit unterschiedlichen Sichtweiten ausgewertet wurde. Beides wurde mit den Tageszeiteinstellungen "`Tag"' und "`Nacht"' durchgeführt.
+%\newpage
+
+Die Ergebnisse für den Einfluss von Regen bei Tag und Nacht sind in Abbildung\,\ref{fig:EinflussRegen} dargestellt. Die Punkte bei einer Regenrate von \unitfrac[0]{mm}{h} entsprechen dem Ergebnis bei der Witterungsauswahl "`Trocken"'. Aufgrund des Objektabstandes wird ohne Regen eine Erkennungswahrscheinlichkeit von etwa \unit[65]{\%} am Tage und von \unit[39]{\%} bei Nacht erreicht. Es ist zu erkennen, dass Regen die Objekterkennung kaum beeinflusst. Der Einfluss liegt unter \unit[10]{\%} bei Regenraten von bis zu \unitfrac[40]{mm}{h}, was starkem Regenfall entspricht \cite{AmericanMeteorologicalSociety.25.04.2012}. Dieses Ergebnis ist zu erwarten, da  in \cite{Goodin.2019} der ermittelte Einfluss von Regen gering ausfällt.
+
+\begin{figure}[hbtp]%
+\centering
+\includegraphics[width=\textwidth,trim={1cm 0.05cm 1.8cm 2.7cm},clip]{pics/Regen.PNG}%
+\caption[Einfluss von Regen auf die Erkennungswahrscheinlichkeiten]{Einfluss von Regen auf die Erkennungswahrscheinlichkeiten einer Kamera im sichtbaren Spektrum bei Tag und Nacht\label{fig:EinflussRegen}}
+\end{figure}
+
+Abbildung\,\ref{fig:EinflussNebel} zeigt die Ergebnisse für den Einfluss von Nebel bei Tag und Nacht. Die Objekterkennung bei Nebel wird deutlich stärker beeinflusst als bei Regen. Dies ist zum Einen auf die Reduktion der Sichtweite und zum Anderen auf den kleineren Wert der Einflusswahrscheinlichkeit zurückzuführen. Während am Tage bei Regen die Erkennungswahrscheinlichkeit nicht unter \unit[55]{\%} fällt, ist dies bei Nebel schon für Sichtweiten unter \unit[120]{m} der Fall. Die Tageszeit führt in beiden Fällen lediglich zu einer negativen Verschiebung entlang der y-Achse.
+
+Nebel mit Sichtweiten, welche die Reichweite dieses Sensors von $R_{max}=$\unit[77.5]{m} übersteigen, reduzieren nicht die Reichweite. Ab diesem Wert wird ausschließlich die in der Tabelle eingetragene Einflusswahrscheinlichkeit für Nebel berücksichtigt. Aus diesem Grund ist die Erkennungswahrscheinlichkeit ab diesem Wert nahezu konstant.
+
+\begin{figure}[hbtp]%
+\centering
+\includegraphics[width=\textwidth,trim={1cm 0.05cm 1.5cm 2.7cm},clip]{pics/Nebel.PNG}
+\caption[Einfluss von Nebel auf die Erkennungswahrscheinlichkeiten]{Einfluss von Nebel auf die Erkennungswahrscheinlichkeiten einer Kamera im sichtbaren Spektrum bei Tag und Nacht\label{fig:EinflussNebel}}
+\end{figure}
+
+%\newpage
+%\subsection{Evaluation}
+%\label{sec:Evaluation}
+\subsection{Vergleich von zwei Sensorkonfigurationen}
+\label{sec:Vergleich}
+Ein Anwendungsfall ist der Vergleich von verschiedenen Sensorkonfigurationen. Dies wurde im Rahmen dieser Arbeit beispielhaft mit den Forschungsfahrzeugen \acs{TIAMO} der \acs{TU BS} und dem \acs{FASCarE} des \acs{DLR} durchgeführt, siehe Abbildung \ref{fig:Fahrzeugsensoren}. Die Sensorkonfigurationen der beiden Fahrzeuge sind in Tabelle\,\ref{tab:VglKonfig} aufgeführt. Der Einbauort der Sensoren ist mit F (Front) und H (Heck) gekennzeichnet. 
+
+%\newpage
+\begin{tabularx}{\textwidth}{lcp{1.7cm}cccc}%
+\caption{Sensorkonfigurationen des \acs{FASCarE} (\acs{DLR}) und des \acs{TIAMO} (\acs{TU BS})}
+\label{tab:VglKonfig}\\\toprule
+\multicolumn{7}{c}{\textbf{\acs{FASCarE}}}\\\midrule
+\textbf{Anz}&\textbf{Ort}&\textbf{Typ}	&$\boldsymbol{\phi_H$/$\phi_V}$ \textbf{[°]}	& $\boldsymbol{R_{min}$/$R_{max}}$ \textbf{[m]}&\textbf{Tol [$\pm$m]	}& $\boldsymbol{T_{Mess}}$ \textbf{[ms]}	\\ \midrule
+5&F&Lidar&	110/3.2&	0.3/200		&0.05	&80	\\
+2&F&Radar	&66/23.1	&0.82/70		&0.36	&60	\\
+1&F&Radar	&12/23.1	&0.36/160		&0.12	&60	\\
+1&F&Kamera (sichtbar)	&50/28	&1/120	&0.25	&33	\\
+1&H&Lidar&	110/3.2&	0.3/200		&0.05	&80	\\	
+2&H&Radar	&140/23.1	&0.82/8		&0.36	&60	\\	
+1&H&Radar	&16/23.1	&0.82/120		&0.36	&60	\\\midrule
+
+\multicolumn{7}{c}{\textbf{\acs{TIAMO}}}\\\midrule
+\textbf{Anz}&\textbf{Ort}&\textbf{Typ}	&$\boldsymbol{\phi_H$/$\phi_V}$ \textbf{[°]}	& $\boldsymbol{R_{min}$/$R_{max}}$ \textbf{[m]}&\textbf{Tol [$\pm$m]	}& $\boldsymbol{T_{Mess}}$ \textbf{[ms]}	\\ \midrule
+2&F&Lidar	&110/3.2&	0.3/200	&	0.05&	80	\\
+1&F&Radar&	12/23.1&	0.36/160	&	0.12&	60	\\
+1&F&Kamera (sichtbar)&	50/28	&1/120&	0.25	&33	\\
+1&H&Lidar	&190/20.2	&0/80	&	0.025	&13	\\
+2&H&Lidar	&110/3.2&	0.3/200	&	0.05&	80	\\
+2&H&Radar	&165/23.1	&0.75/70	&1.50	&50	\\\bottomrule
+\end{tabularx} 
+
+Das \acs{FASCarE} ist mit 13 Sensoren ausgestattet und am \acs{TIAMO} sind neun Sensoren verbaut. In der Front ist das \acs{FASCarE} mit drei Radaren, fünf Lidaren und einer Kamera teils redundant und teils komplementär ausgestattet. Beim \acs{TIAMO} werden ein Radar, zwei Lidare und eine Kamera redundant und komplementär in der Front verwendet. Am Heck hingegen sind beim \acs{TIAMO} fünf Sensoren verbaut, während das \acs{FASCarE} am Heck mit vier Sensoren ausgestattet ist.% wovon zwei eine Reichweite von \unit[8]{m} aufweisen.
+
+Für die Bewertung der beiden Fahrzeugkonfigurationen wurden diese in die gleiche Szene gesetzt, die in den Abbildungen\,\ref{fig:VglFASCarE} und \ref{fig:VglTIAMO} für beide Fahrzeuge dargestellt ist. Die Szene ist eine Momentaufnahme mit insgesamt sieben Fahrzeugen, die auf eine Kreuzung zufahren. Das Objekt\,1 wurde jeweils mit der Fahrzeugkonfiguration des \acs{FASCarE} und des \acs{TIAMO} ausgesattet. In beiden Fällen ist zu erkennen, dass die Sichtfelder beider Fahrzeuge nahezu die gesamte Umgebung abdecken. Des Weiteren verdeutlichen diese Abbildungen noch einmal die Redundanzen der Sichtfelder.
+
+\begin{figure}[hbtp]%
+\centering
+\subfigure[][\acs{FASCarE}\label{fig:VglFASCarE}]{\includegraphics[width=0.49\textwidth,trim={0.2cm 0.1cm 19.9cm 2.0cm},clip]{pics/Vergleich_FASCarE.PNG}}\,
+\subfigure[][\acs{TIAMO}\label{fig:VglTIAMO}]{\includegraphics[width=0.49\textwidth,trim={0.2cm 0.1cm 19.9cm 2.0cm},clip]{pics/Vergleich_TIAMO.PNG}}%
+\caption{Szene zum Vergleich der Sensorkonfiguration vom \acs{FASCarE} und \acs{TIAMO}\label{fig:VglSzene}}
+\end{figure}
+
+Tabelle\,\ref{tab:VglLatGen} führt die erfassten Objekte und die Genauigkeit und Latenz der Messung in dem untersuchten Zeitpunkt auf. Beide Fahrzeuge erfassen alle sechs Objekte, jedoch mit unterschiedlichen Genauigkeiten und Latenzen. Das Objekt\,2 wird vom \acs{TIAMO} \unit[47]{ms} früher und mit einer höheren Genauigkeit erfasst als vom \acs{FASCarE}, da ein Lidar mit höherer Genauigkeit und geringerer Latenz beim \acs{TIAMO} verbaut ist. Die Objekte\,3 und 5 werden ebenfalls vom \acs{TIAMO} früher erfasst, jedoch mit einer Genauigkeit von \unit[$\pm$1.5]{m}. \unit[30]{ms} später, wenn die Daten aller Sensoren vorliegen, wäre die Genauigkeit ebenfalls bei \unit[$\pm$0.05]{m}. Das Objekt\,4 wird von beiden mit dem gleichen Lidar und die Objekte 6 und 7 werden von beiden mit der gleichen Kamera erfasst, weswegen es keine Unterschiede bezüglich der Latenz und Genauigkeit gibt.
+\newpage
+
+\begin{tabularx}{\textwidth}{lcccccc}%
+%\centering
+\caption[Genauigkeiten und Latenzen der zwei Sensorkonfigurationen]{Genauigkeiten und Latenzen der Sensorkonfigurationen des \acs{FASCarE} (\acs{DLR}) und des \acs{TIAMO} (\acs{TU BS})}
+\label{tab:VglLatGen}\\\toprule%\hline
+ \multicolumn{7}{c}{\textbf{\acs{FASCarE}}}\\\midrule%\hline
+\textbf{erfasst Objekt} & 2& 3& 4& 5& 6& 7 \\ 
+\textbf{Genauigkeit [\unit{$\pm$}{m}}] & 0.36 &0.05& 0.05 &0.05& 0.25& 0.25 \\
+\textbf{Latenz [\unit{ms}}] & 160 & 180 & 180& 180 &133 &133\\\midrule %\hline
+ \multicolumn{7}{c}{\textbf{\acs{TIAMO}}}\\\midrule
+\textbf{erfasst Objekt} & 2& 3& 4& 5& 6& 7\\
+\textbf{Genauigkeit [\unit{$\pm$}{m}}] & 0.025 &  1.5 & 0.05  & 1.5 & 0.25 & 0.25\\
+\textbf{Latenz [\unit{ms}}]& 	113 & 150 & 180 & 150 & 133 & 133\\\bottomrule
+\end{tabularx} 
+
+%\newpage
+Wird hingegen die Erkennungswahrscheinlichkeit beider Fahrzeuge in Abbildung\,\ref{fig:VglWahr} verglichen, fällt nur bei Nebel ein deutlicher Unterschied auf (Sterne und Kreise in Rot). Aufgrund der höheren Reichweite des Heckradars beim \acs{FASCarE} erfasst dieses das Objekt\,2 mit einer Wahrscheinlichkeit von \unit[84]{\%} bei Nebel mit einer Sichtweite von \unit[100]{m}. Die Erkennungswahrscheinlichkeit des \acs{TIAMO} für das Objekt\,2 beträgt hingegen \unit[76]{\%}. Die Objekte\,3 und 5 werden vom \acs{TIAMO} durch die Heckradare bei Nebel mit einer höheren Wahrscheinlichkeit erfasst als von den Frontlidaren des \acs{FASCarE}. Diese betragen \unit[69]{\%} und \unit[60]{\%} beim \acs{TIAMO} und \unit[62]{\%} und \unit[57]{\%} beim \acs{FASCarE}. Objekt\,6 wird mit \unit[64]{\%} hingegen vom \acs{FASCarE} aufgrund der Frontradare besser erfasst als vom \acs{TIAMO} mit \unit[58]{\%}. Der vollständigkeithalber wurde außerdem eine Auswertung bei Nacht durchgeführt. Da Radar und Lidar von der Tageszeit unabhängig sind ist diese Auswertung in Abbildung\,\ref{fig:VglWahrNacht} im Anhang zu finden.
+
+\begin{figure}[!hbtp]%
+\centering
+\includegraphics[width=\textwidth,trim={1cm 0.7cm 1cm 1cm},clip]{pics/VglTag_Abstand.PNG}
+\caption[Erkennungswahrscheinlichkeiten von \acs{FASCarE} und \acs{TIAMO} bei Tag]{Vergleich der Erkennungswahrscheinlichkeiten vom \acs{FASCarE} und \acs{TIAMO} bei Tag zu unterschiedlichen Witterungen\label{fig:VglWahr}}
+\end{figure}
+\newpage
+\subsection{Forschungskreuzung}
+\label{sec:FoKr}
+Ein weiterer Anwendungsfall ist die Analyse von Sensorkonfigurationen der Infrastruktur. Dafür wurden die Daten der Forschungskreuzung des \acs{DLR} in Braunschweig genutzt. Die Sensorspezifikationen der Kreuzung sind in Tabelle\,\ref{tab:FoKrKonfig} aufgeführt. Vier Ampelmaste sind mit Kameras jedes Typs ausgestattet und auf die Kreuzungsmitte gerichtet, siehe Abbildung\,\ref{fig:FoKrT=12}. Für die Auswertung wurden 34 Objekte innerhalb von \unit[43.52]{s} aus Daten der Forschungskreuzung ausgewählt. Die Trajektorien und Aufenthaltszeiten der Objekte sind in den Abbildungen\,\ref{fig:FoKrTraj} und \ref{fig:FoKrZeit} dargestellt. Da die Objektdaten des Datensatzes erst ab dem Zeitpunkt, zu dem sich das Objekt bewegt, vorliegen, wurden die Anwesenheitszeiten verlängert, sodass die Objekte sich um bis zu \unit[100]{ms} früher an der Kreuzung befinden. Außerdem wurden Objekte, die an ähnlichen Punkten zu ähnlichen Zeiten beginnen, entlang der Fahrspur nach hinten versetzt, damit sich bei der Simulation keine Objekte aufeinander befinden. Des Weiteren wurde das Objekt\,2 mit der Sensorkonfiguration des \acs{FASCarE} ausgestattet, siehe Abbildung\,\ref{fig:FoKrT=2.08}, und das Objekt\,21 mit der vom \acs{TIAMO}, siehe Abbildung\,\ref{fig:FoKrT=20}. 
+
+\begin{tabularx}{0.95\textwidth}{lp{1.7cm}cccc}%
+\caption{Sensorkonfiguration für den Innenbereich der Forschungskreuzung}
+\label{tab:FoKrKonfig}\\\toprule
+\textbf{Anz}&\textbf{Typ}	&$\boldsymbol{\phi_H$/$\phi_V}$ \textbf{[°]}	& $\boldsymbol{R_{min}$/$R_{max}}$ \textbf{[m]}&\textbf{Tol [$\pm$m]	}& $\boldsymbol{T_{Mess}}$ \textbf{[ms]}	\\ \midrule
+4&Kamera (sichtbar)&	97/74	&1/77.5	&0.25&	50	\\
+4&Kamera (NIR)& 42.6/34.7&	1/77.5	&0.25&	50	\\\bottomrule
+\end{tabularx} 
+
+\begin{figure}[hbtp]%
+\centering
+\subfigure[][T = \unit{2.08}{s} \label{fig:FoKrT=2.08}]{\includegraphics[width=0.33\columnwidth,trim={0.2cm 0.1cm 19.9cm 2.0cm},clip]{pics/FoKr_T=2-08.PNG}}%
+\subfigure[][T = \unit{12}{s} \label{fig:FoKrT=12}]{\includegraphics[width=0.33\columnwidth,trim={0.2cm 0.1cm 19.9cm 2.0cm},clip]{pics/FoKr_T=12.PNG}}
+\subfigure[][T = \unit{20}{s} \label{fig:FoKrT=20}]{\includegraphics[width=0.33\columnwidth,trim={0.2cm 0.1cm 19.9cm 2.0cm},clip]{pics/FoKr_T=20.PNG}}
+\caption[Drei Szenen auf der Forschungskreuzung]{Drei Szenen auf der Forschungskreuzung. Blau: Sichfelder der Infrastruktursensoren. Grün: Sichtfelder der Objektsensoren}%
+\label{fig:FoKrT}%
+\end{figure}
+
+\begin{figure}[hbtp]%
+\centering
+\subfigure[][Trajektorien \label{fig:FoKrTraj}]{\includegraphics[width=0.8\columnwidth,trim={2cm 1.2cm 2cm 1.8cm},clip]{pics/FoKr_34Obj.PNG}}\\%
+\subfigure[][Aufenthaltszeiten \label{fig:FoKrZeit}]{\includegraphics[width=0.7\columnwidth,trim={0.7cm 0.3cm 1.25cm 0.6cm},clip]{pics/FoKr_34Obj_Zeit.PNG}}
+\caption[Objekttrajektorien und -aufenthaltszeiten auf der Forschungskreuzung]{Trajektorien und Aufenthaltszeiten von 34 Objekten auf der Forschungskreuzung}%
+\label{fig:FoKr34Obj}%
+\end{figure}
+
+Abbildung\,\ref{fig:FoKr_Wahr} zeigt die Verläufe der Erkennungswahrscheinlichkeiten von fünf Objekten innerhalb von \unit[35]{s} bei Tag und Nacht. Zu erkennen ist, dass zum Einen die Erkennungswahrscheinlichkeiten bei Nacht geringer sind und sich zum Anderen die Verläufe unterscheiden. Dies ist darauf zurückzuführen, dass sich am Tage die zwei Kameratypen gegenseitig ergänzen und bei Nacht die Objekte hauptsächlich von der Infrarotkamera erfasst werden. Eine Auswertung am Tage mit Nebel ist in Abbildung\,\ref{fig:FoKr_WahrNebel} im Anhang zu finden. Der Nebel führt ausschließlich zu einer Verringerung der Erkennungswahrscheinlichkeit von etwa \unit[20]{\%}. Die Sprünge in den Verläufen sind auf Sichtfeldwelchsel der Objekte, während sie die Kreuzung überqueren, zurückzuführen. 
+
+\begin{figure}[hbtp]%
+\centering
+\includegraphics[width=\textwidth,trim={1cm 0.8cm 1.7cm 1.05cm},clip]{pics/FoKr_TagNacht.PNG}
+\caption[Erkennungswahrscheinlichkeiten der Forschungskreuzung]{Erkennungswahrscheinlichkeiten der Forschungskreuzung von fünf Objekten bei Tag und bei Nacht\label{fig:FoKr_Wahr}}
+\end{figure} 
+
+Eine weitere Einsatzmöglichkeit ist der Vergleich der Erkennungswahrscheinlichkeiten eines mit Sensorik ausgestatteten Fahrzeugs und der Infrastruktursensoren. Abbildung\,\ref{fig:VglFoKrFASCarE} zeigt hierfür die Verläufe der Erkennungswahrscheinlichkeiten des \acs{FASCarE} und der Forschungskreuzung. Für die Fahrsituation, bei der das \acs{FASCarE} geradeaus von Nord nach Süd über die Kreuzung fährt, fallen die Erkennungswahrscheinlichkeiten beim \acs{FASCarE} höher aus als die der Infrastruktur. Bei der Erfassung von Objekt\,3 hingegen bricht die Wahrscheinlichkeit beim \acs{FASCarE} für etwa \unit[2]{s} ein. Dies könnte per \acs{C2X}-Kommunikation in diesem Zeitraum von der Forschungskreuzung aufgefangen werden. Die Erkennungswahrscheinlichkeiten für die Objekte\,4 und 6 fallen bei der Forschungskreuzung deutlich geringer aus als beim \ac{FASCarE}, da sie sich im nahen Umfeld des \acs{FASCarE} befinden, was aufgrund des geringeren Abstandes zu einer höheren Erkennungswahrscheinlichkeit führt.
+
+\begin{figure}[hbtp]%
+\centering
+\subfigure[][\acs{FASCarE}\label{fig:VglFoKrFASCarE}]{\includegraphics[width=\textwidth,trim={0.7cm 0.3cm 0cm 0.6cm},clip]{pics/Vgl_FoKrFASCarE.PNG}}\\
+\subfigure[][\acs{TIAMO}\label{fig:VglFoKrTIAMO}]{\includegraphics[width=\textwidth,trim={0.7cm 0.3cm 0.1cm 0.7cm},clip]{pics/Vgl_FoKrTIAMO.PNG}}%
+\caption[Vergleich der Erkennungswahrscheinlichkeiten der Forschungskreuzung]{Vergleich der Erkennungswahrscheinlichkeiten der Forschungskreuzung mit denen des \acs{FASCarE} und des \acs{TIAMO}\label{fig:Vgl}}
+\end{figure}
+
+Das gleiche trifft auch auf die Verläufe des \acs{TIAMO} und der Forschungskreuzung in Abbildung\,\ref{fig:VglFoKrTIAMO} zu. Die Fahrsituation hier ist, dass das \acs{TIAMO} von Westen aus kommend rechts abbiegt und nach Süden fährt. Hier könnten die erfassten Daten von Objekt\,17 von der Forschungskreuzung in den ersten \unit[2]{s} per \acs{C2X}-Kommunikation an das \acs{TIAMO} weitergegeben werden.
+
+\subsection{Evaluation}
+\label{sec:Evaluation}
+Die Analyse der vier Szenen zeigt, dass folgende Einflüsse auf die Objekterkennung im Simulations-Tool berücksichtigt werden: Objektabstand, Tageszeit, Witterung, Objekterkennungsalgorithmus. Eine erste Auslegung von Sensorkonfigurationen für Fahrzeuge und für Infrastrukturelemente ist somit bereits möglich. Für die Systemauslegung gibt das Tool aus, welche Objekte erfasst werden und mit welcher Wahrscheinlichkeit, welcher Genauigkeit und welcher Latenz dies geschieht. Bei der Objekterfassung werden jedoch bislang keine sichtverdeckende Elemente wie Häuser und Bäume berücksichtigt. Des Weiteren wurde die Sensordatenfusion nur mit einem simplen Ansatz umgesetzt. Dafür wurde zum Einen bei der Erkennungswahrscheinlichkeit der größte Wert einer Sensorkonfiguration genutzt und zum Anderen bei der Genauigkeit und der Latenz nur die Daten des Sensors mit der geringsten Latenz. Dadurch, dass mit dem Tool nur explizite Zeitpunkte untersucht werden können, wird außerdem nicht berücksichtigt, dass sich die Erkennungswahrscheinlichkeit eines Objektes durch ein Objekttracking mit der Zeit erhöht. 
+

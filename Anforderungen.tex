@@ -1,27 +1,110 @@
-\section{Anforderungen an ein Software-Tool zur Sensorbewertung}
-\label{sec:Anforderungen}
+\section{Anforderungen an das Simulations-Tool}
+\label{chap:Anforderungen}
+Kapitel\,\ref{chap:Einsatz} stellte einige bestehende Sensorkonfigurationen für Fahrzeuge und der Infrastruktur vor. Für die Analyse dieser Konfigurationen und Auslegung zukünftiger Sensorkonzepte soll ein Simulations-Tool erstellt werden. Dafür werden im folgenden Kapitel Anforderungen an ein entsprechendes Tool ausgearbeitet. Eine Auflistung der Anforderungen schließt das Kapitel ab.
 
-\begin{itemize}
-	\item Sensormodell/Sensorattribute
-		\begin{itemize}
-			\item FoV (Öffungswinkel, Reichweite)
-			\item Datenqualität (Auflösung Genauigkeit, Messdauer)
-			\item Arbeitsfrequenz
-			\item Umwelteinflüsse (Witterung, Tag/Nacht, Temperatur)
-			\item Maße (Größe, Gewicht)
-			\item Schnittstellen
-		\end{itemize}
-	\item Objekte
-		\begin{itemize}
-			\item Fahrzeuge (KFZ, LKW, Zweirad)
-			\item Fußgänger
-			\item Geschwindigkeit
-		\end{itemize}
-	\item Umgebung
-		\begin{itemize}
-			\item Straße (Spuren, Kreuzung,...)
-			\item Objekte (Position, Intention)
-			\item Witterung
-		\end{itemize}
-	\item Bewertung	
-\end{itemize}
+\subsection{Komponenten des Simulations-Tools}
+Für die Analyse von Sensorkonfigurationen müssen neben den zu bewertenden Sensoren auch die Umgebung und die Objekte, d.h. die Verkehrsteilnehmer, abgebildet werden. Die Abhängigkeiten dieser drei Komponenten sind in Abbildung\,\ref{pic:Anforderungen} dargestellt. Die grünen Pfeile geben an, dass die Sensoren in der Umgebung und an den Objekten positioniert werden. Außerdem sind die Objekte in der Umgebung platziert. Der Einfluss der Umgebung und der Objekte auf die Sensoren ist durch die roten Pfeile dargestellt.
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=0.7\columnwidth,trim={6.5cm 10.5cm 12cm 4cm},clip]{pics/Anforderungen.pdf}%
+\caption{Komponenten des Simulations-Tools}%
+\label{pic:Anforderungen}%
+\end{figure}
+
+\subsubsection{Sensoren}
+\label{sec:AnfSen}
+Wie schon in Kapitel\,\ref{chap:Grundlagen} dargestellt, existieren verschiedene Sensortypen zur Umfelderfassung. Die Eigenschaften dieser Typen müssen für das Tool modelliert werden. Wesentliche Merkmale sind das Sichtfeld, bestehend aus horizontalem und vertikalem Öffnungswinkel $\phi$ und der Reichweite $R_{max}$, und die Latenz und die Genauigkeit der Messung. Des Weiteren müssen die Einflüsse auf die Messung, wie die Witterung und die Lichtverhältnisse, berücksichtigt werden.
+
+Für die Bewertung von Sensorkonfigurationen muss dem Benutzer ermöglicht werden, zwischen verschiedenen Sensoren zu wählen. Diese muss er außerdem an den Objekten und in der Umgebung positionieren und ausrichten können. Des Weiteren sollte ihm ermöglicht werden, individuelle Parameter wie die Latenz der Datenauswertung oder die Objekterkennungswahrscheinlichkeit seines Objekterkennungsalgorithmus anzugeben.
+
+\subsubsection{Objekte}
+\label{sec:AnfObj}
+Die Verkehrsteilnehmer werden in der Verkehrstechnik als Objekte bezeichnet. Sie werden in folgende Typen unterschieden: \ac{Pkw}, \ac{Lkw}, motorisierte und unmotorisierte Zweiräder und Fußgänger.
+
+Für den automatisierten Verkehr muss, wie schon in Abschnitt \ref{sec:KFZSensor} angeführt, das statische und dynamische Umfeld erfasst werden. Mit Hilfe des Simulations-Tools soll überprüft werden können, wo und wie gut die Objekte erfasst werden. Dafür muss das Tool alle relevanten Eigenschaften der Objekte abbilden. Dazu zählen die Größe, die Bewegungsrichtung und die Geschwindigkeit.
+
+Zur Analyse muss der Benutzer Objekte in einer Szene platzieren können. Außerdem sollte er den Objekttyp auswählen und die Bewegungsrichtung sowie die Geschwindigkeit bestimmen können.
+
+\subsubsection{Umgebung}
+\label{sec:AnfUmg}
+Zur Erzeugung von Use-Cases wird eine Auswahl von verschiedenen Straßenführungen benötigt. Dazu gehören verschiedene Kreuzungs- und Straßentypen ausgestattet, mit Verkehrsschildern und/oder Lichtsignalanlagen. Darüber hinaus sollte dem Benutzer ermöglicht werden, reale Kartendaten zu laden. Damit wäre es möglich, bestimmte Verkehrsknotenpunkte oder auch ganze Städte im Bezug auf Sensorkonfigurationen zu analysieren.
+
+Weitere Umgebungsbestandteile, die für das Tool modelliert werden müssen, sind sichteinschränkende Elemente wie Häuser und Bäume. Auch die Tageszeit bzw. die Lichtverhältnisse und die Witterung müssen modelliert werden, um deren Einfluss auf die Sensoren berücksichtigen zu können. Dafür sollte dem Benutzer ermöglicht werden, diese einzustellen.
+
+\subsubsection{Auswertung}
+\label{sec:AnfAusw}
+Mit Hilfe der modellierten Eigenschaften der Sensoren, der Objekte und der Umgebung können Use-Cases ausgewertet werden. Dafür muss zunächst bestimmt werden, welche Objekte sich innerhalb des Sensorsichtfeldes befinden. Unter Berücksichtigung der Einflüsse muss daraufhin ermittelt werden mit welcher Wahrscheinlichkeit jedes Objekt erkannt wird. Des Weiteren muss die Latenz und Genauigkeit der Erkennung bestimmt werden. Diese Werte müssen schließlich an den Benutzer ausgegeben werden.
+
+Da in der Regel mehr als ein Sensor an einem Objekt bzw. an der Infrastruktur verbaut wird, muss bei der Auswertung der Objekterkennung auch die Sensordatenfusion berücksichtigt werden. Zusätzlich können die Daten per \acs{C2X}-Kommunikation weitergeleitet werden, was ebenfalls die Werte der Objekterkennung beeinflusst.
+
+Neben der statischen Auswertung einzelner Momentaufnahmen sollte des Weiteren eine zeitliche Auswertung möglich sein. Dadurch können schließlich auch zeitliche Abhängigkeiten berücksichtigt werden.
+
+Für das bessere Verständnis des Benutzers sollte die Szene außerdem grafisch dargestellt werden. Hierbei sollte die Option bestehen einzelne Szenenelemente zu vergrößern. So können Städte und Knotenpunkte im Ganzen oder Konfliktszenen im Detail betrachtet werden.
+
+Abschließend muss der Benutzer die erzeugte Szene speichern und laden können. Dadurch kann eine Reproduzierbarkeit gewährleistet werden.
+
+\subsection{Anforderungsliste}
+\label{sec:Anforderungsliste}
+Aus den zuvor erarbeiteten Punkten kann schließlich eine Anforderungsliste erstellt werden. Dabei können die Anforderungen in die vier Komponenten "`Sensoren"', "`Objekte"', "`Umgebung"' und "`Auswertung"' eingeteilt werden. In Tabelle\,\ref{tab:Anforderungen} befindet sich diese Auflistung.
+
+\begin{tabularx}{\textwidth}{lX}
+\caption{Anforderungen an die Implementierung}
+	\label{tab:Anforderungen}\\\toprule
+\textbf{Nr} & \textbf{Anforderung} \\ \midrule\endfirsthead
+\caption*{Anforderungen an die Implementierung}
+	\label{tab:Anforderungen}\\\toprule
+\textbf{Nr} & \textbf{Anforderung} \\ \midrule\endhead
+\midrule\endfoot 
+\bottomrule\endlastfoot
+\textbf{S} & \textbf{Sensoren}\\
+S1 & Verschiedene Sensortypen müssen gewählt werden können\\
+S2 & Das Sichtfeld der Sensoren muss gewählt werden können\\
+S3 & Sensoren müssen positioniert werden können\\
+S4 & Sensoren müssen ausgerichtet werden können\\
+S5 & Der Einfluss der Witterung auf die Messung muss berücksichtigt werden\\
+S6 & Der Einfluss der Lichtverhältnisse auf die Messung muss berücksichtigt werden\\\midrule
+
+\textbf{O} & \textbf{Objekte}\\
+O1 & Objekte müssen platziert werden können\\
+O2 & Verschiedene Objekttypen müssen den Objekten zugeordnet werden können\\
+O3 & Jedem Objekt muss eine Bewegungsrichtung zugeordnet werden können\\
+O4 & Jedem Objekt muss eine Geschwindigkeit zugeordnet werden können\\\midrule
+
+\textbf{U} & \textbf{Umgebung}\\		
+U1 & Eine Straßenführung muss ausgewählt werden können \\ 
+U2 & Infrastrukturelemente müssen eingefügt werden können\\
+U3 & Die Witterung muss gewählt werden können\\
+U4 & Die Tageszeit muss gewählt werden können\\
+\midrule
+
+\textbf{A} & \textbf{Auswertung}\\
+A1 & Objekte im Sichtfeld müssen erkannt werden\\
+A2 & Die Erkennungswahrscheinlichkeit des Objekterkennungsalgorithmus muss gewählt werden können\\
+A3 & Der Abstand zum Objekt muss bestimmt werden\\
+A4 & Der Abstand muss die Objekterkennung beeinflussen\\
+A5 & Die Objekterkennungswahrscheinlichkeit muss bestimmt werden\\
+A6 & Die Objekterkennungswahrscheinlichkeit muss ausgegeben werden\\
+A7 & Die Geschwindigkeit des Objektes muss bestimmt werden können\\
+A8 & Die Genauigkeit der Messung muss ausgegeben werden\\
+A9 & Die Sensorfusion muss berücksichtigt werden\\
+A10 & Die ermittelte Objektposition soll ausgegeben werden\\
+A11 & Die Latenz der Messung muss berücksichtigt werden\\
+A12 & Die Latenz der Datenverarbeitung muss berücksichtigt werden\\
+A13 & Die Latenz, bis das Objekt erkannt ist, muss ausgegeben werden\\
+A14 & Eine zeitliche Auswertung muss möglich sein\\
+A15 & Die Szene muss grafisch dargestellt werden können\\
+A16 & Es muss die Möglichkeit des Zoomens bestehen\\
+A17 & Die Szene muss gespeichert werden können\\
+A18 & Szenen müssen geladen werden können\\\bottomrule
+\end{tabularx}
+
+
+	
+		%\begin{itemize}
+			%\item FoV (Öffungswinkel, Reichweite)
+			%\item Datenqualität (Auflösung Genauigkeit, Messdauer)
+			%\item Arbeitsfrequenz
+			%\item Umwelteinflüsse (Witterung, Tag/Nacht, Temperatur)
+			%\item Maße (Größe, Gewicht)
+			%\item Schnittstellen
+		%\end{itemize}

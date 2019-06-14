@@ -1,3 +1,11 @@
 \babel@toc {ngerman}{}
-\contentsline {table}{\numberline {1}{\ignorespaces Einsatz von Sensoren im Fahrzeug}}{20}{table.1}
-\contentsline {table}{\numberline {2}{\ignorespaces Einsatz von Sensoren in der Infrastruktur}}{21}{table.2}
+\contentsline {table}{\numberline {1}{Einsatz von Sensoren im Fahrzeug}}{19}{table.1}
+\contentsline {table}{\numberline {2}{Einsatz von Sensoren in der Infrastruktur}}{24}{table.2}
+\contentsline {table}{\numberline {3}{Anforderungen an die Implementierung}}{28}{table.3}
+\contentsline {table}{\numberline {4}{Grundma\IeC {\ss }e von Verkehrsteilnehmern in [\unit {m}] \cite {Wolf.2005}}}{36}{table.4}
+\contentsline {table}{\numberline {5}{Sensorkonfiguration von Objekt\tmspace +\thinmuskip {.1667em}1}}{44}{table.5}
+\contentsline {table}{\numberline {6}{Sensorkonfiguration der Infrastruktur}}{47}{table.6}
+\contentsline {table}{\numberline {7}{Sensorkonfigurationen des \acs {FASCarE} (\acs {DLR}) und des \acs {TIAMO} (\acs {TU BS})}}{49}{table.7}
+\contentsline {table}{\numberline {8}{Genauigkeiten und Latenzen der zwei Sensorkonfigurationen}}{51}{table.8}
+\contentsline {table}{\numberline {9}{Sensorkonfiguration f\"ur den Innenbereich der Forschungskreuzung}}{53}{table.9}
+\contentsline {table}{\numberline {10}{Spezifikationen einer Auswahl von Sensoren}}{67}{table.10}

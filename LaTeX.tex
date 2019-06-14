@@ -21,7 +21,7 @@
 
 		\sffamily{Masterarbeit}\\
 		\vspace{10pt}
-		\normalsize{\sffamily{erstellt von cand. mach. Viviane Bremer}}\\
+		\normalsize{\sffamily{erstellt von Viviane Bremer}}\\
 		\normalsize{\sffamily{Braunschweig, der \today}}
 		
 		\vspace{18pt}
@@ -36,12 +36,13 @@
 
 \newpage
 \thispagestyle{empty}~
-\include{Aufgabenstellung_Dummy}
+\includepdf{Aufgabenstellung}
 \newpage
 \renewcommand{\thepage}{\Roman{page}}
 \include{Sperrklausel}
 \include{Eid}
 \include{Abstract}
+\include{Danksagung}
 
 \tableofcontents
 
@@ -54,13 +55,15 @@
 \setcounter{page}{1}
 \include{Einleitung}
 \include{StandderTechnik}
+\include{Einsatz}
 \include{Anforderungen}
 \include{Software-Tool}
+%\include{Verifikation}
 \include{Evaluation}
 \include{Zusammenfassung}
 %\include{Kapitel}
 
-\bibliographystyle{alphadin}
+\bibliographystyle{abbrvdin}
 \bibliography{Literatur}
 \include{Anhang}
 

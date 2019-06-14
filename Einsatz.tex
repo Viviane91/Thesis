@@ -1,0 +1,165 @@
+\section{Anwendungen zur Umfelderfassung}
+\label{chap:Einsatz}
+Die in Abschnitt\,\ref{sec:Sensoren} vorgestellten Sensoren werden im verkehrstechnischen Kontext für die Automatisierung des Verkehrs genutzt. Das Ziel ist die Mobilität energieeffizient, komfortabel, sicher und verkehrseffizient zu gestalten \cite{Bengler.2018}. Wie sie diesbezüglich in den Fahrzeugen und in der Infrastruktur eingesetzt werden wird in den folgenden Abschnitten erläutert.
+
+\subsection{Im Fahrzeug}
+\label{sec:KFZSensor}
+Das Ziel des Sensoreinsatzes im Fahrzeug ist die Automatisierung des Fahrzeugs. Um dies zu erreichen, muss das Fahrzeug seine Umgebung vollständig erfassen und bewerten können. Nur so kann es selbstständig ein Manöver auswählen und durchführen. Im Folgenden wird genauer darauf eingegangen, wie weit dies mittlerweile in Serienfahrzeugen umgesetzt wird, und anschließend werden Ansätze aus der Forschung erläutert.
+
+%Die Automatisierung des Fahrzeugs erfolgt schrittweise. Hierfür unterscheidet die Bundesanstalt für Straßenwesen in fünf Automatisierungsgrade \cite{TomM.Gasseret.al..}. Diese sind in Abbildung \ref{fig:Automatisierungsgrade} dargestellt. Um die letzte Stufe, das autonome Fahren, zu erreichen, muss das Fahrzeug seine Umgebung vollständig erfassen und bewerten können. Nur so kann selbstständig ein Manöver ausgewählt und durchgeführt werden.
+%
+%\begin{figure}[h]%
+%\centering
+%\includegraphics[width=0.8\columnwidth]{pics/Automatisierungsgrade.pdf}%
+%\caption{Grafische Darstellung der einzelnen Automatisierungsgrade}%
+%\label{fig:Automatisierungsgrade}%
+%\end{figure} \marginpar{VDA Definition nehmen}
+
+In Abbildung\,\ref{fig:Fahrzeugsensoren} sind die Sensoranordnungen des \ac{FASCarE} des \ac{DLR} und des \ac{TIAMO} der \ac{TU BS} dargestellt. Zu erkennen ist, dass das \ac{LRR} und das Lidar in Fahrtrichtung genutzt werden. Der Grund dafür liegt in ihrer hohen Reichweite, denn so wird ein großer Sichtbereich in Fahrtrichtung abgedeckt. Sensoren mit einer geringeren Reichweite werden eingesetzt, um das nähere Umfeld zu beobachten. Hierzu gehören das \ac{SRR}, die Kamera und der Ultraschall.
+
+\begin{figure}[hbtp]
+	\centering
+	\subfigure[][\ac{FASCarE} \cite{HenningMosebach.02.10.2015}]{\includegraphics[page=2,width=\textwidth,trim={7cm 2cm 8.5cm 5cm},clip]{pics/Fahrzeugsensoren.pdf}}
+	\subfigure[][\ac{TIAMO} \cite{TUBraunschweig.09.05.2016}]{\includegraphics[page=3,width=\textwidth,trim={7cm 2cm 8.5cm 5cm},clip]{pics/Fahrzeugsensoren.pdf}}
+	\caption{Zwei verschiedene Fahrzeugkonfigurationen}
+	\label{fig:Fahrzeugsensoren}
+\end{figure}
+
+\subsubsection{Teilautomatisierung}
+Heutzutage werden Serienfahrzeuge mit Sensoren zur Umfelderfassung für die Unterstützung des Fahrers ausgerüstet \cite{Winner.2015}. Das \ac{LRR} und das Lidar werden im Rahmen von Fahrerassistenzsystemen z.B. für ein \ac{ACC} genutzt. Zum Teil werden sie außerdem mit einer Kamera für die Fahrstreifenerkennung kombiniert. So kann der Fahrzeugführer beispielsweise bei einer Autobahnfahrt entlastet werden. Es wird hierbei eine Wunschgeschwindigkeit eingestellt, die bis zu einer Annäherung an ein weiteres Fahrzeug gehalten wird. Mit Hilfe der Fahrstreifenerkennung kann außerdem die Querführung übernommen werden. Die Sensoren für das nähere Umfeld werden unter anderem für Spurwechsel-, Toter-Winkel- und Einparkassistenten genutzt. Die ersten zwei Assistenzsysteme dienen zur Vermeidung von Unfällen mit seitlich von Hinten herannahenden oder kreuzenden Verkehrsteilnehmern. Letzterer Assistent erleichtert das Einparken durch grafische oder akustische Hilfestellungen bis hin zur Übernahme des Einparkvorganges.
+
+\subsubsection{Vollautomatisierung}
+Damit Fahrzeuge ohne menschliches Eingreifen zukünftig fahren können, wird intensiv an der Umfelderfassung geforscht. Eine Auswahl an Arbeiten ist in Tabelle\,\ref{tab:LitFahrzeug} aufgeführt. Zum Einen muss das statische und zum Anderen das dynamische Umfeld erfasst werden. Somit werden Verfahren erforscht, um mittels Radar Fußgänger detektieren zu können \cite{Ahtiainen.2010}, \cite{Bartsch.2012}. Dies ist aufgrund ihres geringen Querschnittes und der geringen Winkelauflösung des Radars schwierig. In \cite{Bartsch.2012} beispielsweise wurde ein Algorithmus entwickelt, der Fußgänger mit einer Wahrscheinlichkeit von $95\%$ erkennt. Des Weiteren werden Verfahren entwickelt, die Infrarotkameras nutzen \cite{Negied.2015}, \cite{Wang.2015}. In Letzterer werden Objekte mit einer Wahrscheinlichkeit von $95\%$ detektiert. Für die Verbesserung der Datenqualität wird auch an der Sensordatenfusion gearbeitet \cite{RudiLindl.2009}, \cite{Apatean.2013}.
+
+%\begin{table}[h]
+	%\centering
+		%\begin{tabularx}{\textwidth}{p{2cm}p{2.5cm}Xc}
+		%\textbf{Quelle} & \textbf{Sensorsetup} & \textbf{Beschreibung} &  \textbf{Jahr}\\ \toprule
+		%\cite{RudiLindl.2009} & Radar\newline Lidar\newline Kamera & Sensorfusion für Fahrerassistenzsysteme mit hohen Ansprüchen  & 2009\\ \midrule
+%\cite{Perrone.2010} & Stereokamera & Modell zur Datenanalyse von Stereo Kameras  & 2010 \\ \midrule
+%\cite{Ahtiainen.2010} & 2 x Radar & Erkennen eines Menschen mit Radar  & 2010\\ \midrule
+%\cite{Bartsch.2012} & Radar & Erkennen eines Menschen mit Radar & 2012\\ \midrule
+%\cite{Krzikalla2013} & Lidar \newline GPS & Selbstlokalisierung mit Hilfe von GPS, Laserscanner und digitaler Karte &  2013\\ \midrule
+%\cite{Yalcin.2013} & Lidar & Positionierung des LIDAR, Fahrbahnbegrenzung erkennen, Objekterkennung  & 2013\\ \midrule
+%\cite{Apatean.2013} & IR\newline VIS Video & Fusioniert Infrarotkameradaten mit Daten des sichtbaren Spektrums einer Kamera  & 2013\\ \midrule
+%\cite{Schindler.} & Kamera\newline Lidar\newline GPS & Erzeugen einer Karte mit Hilfe von aktuellen Messdaten, Selbstlokalisierung des Fahrzeugs  & 2013\\ \midrule
+%\cite{Broggi.2013} &	Lidar\newline Kamera	& KFZe ausgerüstet mit Lidar und Kamera, überlappende Sichtbereiche, autonome Fahrt über \unit{13000}{km} durch Europa und Asien	&	2013 \\ \midrule
+%\cite{Lundgren.} & GPS\newline Gyroscope\newline Kamera\newline Radar & KFZ ausgestattet mit GPS, Gyroscope, Geschwindigkeitsmesser, Kamera, Radar zur Selbstlokalisierung  & 2014\\ \midrule
+%\cite{Negied.2015} & IR & Literaturauflistung bzgl Erkennung von Menschen mit Infrarotsensor & 2015\\ \midrule
+%\cite{Wang.2015}   & FIR & stellt einen Filter zur Objekterkennung mit Infrarot vor &  2015\\ \midrule
+%\cite{Ernst.}	& Lidar	& Nutzt digitale Karte und Lidar zur Extraktion von Verkehrsteilnehmern und bestimmt ihr Verhalten	&	2016\\ \midrule
+%\cite{Vivacqua.2017} & GPS\newline Gyroscope\newline Kamera & KFZ ausgestattet mit GPS, Gyroscope, Kamera und Laptop zur Selbstlokalisierung & 2017\\ \bottomrule
+		%\end{tabularx}
+	%\caption{Einsatz von Sensoren im Fahrzeug}
+	%\label{tab:LitFahrzeug}
+%\end{table}
+
+Für das vollautomatisierte Fahrzeug spielt neben der Umfeldwahrnehmung die Selbstlokalisierung eine wichtige Rolle. Die Selbstlokalisierung wird für den Einsatz von Kartendaten und der Bewertung der Umgebung genutzt. Hierbei werden gemessene Umfeldmerkmale mit Kartenmerkmalen verglichen, um das Fahrzeug zu lokalisieren. Für die Selbstlokalisierung gibt es verschiedene Ansätze mit unterschiedlichen Kombinationen von Umfelderfassungssensoren mit GPS, Beschleunigungs- und Geschwindigkeitssensoren und digitalen Karten. Einige Ansätze sind in \cite{Krzikalla2013}, \cite{Schindler.}, \cite{Broggi.2013},\cite{Lundgren.} und \cite{Vivacqua.2017} zu finden. In \cite{Schindler.} wird eine hochgenaue Karte in Kombination mit einer Kamera, einem Laserscanner und einem GPS Sensor für die landmarkenbasierte Fahrzeugpositionierung genutzt. Als Referenzsystem wurde ein \ac{RTK-GPS} eingesetzt. Die Kamera befindet sich hier hinter der Windschutzscheibe und dient der Fahrspurerkennung. Mit dem Laserscanner auf Höhe des Kennzeichens sollen Orientierungspunkte detektiert werden. In \cite{Lundgren.} wird ein anderer Ansatz verfolgt. Hier findet die Positionierung relativ zur Straße statt und nicht mit globalen Koordinaten. Dazu wurde ein Fahrzeug folgendermaßen ausgestattet: GPS Sensor, Gyroskop und Radgeschwindigkeitssensor für Position, Kurs, Geschwindigkeit und Drehgeschwindigkeit; Kamera für Fahrspurerkennung; Radar in Fahrtrichtung für Objekte auf und neben der Straße; \ac{RTK-GPS} als Referenzsystem.
+
+Ein weiterer Anwendungsfall von Sensoren am Fahrzeug ist die Untersuchung des Verkehrsteilnehmerverhaltens. Einige Vorgehen werden in \cite{Ernst.} und \cite{Bengler.2018} vorgestellt. Mit Hilfe dieser Untersuchungen sollen Algorithmen entwickelt werden, die das Verhalten der Verkehrsteilnehmer abschätzen. Dies kann schließlich für die Manöverplanung genutzt werden.
+
+%\subsubsection{Literatur}
+%\begin{table}[hbtp]
+	%\centering
+	%\caption{Einsatz von Sensoren im Fahrzeug}
+	%\label{tab:LitFahrzeug}
+\begin{tabularx}{\textwidth}{p{1.5cm}p{2.5cm}Xc}%p{2.5cm}
+		\caption{Einsatz von Sensoren im Fahrzeug}\label{tab:LitFahrzeug}\\\toprule
+		\textbf{Quelle} & \textbf{Sensorsetup} & \textbf{Beschreibung} &  \textbf{Jahr}\\ \midrule\endfirsthead
+		\caption*{Einsatz von Sensoren im Fahrzeug}\label{tab:LitFahrzeug}\\\toprule
+		\textbf{Quelle} & \textbf{Sensorsetup} & \textbf{Beschreibung} &  \textbf{Jahr}\\ \midrule\endhead
+		\midrule\endfoot 
+		\bottomrule\endlastfoot
+		\cite{RudiLindl.2009} & Radar\newline Lidar\newline Kamera & Sensorfusion für Fahrerassistenzsysteme mit hohen Ansprüchen  & 2009\\\addlinespace %\midrule
+\cite{Perrone.2010} & Stereokamera & Modell zur Datenanalyse von Stereo Kameras  & 2010 \\ \addlinespace%\midrule
+\cite{Ahtiainen.2010} & 2 x Radar & Erkennen eines Menschen mit Radar  & 2010\\ \addlinespace%\midrule
+\cite{Bartsch.2012} & Radar & Erkennen eines Menschen mit Radar & 2012\\ \addlinespace%\midrule
+\cite{Krzikalla2013} & Lidar \newline GPS & Selbstlokalisierung mit Hilfe von GPS, Laserscanner und digitaler Karte &  2013\\ \addlinespace%\midrule
+\cite{Yalcin.2013} & Lidar & Positionierung des Lidar, Fahrbahnbegrenzung erkennen, Objekterkennung  & 2013\\ \addlinespace%\midrule
+\cite{Apatean.2013} & \ac{IR}\newline Kamera & Fusionieren Infrarotkameradaten mit Daten des sichtbaren Spektrums einer Kamera  & 2013\\ \addlinespace%\midrule
+\cite{Schindler.} & Kamera\newline Lidar\newline GPS & Erzeugen einer Karte mit Hilfe von aktuellen Messdaten, Selbstlokalisierung des Fahrzeugs  & 2013\\ \addlinespace%\midrule
+\cite{Broggi.2013} &	Lidar\newline Kamera	& \ac{Pkw} ausgerüstet mit Lidar und Kamera, überlappende Sichtbereiche, autonome Fahrt über \unit{13000}{km} durch Europa und Asien	&	2013 \\ \addlinespace%\midrule
+\cite{Lundgren.} & GPS\newline Gyroscope\newline Kamera\newline Radar & \ac{Pkw} ausgestattet mit GPS, Gyroscope, Geschwindigkeitsmesser, Kamera, Radar zur Selbstlokalisierung  & 2014\\ \addlinespace%\midrule
+\cite{Negied.2015} & \ac{IR} & Literaturauflistung bzgl. Erkennung von Menschen mit Infrarotsensor & 2015\\ \addlinespace%\midrule
+\cite{Wang.2015}   & \acs{FIR} & Stellt einen Filter zur Objekterkennung mit Infrarot vor &  2015\\ \addlinespace%\midrule
+\cite{Ernst.}	& Lidar	& Nutzt digitale Karte und Lidar zur Extraktion von Verkehrsteilnehmern und bestimmt ihr Verhalten	&	2016\\ \addlinespace%\midrule
+\cite{Vivacqua.2017} & GPS\newline Gyroscope\newline Kamera & \ac{Pkw} ausgestattet mit GPS, Gyroscope, Kamera und Laptop zur Selbstlokalisierung & 2017\\ \bottomrule
+\end{tabularx}
+	
+%\end{table}
+
+\newpage
+\subsection{In der Infrastruktur}
+\label{sec:InfraSensor}
+In der Infrastruktur werden Umfelderfassungssensoren für die Verkehrsbeobachtung und -steuerung genutzt. Mit den aufgenommenen Daten können Verhaltensweisen von Verkehrsteilnehmern analysiert und unter anderem zur Unfallforschung eingesetzt werden. Außerdem wird der Einfluss der Witterung und der Tageszeit auf das Unfallgeschehen untersucht \cite{J.Ehrlichetal..2009}. Mit Hilfe dieser Daten können schließlich auch  Verfahren entwickelt werden, um die Intentionen der Verkehrsteilnehmer vorhersehen zu können. Für die Verkehrssteuerung können mit Hilfe der gesammelten Informationen die Lichtsignalphasen entsprechend des Verkehrsaufkommens dynamisch gesteuert werden \cite{Garcia2018}. Des Weiteren können diese Informationen auch mittels \acs{I2V}-Kommunikation an die Fahrzeuge übermittelt werden. Die dynamische Lichtsignalphasensteuerung und die \acs{I2V}-Kommunikation ermöglichen eine energie- und verkehrseffizientere Routenplanung und eine Reduzierung von Unfällen. Tabelle\,\ref{tab:LitInfrastruktur} beinhaltet eine Auswahl von Anwendungen von Sensorkonfigurationen in der Infrastruktur.
+
+\subsubsection{Mobile Sensorkonfigurationen}
+In \cite{Alexander.} wird ein transportabler Sensoraufbau für ländliche Kreuzungen ohne Signalanlagen in Minnesota, USA, vorgestellt. Diese Konfiguration ist in Abbildung \ref{fig:Minnesota} dargestellt. Bei diesem Projekt wurden Laserscanner und Radar zur Bestimmung der Position und Geschwindigkeit von Objekten eingesetzt. Mit Hilfe dieser Daten können die Abstände zwischen den Objekten bestimmt und anschließend weitergegeben werden. So können Unfälle in Folge von falscher Abstandsschätzung der Fahrer zu reduziert werden.
+
+\begin{figure}[!hbtp]%
+\centering
+\includegraphics[width=0.74\textwidth]{pics/Minnesota.PNG}%
+\caption[Transportabler Sensoraufbau]{Transportabler Sensoraufbau für ländliche Kreuzungen ohne Signalanlagen in Minnesota, USA \cite{Alexander.}\label{fig:Minnesota}}
+\end{figure}
+
+In \cite{Kanistras2013} wird der Einsatz von unbemannten Luftfahrzeugen (\acs{ULF}) vorgestellt. Ausgerüstet mit Kamera und evtl. zusätzlich mit Radar können aus der Vogelperspektive Daten für die Verkehrssimulation und Bewertung von Verkehrsnetzen gesammelt werden. \acs{ULF} stellen so eine zeitsparende Alternative zur Echtzeitbeobachtung dar. Außerdem sind sie mobiler und günstiger als der Einsatz von bemannten Systemen.
+
+\subsubsection{Stationäre Sensorkonfigurationen}
+Beim \acs{Ko-PER}-Projekt wurde in \cite{Meissner.} zunächst eine Kreuzung mit Laserscannern ausgestattet. Die Ergebnisse hieraus wurden bei der Ausstattung einer Kreuzung in Aschaffenburg mit berücksichtigt \cite{Goldhammer2012}. Diese wurde mit 14 Laserscannern, 10 Kameras, Signalphasenabgriff und einer \acs{I2V} Kommunikationseinheit ausgestattet. Die Sensoren befinden sich \unit[5]{m} über dem Boden und erzeugen so ein Bild in Vogelperspektive. In Abbildung\,\ref{fig:Ko-PER} zeigt diesen Aufbau. Mit Hilfe der Laserscanner wird ein 3D-Profil der Szene erstellt. Die Kameras dienen zur verbesserten Klassifikation und Tracking der Objekte. Das Augenmerk dieses Projektes liegt auf der Beobachtung von Fußgängern.
+
+\begin{figure}[hbtp]%
+\centering
+\subfigure[][Sichtbereich der Laserscanner]{\includegraphics[width=0.34\textwidth,trim={0cm 6.5cm 0cm 0cm},clip]{pics/KooPERTestsite.PNG}}\,
+\subfigure[][Sichtbereich der Kameras]{\includegraphics[width=0.34\textwidth,trim={0cm 0cm 0cm 6.5cm},clip]{pics/KooPERTestsite.PNG}}%
+\caption{Sensoraufbau der \acs{Ko-PER} Kreuzung in Aschaffenburg \cite{Goldhammer2012} \label{fig:Ko-PER}}
+\end{figure}
+
+Die Forschungskreuzung in Braunschweig gehört zum \ac{AIM} \cite{KnakeLanghorst.2016},\cite{Dotzauer2017}. In Abbildung\,\ref{fig:AIM} ist die Kreuzung zusammen mit den Sichtfeldern der Sensoren dargestellt. Die blauen Kegel symbolisieren die Sichtbereiche von zwei Monokameras in Kombination mit einem \ac{IR}-Blitz und einem \unit[24]{GHz} Radar. In grün sind die Sichtbereiche von Stereokamerasystemen dargestellt. Auf Basis dieser Sensorkonfiguration sollen zum Einen Prozesse und Interaktionen von Verkehrsteilnehmern untersucht werden und zum Anderen sollen die Daten für das kooperative Fahren und die Automatisierung des Verkehrs genutzt werden.  
+
+\begin{figure}[hbtp]%
+\centering
+\includegraphics[width=0.61\textwidth,trim={0.3cm 0.5cm 0.5cm 0.5cm},clip]{pics/TestsiteAIMv2.PNG}%
+\caption[Sensorkonfiguration der Forschungskreuzung in Braunschweig \cite{Bengler.2018}]{Sensorkonfiguration der Forschungskreuzung in Braunschweig. Blau: Sichtfeld zweier Monokameras, kombiniert mit einem \unit[24]{GHz} Radar und einem \ac{IR}-Blitz. Grün: Sichtfeld eines Stereokamerasystems mit einem IR-Blitz \cite{Bengler.2018} \label{fig:AIM}}
+\end{figure}
+
+
+
+
+%\cite{Jodoin.}:\\
+%Multiobjekttracking in Video\\
+%Erkennung:\\
+%Fuß: $68\%$--$80.5\%$\\
+%Autos: $80.4\%$--$89.7\%$\\
+%Gesamt: $72.6\%$--$82.3\%$\\
+%
+%\cite{Garcia2018}:\\
+%Einsatzbereiche für Radar: dynamische Anpassung der Ampelphasen, Statistik für Infrastrukturverbesserungen\\
+%Anbaumöglichkeit bei Kreuzung\\
+%etwa \unit{7.5}{m} über Boden, Straßenmitte\\
+\newpage
+
+%\subsubsection{Literatur}
+%\begin{table}[hbtp]
+	%\centering
+	%\caption{Einsatz von Sensoren in der Infrastruktur}
+	%\label{tab:LitInfrastruktur}
+
+\begin{tabularx}{\textwidth}{p{1.5cm}p{2.5cm}Xc}
+		\caption{Einsatz von Sensoren in der Infrastruktur}\label{tab:LitInfrastruktur}\\\toprule
+		\textbf{Quelle} & \textbf{Sensorsetup} & \textbf{Beschreibung} &  \textbf{Jahr}\\ \midrule\endfirsthead
+		\caption*{Einsatz von Sensoren in der Infrastruktur}\label{tab:LitInfrastruktur}\\\toprule
+		\textbf{Quelle} & \textbf{Sensorsetup} & \textbf{Beschreibung} &  \textbf{Jahr}\\ \midrule\endhead
+		\midrule\endfoot 
+		\bottomrule\endlastfoot
+		\cite{Alexander.} &Radar\newline Lidar &	Verkehrsüberwachung an Kreuzung mit Radar und Lidar	&	2006 \\ \addlinespace %\midrule
+			\cite{J.Ehrlichetal..2009} & Kamera\newline Lidar \newline \ac{IR} & Kamera, Laserscanner, \ac{IR} zur Verkehrs- und Umweltbeobachtung (Bestimmung der Witterung, Tageszeit) &  2009\\ \addlinespace %\midrule
+\cite{Meissner.} & Lidar & Einsatz und Modellierung von Laserscannern an Kreuzungen &  2012\\ \addlinespace %\midrule
+\cite{Goldhammer2012} & Lidar\newline Kamera & Beschreibt den Versuchsaufbau an einer Kreuzung zur Beobachtung des Verkehrs &  2012\\ \addlinespace %\midrule
+\cite{Hospedales.2012} & Kamera & Vergleicht Algorithmen zur Verhaltenserkennung von Verkehrsobjekten in Kameradaten &  2012\\ \addlinespace %\midrule
+\cite{Kanistras2013} & Kamera\newline Radar &	Überblick von verschiedenen Studien, die \acs{ULF} zur Verkehrsüberwachung nutzen. Ausgestattet mit Kamera/Radar &	2013\\ \addlinespace %\midrule
+\cite{Jodoin.} & Kamera & Stellt einen Algorithmus zum Objekttracking für die Bildverarbeitung vor, der an unterschiedlichen Kreuzungen getestet wurde &  2014\\ \addlinespace %\midrule
+\cite{DatondjiSokemiReneEmmanuel.2016} & Kamera & Listet und diskutiert Ansätze zur Verkehrsbeobachtung an Kreuzungen &  2016\\ \addlinespace %\midrule
+\cite{KnakeLanghorst.2016} & Kamera\newline \ac{IR}\newline Radar & Stellt die \ac{AIM} zur Untersuchung des Verkehrs vor &  2016\\ \addlinespace %\midrule
+\cite{Dotzauer2017} & Kamera\newline \ac{IR}\newline Radar & Untersuchung von Konflikten zwischen Fahrradfahrern und motorisierten Fahrzeugen &  2017\\\addlinespace %\midrule
+\cite{Garcia2018} & Radar & Stellt \unit{76-81}{GHz} Radar zur Verkehrsüberwachung vor &  2018\\ \bottomrule
+\end{tabularx}

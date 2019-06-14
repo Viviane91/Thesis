@@ -2,6 +2,122 @@
 \section{Symbolverzeichnis}
 \setcounter{secnumdepth}{3}
 \begin{tabbing}
-\hspace{4cm}\=\hspace{2.5cm}\=\kill
-	  $\mathrm{\Delta h_{ax}}$ \> [m/$\mathrm{s^{2}}$] \> Überschwingweite \\
+\hspace{3cm}\=\hspace{2cm}\=\kill
+	  %$\mathrm{\Delta h_{ax}}$ \> [m/$\mathrm{s^{2}}$] \> Überschwingweite \\
+		$a, c$ \> - \> empirische Koeffizienten\\
+		$B$ \> [\unit{m}] \> Breite\\
+		$b$ \> [\unit{mm}] \> Basisbreite\\
+		$c_L$ \> [\unitfrac{m}{s} \> Lichtgeschwindigkeit\\
+		$c_S$ \> [\unitfrac{m}{s}] \> Schallgeschwindigkeit\\
+		$D$ \> [\unit{m}] \> Abstand \\
+		$d$ \> - \> Disparität\\
+		$f$ \> [\unit{mm}] \> Brennweite\\
+		$f_{Chirp}$ \> [\unitfrac{1}{s}] \> Chirpfrequenz\\
+		$f_{Doppler}$ \> [\unitfrac{1}{s}] \> Dopplerfrequenz\\
+		$f_0$ \> [\unitfrac{1}{s}] \> Trägerfrequenz\\
+		$G$ \> - \> Beobachtungsmatrix\\
+		$H$ \> [\unit{m}] \> Höhe\\
+		$I_S$ \> [\unit{W}] \> Schallintensität\\
+		$k$ \> - \> Zeitschritt\\
+		$L$ \> [\unit{m}] \> Länge\\
+		$m_{\omega}$ \> -	\> Treppensteigung der Momentanfrequenz\\
+		$P_V$ \> - \> Kovarianz des Beobachtungsrauschens\\
+		$P_k$ \> - \> Kovarianzmatrix\\
+		$p$ \> - \> Wahrscheinlichkeitsdichte\\
+		$p_{Abstand}$ \> [\unit{\%}] \> Erkennungswahrscheinlichkeit des Objektabstandes\\
+		$p_{Algorithmus}$ \> [\unit{\%}] \> Erkennungswahrscheinlichkeit des Algorithmus\\
+		$p_{Gesamt}$ \> [\unit{\%}] \> Gesamterkennungswahrscheinlichkeit\\
+		$p_{Regen}$ \> [\unit{\%}] \> Erkennungswahrscheinlichkeit bei Regen\\
+		$p_{Tag}$ \> [\unit{\%}] \> Erkennungswahrscheinlichkeit der Tageszeit\\
+		$p_{Witterung}$ \> [\unit{\%}] \> Erkennungswahrscheinlichkeit der Witterung\\
+		$R$ \> [\unitfrac{mm}{h}] \> Regenrate\\
+		$R_{max}$ \> [\unit{m}] \> maximale Reichweite\\
+		$R_{min}$ \> [\unit{m}] \> minimale Reichweite\\
+		$S$ \> - \> stochastisches Systemrauschen\\
+		$s$ \> [\unit{m}] \> Senderabstand\\
+		$s_k$ \> - \> Realisierung des stochastischen Systemrauschens\\
+		$s_p$ \> [\unit{$\mu$m}] \> Größe des Bildpunktes\\
+		$T_{Mess}$ \> [\unit{ms}] \> Messlatenz\\
+		$V$ \> - \> stochastisches Beobachtungsrauschen\\
+		$v_k$ \> - \> Realisierung des stochastischen Beobachtungsrauschen\\
+		$W^{i}_{k}$ \> - \> Gewicht\\
+		$X_k$ \> - \> zu schätzende Größen\\
+		$X_l$ \> - \> Bildpunkt links\\
+		$X_r$ \> - \> Bildpunkt rechts\\
+		$X_W$ \> - \> Weltpunkt\\
+		$x, y, z$ \> - \> Raumkoordinaten\\
+		$x_0, y_0, z_0$ \> - \> Koordinatenursprung\\
+		$Y_k$ \> - \> Beobachtungen\\
+		$z_C$ \> [\unit{m}] \> Abstand zwischen Bildebene und Weltpunkt\\
+		$\alpha$ \> [\unit{°}] \> horizontaler Ausrichtungswinkel\\
+		$\beta$ \> [\unit{°}] \> vertikaler Ausrichtungswinkel\\
+		$\Delta T_{Delay_{Min}}$ \> [\unit{ms}] \> Zeitversatz zwischen Realität und Modell\\
+		$\Delta t$ \> [\unit{s}] \> Laufzeit\\
+		$\Delta \phi$ \> [\unit{°}] \> Winkelauflösung\\
+		$\rho_L$ \> [\unit{\%}] \> Reflexionsgrad des Lichts\\
+		$\rho_S$ \> [\unit{\%}]	\> Reflexionsgrad des Schalls\\
+		$\pi$ \> - \> Kreiszahl\\
+		$\phi$ \> [\unit{°}] \> Öffnungswinkel\\
+		$\phi_h$ \> [\unit{°}] \> horizontaler Öffnungswinkel\\		
+		$\phi_v$ \> [\unit{°}] \> vertikaler Öffnungswinkel\\
+		$\omega_{obj}$ \> [\unitfrac{1}{s}] \> Objektkreisfrequenz\\
+		$\omega_0$ \> [\unitfrac{1}{s}] \> Eigenkreisfrequenz\\
 \end{tabbing}
+%\begin{tabularx}{{\textwidth}{p{2cm}p{2cm}X}
+		%$D$ & [\unit{m}] & Abstand \\
+		%$c_S$ & [\unitfrac{m}{s}] & Schallgeschwindigkeit\\
+		%$\Delta t$ & [\unit{s}] & Laufzeit\\
+		%$d$ & [\unit{m}] & Senderabstand\\
+		%$I_S$ & [\unit{W}] & Schallintensität\\
+		%$\rho_S$ & -	& Reflexionsgrad des Schalls\\
+		%$m_{\omega}$ & -	& Treppensteigung der Momentanfrequenz\\
+		%$c_L$ & [\unitfrac{m}{s} & Lichtgeschwindigkeit\\
+		%$r$ & [\unit{m} & Abstand\\
+		%$f_{Doppler}$ & [\unitfrac{1}{s}] & Dopplerfrequenz\\
+		%$f_{Chirp}$ & [\unitfrac{1}{s}] & Chirpfrequenz\\
+		%$f_0$ & [\unitfrac{1}{s}] & Trägerfrequenz\\
+		%$\rho_L$ & - & Reflexionsgrad des Lichts\\
+		%$X_W$ & - & Weltpunkt\\
+		%$X_l$ & - & Bildpunkt links\\
+		%$X_r$ & - & Bildpunkt rechts\\
+		%$b$ & [\unit{m}] & Basisbreite\\
+		%$d$ & - & Disparität\\
+		%$s_p$ & [\unit{m}] & Größe des Bildpunktes\\
+		%$z_C$ & [\unit{m}] & Abstand\\
+		%$Y_k$ & - & Beobachtungen\\
+		%$X_k$ & - & zu schätzende Größen\\
+		%$k$ & - & Zeitschritte\\
+		%$S$ & - & stochastisches Systemrauschen\\
+		%$s_k$ & - & Realisierung des stochastischen Systemrauschens\\
+		%$V$ & - & stochastisches Beobachtungsrauschen\\
+		%$v_k$ & - & Realisierung des stochastischen Beobachtungsrauschen\\
+		%$p$ & - & Wahrscheinlichkeitsdichte\\
+		%$P_k$ & - & Kovarianzmatrix\\
+		%$G$ & - & Beobachtungsmatrix\\
+		%$P_V$ & - & Kovarianz des Beobachtungsrauschens\\
+		%$W^{i}_{k}$ & - & Gewicht\\
+		%$\Delta T_{Delay_{Min}}$ & [\unit{ms}] & Zeitversatz zwischen Realität und Modell\\
+		%$T_{Mess}$ & [\unit{ms}] & Messlatenz\\
+		%$\Phi$ & [\unit{°}] & Öffnungswinkel\\
+		%$\Phi_v$ & [\unit{°}] & vertikaler Öffnungswinkel\\
+		%$\Phi_h$ & [\unit{°}] & horizontaler Öffnungswinkel\\
+		%$R_{max}$ & [\unit{m}] & maximale Reichweite\\
+		%$R_{min}$ & [\unit{m}] & minimale Reichweite\\
+		%$x, y, z$ & - & Raumkoordinaten\\
+		%$x_0, y_0, z_0$ & - & Koordinatenursprung\\
+		%$L$ & [\unit{m}] & Länge\\
+		%$B$ & [\unit{m}] & Breite\\
+		%$H$ & [\unit{m}] & Höhe\\
+		%$\pi$ & - & Kreiszahl\\
+		%$\alpha$ & [\unit{°}] & horizontaler Ausrichtungswinkel\\
+		%$\beta$ & [\unit{°}] & vertikaler Ausrichtungswinkel\\
+		%$\Delta \Phi$ & [\unit{°}] & Winkelauflösung\\
+		%$p_{Gesamt}$ & - & Gesamterkennungswahrscheinlichkeit\\
+		%$p_{Algorithmus}$ & - & Erkennungswahrscheinlichkeit des Algorithmus\\
+		%$p_{Witterung}$ & - & Erkennungswahrscheinlichkeit der Witterung\\
+		%$p_{Regen}$ & - & Erkennungswahrscheinlichkeit bei Regen\\
+		%$p_{Tag}$ & - & Erkennungswahrscheinlichkeit der Tageszeit\\
+		%$p_{Abstand}$ & - & Erkennungswahrscheinlichkeit des Objektabstandes\\
+		%$R$ & [\unitfrac{mm}{h}] & Regenrate\\
+		%$a, c$ & - & empirische Koeffizienten\\
+%\end{tabularx}

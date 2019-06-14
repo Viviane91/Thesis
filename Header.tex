@@ -41,7 +41,8 @@
 
 % Kopf- und Fusszeile
 % Format der Kopf- und Fusszeile
-\usepackage{scrpage2}
+\usepackage{scrpage2}%scrpage2 is obsolete
+%\usepackage{scrlayer-scrpage}
 \pagestyle{scrheadings}
 \setlength{\headheight}{1.1\baselineskip}
 %\setheadtopline{1.5pt}
@@ -109,15 +110,20 @@
 
 % Literaturverzeichnis
 
+% Abkürzungsverzeichnis
+%\usepackage{acronym}
+
 %\PassOptionsToPackage{hyphens}{url}
-%\usepackage{hyperref}
+\usepackage{hyperref}
 \usepackage[numbers]{natbib}
-\usepackage[printonlyused]{acronym}
+\usepackage[nohyperlinks, printonlyused, smaller]{acronym}%[printonlyused]
+
 
 % Einstellungen für Tabelle
 \usepackage{multirow}
 \usepackage{tabularx}	%Zeilenumbruch und automatische Breiteneinstellung in Tabellen
 \usepackage{longtable}	%lange Tabellen mit Seitenumbruch
+\usepackage{ltablex}
 
 % Indexerstellung
 \usepackage{makeidx}
@@ -127,6 +133,7 @@
 %\usepackage[final]{graphicx}
 \usepackage{graphics}
 \usepackage{subfigure}
+%\usepackage{float}
 
 \makeatletter
 \def\ScaleIfNeeded{%
@@ -139,5 +146,6 @@
 \makeatother
 
 \usepackage{pdfpages}
+\usepackage{pdflscape}
 
 \usepackage{microtype} % verhindert, dass über den Rand geschrieben wird 
